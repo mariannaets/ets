@@ -59,6 +59,12 @@ const PROJECTS = {
     // photos: shown on the project page in this order, at their natural proportions
     photos: ["01","02","03","04","05","06","07","08","09","10"].map((n) => `images/vallee/project/${n}.webp`),
     desc: "a winery and guest house complex in aghavnadzor village, in the vayots dzor region of armenia. the picturesque landscape of aghavnadzor shapes the scenario of the vineyards and the winery, and invites visitors to stay for a while in the guest houses. these sit on the northern part of the plot and form a welcoming area — from a modest entry zone into a maze of modular elements: different types of guest house units and their public zones, such as a restaurant, a spa and other common rooms. from there, a path leads through the vineyards to the brutalist forms of the winery, intertwined with the landscape through a series of voids and monumental shapes. both the guest houses and the winery use local stone mixed with concrete — a sustainable building technology in which the outer walls provide insulation while keeping the construction lightweight." },
+  totaldrama: { cat: "exhibition", title: "Total Drama", year: "2024", titleFont: "'PP Hatton',serif",
+    info: { status: "Done", client: "Sunday Towers", sector: "Exhibition", location: "Yerevan, AM",
+      collaborators: "General Vlasov", staff: "Marianna Karapetyan, Karen Sheikh, Aram Sargsyan, Mane Petrosyan, Karen Avetisyan" },
+    // photos: shown on the project page in this order, at their natural proportions
+    photos: ["01","02","03","04","05"].map((n) => `images/totaldrama/project/${n}.webp`),
+    desc: "“total drama” is a month-long festival, established by electric architects as a curated program for the library for architecture. it explores the performativity of architecture and the spatiality of theatre. the program opens with a 5,000 m² exhibition of contemporary art on the verge of theatre and architecture, followed by a month of lectures, workshops, public talks, film screenings, urban installations and scenography production." },
   towers: { cat: "architecture", title: "sunday towers", year: "2022", titleFont: "'PP Lettra Mono',monospace",
     info: { status: "In construction", client: "Emaar Development UAE", sector: "Architecture", location: "Yerevan, AM",
       collaborators: "General Vlasov", staff: "Marianna Karapetyan, Karen Sheikh, Aram Sargsyan, Mane Petrosyan, Karen Avetisyan" },
@@ -71,7 +77,8 @@ const SIMONA_SLIDES = ["images/simona/1.webp","images/simona/2.webp","images/sim
 const BAREVDZEZ_SLIDES = ["images/barevdzez/1.webp","images/barevdzez/2.webp","images/barevdzez/3.webp","images/barevdzez/4.webp","images/barevdzez/5.webp"];
 const TOWERS_SLIDES = ["images/towers/1.webp","images/towers/2.webp","images/towers/3.webp","images/towers/4.webp","images/towers/5.webp"];
 const VALLEE_SLIDES = [1, 2, 3, 4, 5].map((n) => `images/vallee/${n}.webp`);
-const SLIDES_MAP = { simona: SIMONA_SLIDES, barevdzez: BAREVDZEZ_SLIDES, towers: TOWERS_SLIDES, vallee: VALLEE_SLIDES };
+const TOTALDRAMA_SLIDES = [1, 2, 3, 4, 5].map((n) => `images/totaldrama/${n}.webp`);
+const SLIDES_MAP = { simona: SIMONA_SLIDES, barevdzez: BAREVDZEZ_SLIDES, towers: TOWERS_SLIDES, vallee: VALLEE_SLIDES, totaldrama: TOTALDRAMA_SLIDES };
 const catLabel = (c) => c.replace(/\b\w/g, (ch) => ch.toUpperCase());
 const PLACEHOLDER_META = [
   ["ph1", "Lake House", "interior", "2022"], ["ph2", "Civic Pavilion", "urban design", "2021"],
@@ -97,6 +104,8 @@ const TOP_CARDS = [
     slideshow: true, slides: BAREVDZEZ_SLIDES, fromStart: true, pos: "50% 50%", height: "clamp(360px, 44vw, 660px)", mobileHeight: "85vh" },
   { id: "vallee", cat: "architecture", catLabel: "Architecture", catLabelFont: "'PP Hatton',serif", title: "Vallée de l'Arpa", year: "2024",
     slideshow: true, slides: VALLEE_SLIDES, fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
+  { id: "totaldrama", cat: "exhibition", catLabel: "Exhibition", catLabelFont: "'PP Hatton',serif", title: "Total Drama", year: "2024",
+    slideshow: true, slides: TOTALDRAMA_SLIDES, fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
   { id: "simona", cat: "interior", catLabel: "Interior", catLabelFont: "'PP Right Serif',serif", title: "Simona", year: "2026",
     slideshow: true, slides: SIMONA_SLIDES, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
 ];
