@@ -12,9 +12,9 @@ const NEWS_FONTS = ["'PP Gatwick',sans-serif", "'PP Telegraf',sans-serif", "'PP 
 const NEWS_ITEMS = [
   { id: "towers-topped", title: "Sunday towers, topped out", date: "march 2026", titleFont: NEWS_FONTS[0], author: "Aram Sargsyan",
     text: "construction on sunday towers has reached its final floor. the residential complex reinterprets yerevan's tuff-stone facades through a contemporary lens, pairing red volcanic stone with deep-set loggias.",
-    image: "images/news-spread.png", imgSize: "100% 112.565%", imgPos: "50% 0%" },
+    image: "images/news-spread.webp", imgSize: "100% 112.565%", imgPos: "50% 0%" },
   { id: "biennale-selected", title: "selected for venice biennale 2025", date: "january 2026", titleFont: NEWS_FONTS[2], author: "Lucine Hakobyan",
-    text: DESC, image: "images/hero-bar.png", imgSize: "cover", imgPos: "100% 55.267%" },
+    text: DESC, image: "images/hero-bar.webp", imgSize: "cover", imgPos: "100% 55.267%" },
 ];
 
 const TEAM = [
@@ -45,13 +45,13 @@ const PROJECTS = {
   simona: { cat: "interior", title: "simona", year: "2026", subtitleOverride: "2026",
     info: { status: "Completed", client: "Private Client", sector: "Interior Design, Hospitality", location: "Yerevan, AM",
       collaborators: "Local Joinery Workshops, Terrazzo Studio", staff: "Aram Sargsyan, Lucine Hakobyan, Davit Ghukasyan" },
-    hero: "images/portrait-bw.png", heroPos: "30% 30%",
-    second: "images/shopfront.png", secondPos: "50% 55%", desc: DESC },
+    hero: "images/portrait-bw.webp", heroPos: "30% 30%",
+    second: "images/shopfront.webp", secondPos: "50% 55%", desc: DESC },
   barevdzez: { cat: "exhibition", title: "Venice biennale of architecture", year: "2026", titleFont: "'PP Hatton',serif", subtitleOverride: "2026",
     info: { status: "Ongoing", client: "TUMO Centre for Creative Technologies", sector: "Exhibition, Architecture", location: "Venice, IT",
       collaborators: "TUMO Centre for Creative Technologies", staff: "Aram Sargsyan, Mane Petrosyan, Karen Avetisyan" },
-    hero: "images/hero-bar.png", heroPos: "100% 55.267%",
-    second: "images/portrait-bw.png", secondPos: "30% 40%", desc: DESC },
+    hero: "images/hero-bar.webp", heroPos: "100% 55.267%",
+    second: "images/portrait-bw.webp", secondPos: "30% 40%", desc: DESC },
   towers: { cat: "architecture", title: "sunday towers", year: "2022", titleFont: "'PP Lettra Mono',monospace",
     info: { status: "In construction", client: "Emaar Development UAE", sector: "Architecture", location: "Yerevan, AM",
       collaborators: "General Vlasov", staff: "Marianna Karapetyan, Karen Sheikh, Aram Sargsyan, Mane Petrosyan, Karen Avetisyan" },
