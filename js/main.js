@@ -53,6 +53,12 @@ const PROJECTS = {
     // photos: shown on the project page in this order, at their natural proportions
     photos: ["01","02","03","04","05","06","07","08","09"].map((n) => `images/barevdzez/project/${n}.webp`),
     desc: "electric architects, together with tumo centre for creative technologies, were appointed curators and authors of the armenian national pavilion at the venice biennale of architecture 2025. the concept revolves around training a new ai model on 3d-scanned artefacts of armenian cultural heritage, creating a mechanism that can endlessly reinterpret and reinvent them into new models and shapes. the project addresses the preservation of lost and endangered monuments, while letting them stay resilient and keep evolving through modern technology." },
+  vallee: { cat: "architecture", title: "vallée de l'arpa", year: "2024", titleFont: "'PP Lettra Mono',monospace",
+    info: { status: "In construction", client: "Emaar Development UAE", sector: "Architecture", location: "Yerevan, AM",
+      collaborators: "General Vlasov", staff: "Marianna Karapetyan, Karen Sheikh, Aram Sargsyan, Mane Petrosyan, Karen Avetisyan" },
+    // photos: shown on the project page in this order, at their natural proportions
+    photos: ["01","02","03","04","05","06","07","08","09","10"].map((n) => `images/vallee/project/${n}.webp`),
+    desc: "a winery and guest house complex in aghavnadzor village, in the vayots dzor region of armenia. the picturesque landscape of aghavnadzor shapes the scenario of the vineyards and the winery, and invites visitors to stay for a while in the guest houses. these sit on the northern part of the plot and form a welcoming area — from a modest entry zone into a maze of modular elements: different types of guest house units and their public zones, such as a restaurant, a spa and other common rooms. from there, a path leads through the vineyards to the brutalist forms of the winery, intertwined with the landscape through a series of voids and monumental shapes. both the guest houses and the winery use local stone mixed with concrete — a sustainable building technology in which the outer walls provide insulation while keeping the construction lightweight." },
   towers: { cat: "architecture", title: "sunday towers", year: "2022", titleFont: "'PP Lettra Mono',monospace",
     info: { status: "In construction", client: "Emaar Development UAE", sector: "Architecture", location: "Yerevan, AM",
       collaborators: "General Vlasov", staff: "Marianna Karapetyan, Karen Sheikh, Aram Sargsyan, Mane Petrosyan, Karen Avetisyan" },
@@ -64,7 +70,8 @@ const PROJECTS = {
 const SIMONA_SLIDES = ["images/simona/1.webp","images/simona/2.webp","images/simona/3.webp","images/simona/4.webp","images/simona/5.webp","images/simona/6.webp"];
 const BAREVDZEZ_SLIDES = ["images/barevdzez/1.webp","images/barevdzez/2.webp","images/barevdzez/3.webp","images/barevdzez/4.webp","images/barevdzez/5.webp"];
 const TOWERS_SLIDES = ["images/towers/1.webp","images/towers/2.webp","images/towers/3.webp","images/towers/4.webp","images/towers/5.webp"];
-const SLIDES_MAP = { simona: SIMONA_SLIDES, barevdzez: BAREVDZEZ_SLIDES, towers: TOWERS_SLIDES };
+const VALLEE_SLIDES = [1, 2, 3, 4, 5].map((n) => `images/vallee/${n}.webp`);
+const SLIDES_MAP = { simona: SIMONA_SLIDES, barevdzez: BAREVDZEZ_SLIDES, towers: TOWERS_SLIDES, vallee: VALLEE_SLIDES };
 const catLabel = (c) => c.replace(/\b\w/g, (ch) => ch.toUpperCase());
 const PLACEHOLDER_META = [
   ["ph1", "Lake House", "interior", "2022"], ["ph2", "Civic Pavilion", "urban design", "2021"],
@@ -88,6 +95,8 @@ const TOP_CARDS = [
     slideshow: true, slides: TOWERS_SLIDES, fromStart: true, pos: "50% 55%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
   { id: "barevdzez", cat: "exhibition", catLabel: "Exhibition", catLabelFont: "'PP Hatton',serif", title: "Venice biennale of Architecture", year: "2025",
     slideshow: true, slides: BAREVDZEZ_SLIDES, fromStart: true, pos: "50% 50%", height: "clamp(360px, 44vw, 660px)", mobileHeight: "85vh" },
+  { id: "vallee", cat: "architecture", catLabel: "Architecture", catLabelFont: "'PP Hatton',serif", title: "Vallée de l'Arpa", year: "2024",
+    slideshow: true, slides: VALLEE_SLIDES, fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
   { id: "simona", cat: "interior", catLabel: "Interior", catLabelFont: "'PP Right Serif',serif", title: "Simona", year: "2026",
     slideshow: true, slides: SIMONA_SLIDES, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
 ];
@@ -118,6 +127,10 @@ function toggleMobileMenu() { state.mobileMenuOpen = !state.mobileMenuOpen; rend
 // note: does not escape HTML — content is trusted, written by us
 const esc = (s) => String(s);
 
+function slidesHtml(c) {
+  return c.slides.map((src, i) => `<div data-card-id="${c.id}" data-slide-index="${i}" data-slide-total="${c.slides.length}"${c.fromStart ? " data-from-start" : ""} style="position:absolute;inset:0;background-image:url(${src});background-size:cover;background-position:${c.pos};background-repeat:no-repeat;opacity:0;"></div>`).join("");
+}
+
 function cardHtml(c) {
   const h = state.isMobile ? c.mobileHeight : c.height;
   const inner = `
@@ -129,7 +142,7 @@ function cardHtml(c) {
   const bg = c.image ? `background-image:url(${c.image});background-position:${c.pos};background-size:cover;` : "";
   let slides = "";
   if (c.slideshow) {
-    slides = c.slides.map((src, i) => `<div data-card-id="${c.id}" data-slide-index="${i}" data-slide-total="${c.slides.length}"${c.fromStart ? " data-from-start" : ""} style="position:absolute;inset:0;background-image:url(${src});background-size:cover;background-position:${c.pos};background-repeat:no-repeat;opacity:0;"></div>`).join("");
+    slides = slidesHtml(c);
   }
   return `<div class="top-card" data-open-project="${c.id}" style="position:relative;width:100%;cursor:pointer;overflow:hidden;background-color:#e5e5e5;background-repeat:no-repeat;height:${h};${bg}">${slides}${inner}</div>`;
 }
@@ -293,16 +306,23 @@ function smallCardsHtml(items) {
   const heights = shuffle(heightPool);
   const mobileHeights = shuffle(mobileHeightPool);
   const titleFonts = ["'PP Gatwick',sans-serif", "'PP Watch',sans-serif", "'PP Migra',serif", "'PP Stellar',sans-serif", "'PP Lettra Mono',monospace"];
-  const row = (item, i) => `
+  const row = (item, i) => {
+    const real = item.kind === "real" ? TOP_CARDS.find((c) => c.id === item.id) : null;
+    const boxH = state.isMobile ? mobileHeights[i % mobileHeights.length] : heights[i % heights.length];
+    const box = real
+      ? `<div style="position:relative;overflow:hidden;width:100%;height:${boxH};background:#e5e5e5;">${slidesHtml(real)}</div>`
+      : `<div style="width:100%;height:${boxH};background:#e5e5e5;background-image:repeating-linear-gradient(135deg,#e5e5e5 0 2px,#dcdcdc 2px 4px);display:flex;align-items:center;justify-content:center;">
+        <span style="font-family:'PP Lettra Mono',monospace;font-size:13px;color:#8a8a8a;">image — ${esc(item.title)}</span>
+      </div>`;
+    return `
     <div data-open-project="${item.id}" style="display:flex;flex-direction:column;gap:16px;cursor:pointer;width:${state.isMobile ? "100%" : `calc(50% - ${gapShare}px)`};${align}">
       <div style="display:flex;flex-direction:column;gap:8px;">
         <span style="font-family:${titleFonts[i % titleFonts.length]};font-weight:600;font-size:clamp(20px,3vw,40px);line-height:1.2;text-wrap:pretty;">${esc(item.title)}</span>
         <span style="font-family:'PP Stellar',sans-serif;font-size:16px;line-height:1.4;color:#5a5a5a;">${esc(catLabel(item.cat))} — ${esc(item.year)}</span>
       </div>
-      <div style="width:100%;height:${state.isMobile ? mobileHeights[i % mobileHeights.length] : heights[i % heights.length]};background:#e5e5e5;background-image:repeating-linear-gradient(135deg,#e5e5e5 0 2px,#dcdcdc 2px 4px);display:flex;align-items:center;justify-content:center;">
-        <span style="font-family:'PP Lettra Mono',monospace;font-size:13px;color:#8a8a8a;">image — ${esc(item.title)}</span>
-      </div>
+      ${box}
     </div>`;
+  };
   return `<div style="display:flex;flex-wrap:wrap;gap:100px 24px;margin-left:${state.isMobile ? "0px" : "var(--pad-left)"};margin-right:0px;margin-top:100px;margin-bottom:100px;">
     ${items.map((item, i) => row(item, i)).join("")}
   </div>`;
@@ -319,7 +339,7 @@ function bigCardHtml(item) {
 }
 
 function projectsLayoutHtml(realCards) {
-  const realItems = realCards.map((c) => ({ id: c.id, cat: c.cat, year: c.year, kind: "real" }));
+  const realItems = realCards.map((c) => ({ id: c.id, title: c.title, cat: c.cat, year: c.year, kind: "real" }));
   const phItems = PLACEHOLDER_ITEMS.filter((p) => (!state.filter || p.cat === state.filter) && (!state.yearFilter || String(p.year) === state.yearFilter)).map((p) => ({ ...p, kind: "ph" }));
   const items = [...realItems, ...phItems].sort((a, b) => b.year - a.year);
   const renderBig = (it) => it.kind === "real" ? cardHtml(TOP_CARDS.find((c) => c.id === it.id)) : bigCardHtml(it);
