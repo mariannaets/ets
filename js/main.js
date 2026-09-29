@@ -280,7 +280,8 @@ function heroSubnavHtml() {
 }
 
 function homeHtml() {
-  const cards = TOP_CARDS.filter((c) => !state.filter || c.cat === state.filter);
+  // home always shows the 3 most recent projects (same as the top of "all projects")
+  const cards = TOP_CARDS.filter((c) => !state.filter || c.cat === state.filter).slice().sort((a, b) => b.year - a.year).slice(0, 3);
   const align = state.isMobile ? "text-align:center;" : "text-align:left;";
   return `<main style="padding:0 clamp(20px,6vw,100px);">
     <div id="wrap" style="max-width:1512px;margin:0 auto;">
