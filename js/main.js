@@ -2,6 +2,8 @@
 // CONTENT — edit texts, news, team and projects here
 // ============================================================
 
+const STUDIO_INSTAGRAM = "https://www.instagram.com/electricarchitects/";
+
 const DESC = "electric architects, along with tumo centre for creative technologies has been appointed as curators and authors of armenian national pavilion at venice biennale of architecture 2025. the concept evolves around training a new ai model with 3d scanned files of armenian cultural heritage in order to create a new mechanism which allows to endlessly interpret or reinvent these heritage artefacts into new models and shapes. this project refers to preservation of lost and endangered monuments while allowing their further resilience and development via modern technologies.";
 
 const ABOUT_TEXT = "electric architects is a yerevan-based studio working across architecture, interiors and urban design. we treat every commission as a chance to test a new idea about materials, space or context — from a single bar interior to a masterplan. the studio is small by choice: every project passes through the same two hands, from first sketch to last detail on site.";
@@ -234,7 +236,7 @@ function mobileMenuHtml() {
     </div>
     <div style="display:flex;justify-content:space-between;align-items:center;margin-top:60px;font-size:22px;font-weight:700;">
       <a href="mailto:studio@e-ts.am" style="font-family:'PP Frama',sans-serif;color:#0D0D0E;font-size:16px;">email</a>
-      <a href="https://instagram.com" target="_blank" rel="noreferrer" style="font-family:'PP Stellar',sans-serif;font-style:italic;color:#0D0D0E;font-size:16px;">instagram</a>
+      <a href="${STUDIO_INSTAGRAM}" target="_blank" rel="noreferrer" style="font-family:'PP Stellar',sans-serif;font-style:italic;color:#0D0D0E;font-size:16px;">instagram</a>
     </div>
     <div style="margin-top:60px;font-family:'PP Lettra Mono',monospace;font-size:16px;line-height:1.4;">
       <span style="font-size:16px;text-align:center;">Azatutyan 24/12, Yerevan,<br>Armenia 0014</span>
@@ -556,7 +558,7 @@ function contactHtml() {
       <div style="display:flex;flex-direction:column;gap:30px;padding:0 0 200px;margin-left:${state.isMobile ? "0px" : "var(--pad-left)"};${align}">
         <span style="font-size:16px;">Azatutyan 24/12, Yerevan, Armenia 0014</span>
         <a href="mailto:studio@e-ts.am" class="backlink" style="font-family:'PP Telegraf',sans-serif;font-weight:500;font-size:16px;line-height:1;width:fit-content;border-bottom:1px solid #000;padding-bottom:6px;color:#0D0D0E;">email</a>
-        <a href="https://instagram.com" target="_blank" rel="noreferrer" class="backlink" style="font-family:'PP Hatton',serif;font-weight:500;font-size:16px;line-height:1;width:fit-content;border-bottom:1px solid #000;padding-bottom:6px;color:#0D0D0E;text-decoration-line:none;">instagram</a>
+        <a href="${STUDIO_INSTAGRAM}" target="_blank" rel="noreferrer" class="backlink" style="font-family:'PP Hatton',serif;font-weight:500;font-size:16px;line-height:1;width:fit-content;border-bottom:1px solid #000;padding-bottom:6px;color:#0D0D0E;text-decoration-line:none;">instagram</a>
       </div>
     </div>
   </main>`;
@@ -577,7 +579,7 @@ function footerHtml() {
       <span style="grid-column:2 / -1;text-align:center;font-size:16px;font-family:'PP Lettra Mono',monospace;order:${order.address};">Azatutyan 24/12, Yerevan, Armenia 0014</span>
       <span style="order:0;"></span><!-- empty cell: keeps year + instagram on the right grid columns -->
       <span style="font-size:16px;line-height:1;font-family:'PP Hatton',serif;order:${order.year};">2026</span>
-      <a href="https://instagram.com" target="_blank" rel="noreferrer" class="hoverlink" style="justify-self:end;font-size:16px;line-height:1;color:#0D0D0E;font-family:'PP Migra',serif;order:${order.instagram};">instagram</a>
+      <a href="${STUDIO_INSTAGRAM}" target="_blank" rel="noreferrer" class="hoverlink" style="justify-self:end;font-size:16px;line-height:1;color:#0D0D0E;font-family:'PP Migra',serif;order:${order.instagram};">instagram</a>
     </div>
   </footer>`;
 }
