@@ -50,11 +50,12 @@ const PROJECTS = {
       collaborators: "TUMO Centre for Creative Technologies", staff: "Aram Sargsyan, Mane Petrosyan, Karen Avetisyan" },
     hero: "images/hero-bar.png", heroPos: "100% 55.267%",
     second: "images/portrait-bw.png", secondPos: "30% 40%", desc: DESC },
-  towers: { cat: "architecture", title: "sunday towers", year: "2023", titleFont: "'PP Lettra Mono',monospace",
-    info: { status: "Completed", client: "Private Developer", sector: "Architecture, Urban Design", location: "Yerevan, AM",
-      collaborators: "\u2014", staff: "Aram Sargsyan, Mane Petrosyan, Karen Avetisyan" },
-    hero: "images/tuff-arches-red.png", heroPos: "50% 55%",
-    second: "images/news-spread.png", secondPos: "50% 0%", desc: DESC },
+  towers: { cat: "architecture", title: "sunday towers", year: "2022", titleFont: "'PP Lettra Mono',monospace",
+    info: { status: "In construction", client: "Emaar Development UAE", sector: "Architecture", location: "Yerevan, AM",
+      collaborators: "General Vlasov", staff: "Marianna Karapetyan, Karen Sheikh, Aram Sargsyan, Mane Petrosyan, Karen Avetisyan" },
+    // photos: shown on the project page in this order, at their natural proportions
+    photos: ["01","02","03","04","05","06","07","08","09","10","11"].map((n) => `images/towers/project/${n}.webp`),
+    desc: "1.4 hectares of a former industrial site in the arabkir district are being transformed into a high-end mixed-use district. six buildings, from 6 to 14 floors, sit above commercial and office spaces on the lower levels. every building has its own distinct architectural character, with careful detailing, stonework and metal cladding. every apartment is designed around the needs of modern living — comfort, and room for social interaction." },
 };
 
 const SIMONA_SLIDES = ["images/simona/1.webp","images/simona/2.webp","images/simona/3.webp","images/simona/4.webp","images/simona/5.webp","images/simona/6.webp"];
@@ -80,7 +81,7 @@ PLACEHOLDER_META.forEach(([id, title, cat, year]) => {
 });
 
 const TOP_CARDS = [
-  { id: "towers", cat: "architecture", catLabel: "Architecture", catLabelFont: "'PP Hatton',serif", title: "Sunday Towers", year: "2023",
+  { id: "towers", cat: "architecture", catLabel: "Architecture", catLabelFont: "'PP Hatton',serif", title: "Sunday Towers", year: "2022",
     slideshow: true, slides: TOWERS_SLIDES, pos: "50% 55%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
   { id: "barevdzez", cat: "exhibition", catLabel: "Exhibition", catLabelFont: "'PP Hatton',serif", title: "Venice biennale of Architecture", year: "2025",
     slideshow: true, slides: BAREVDZEZ_SLIDES, pos: "50% 50%", height: "clamp(360px, 44vw, 660px)", mobileHeight: "85vh" },
@@ -413,7 +414,7 @@ function homeAboutHtml() {
 
 function projectHtml() {
   const p = PROJECTS[state.project];
-  const slides = SLIDES_MAP[state.project] || [];
+  const slides = p.photos ? [] : (SLIDES_MAP[state.project] || []);
   const align = state.isMobile ? "text-align:center;" : "text-align:left;";
   const margin = state.isMobile ? "0 auto" : "0";
   const alignItems = state.isMobile ? "align-items:center;" : "align-items:flex-start;";
@@ -425,7 +426,8 @@ function projectHtml() {
       <div style="padding:100px 0 100px;margin-left:${state.isMobile ? "0px" : "var(--pad-left)"};${align}">
         <p style="max-width:600px;margin:${margin};font-size:16px;line-height:30px;">${p.desc}</p>
       </div>
-      ${p.placeholder ? `<div class="hero-hover" style="width:100%;height:clamp(420px, 58vw, 880px);margin-bottom:10px;background:#e5e5e5;background-image:repeating-linear-gradient(135deg,#e5e5e5 0 2px,#dcdcdc 2px 4px);display:flex;align-items:center;justify-content:center;"><span style="font-family:'PP Lettra Mono',monospace;font-size:13px;color:#8a8a8a;">image — ${esc(p.title)}</span></div>` : `<div class="hero-hover" style="width:100%;height:clamp(420px, 58vw, 880px);margin-bottom:10px;background-size:cover;background-repeat:no-repeat;background-color:#e5e5e5;background-image:url(${p.hero});background-position:${p.heroPos};"></div>`}
+      ${p.photos ? p.photos.map((src) => `
+        <img class="hero-hover" src="${src}" alt="${esc(p.title)}" loading="lazy" style="display:block;width:100%;height:auto;margin-bottom:10px;background-color:#e5e5e5;">`).join("") : p.placeholder ? `<div class="hero-hover" style="width:100%;height:clamp(420px, 58vw, 880px);margin-bottom:10px;background:#e5e5e5;background-image:repeating-linear-gradient(135deg,#e5e5e5 0 2px,#dcdcdc 2px 4px);display:flex;align-items:center;justify-content:center;"><span style="font-family:'PP Lettra Mono',monospace;font-size:13px;color:#8a8a8a;">image — ${esc(p.title)}</span></div>` : `<div class="hero-hover" style="width:100%;height:clamp(420px, 58vw, 880px);margin-bottom:10px;background-size:cover;background-repeat:no-repeat;background-color:#e5e5e5;background-image:url(${p.hero});background-position:${p.heroPos};"></div>`}
       ${slides.map((src, i) => `
         <div class="hero-hover" style="width:100%;height:clamp(420px, 46vw, 680px);margin-bottom:10px;background-image:url(${src});background-size:cover;background-position:50% 50%;background-repeat:no-repeat;background-color:#e5e5e5;"></div>`).join("")}
       ${relatedProjectsHtml()}
