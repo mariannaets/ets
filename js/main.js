@@ -84,7 +84,7 @@ PLACEHOLDER_META.forEach(([id, title, cat, year]) => {
 
 const TOP_CARDS = [
   { id: "towers", cat: "architecture", catLabel: "Architecture", catLabelFont: "'PP Hatton',serif", title: "Sunday Towers", year: "2022",
-    slideshow: true, slides: TOWERS_SLIDES, pos: "50% 55%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
+    slideshow: true, slides: TOWERS_SLIDES, fromStart: true, pos: "50% 55%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
   { id: "barevdzez", cat: "exhibition", catLabel: "Exhibition", catLabelFont: "'PP Hatton',serif", title: "Venice biennale of Architecture", year: "2025",
     slideshow: true, slides: BAREVDZEZ_SLIDES, pos: "50% 50%", height: "clamp(360px, 44vw, 660px)", mobileHeight: "85vh" },
   { id: "simona", cat: "interior", catLabel: "Interior", catLabelFont: "'PP Right Serif',serif", title: "Simona", year: "2026",
@@ -128,7 +128,7 @@ function cardHtml(c) {
   const bg = c.image ? `background-image:url(${c.image});background-position:${c.pos};background-size:cover;` : "";
   let slides = "";
   if (c.slideshow) {
-    slides = c.slides.map((src, i) => `<div data-card-id="${c.id}" data-slide-index="${i}" data-slide-total="${c.slides.length}" style="position:absolute;inset:0;background-image:url(${src});background-size:cover;background-position:${c.pos};background-repeat:no-repeat;opacity:0;"></div>`).join("");
+    slides = c.slides.map((src, i) => `<div data-card-id="${c.id}" data-slide-index="${i}" data-slide-total="${c.slides.length}"${c.fromStart ? " data-from-start" : ""} style="position:absolute;inset:0;background-image:url(${src});background-size:cover;background-position:${c.pos};background-repeat:no-repeat;opacity:0;"></div>`).join("");
   }
   return `<div class="top-card" data-open-project="${c.id}" style="position:relative;width:100%;cursor:pointer;overflow:hidden;background-color:#e5e5e5;background-repeat:no-repeat;height:${h};${bg}">${slides}${inner}</div>`;
 }
@@ -658,8 +658,10 @@ function initSlideshows() {
   const ids = new Set(Array.from(document.querySelectorAll("[data-card-id]")).map((el) => el.dataset.cardId));
   ids.forEach((id) => {
     if (!(id in slideState)) {
-      const total = Number(document.querySelector(`[data-card-id="${id}"]`).dataset.slideTotal);
-      slideState[id] = Math.floor(Math.random() * total);
+      const first = document.querySelector(`[data-card-id="${id}"]`);
+      const total = Number(first.dataset.slideTotal);
+      // fromStart cards always begin at frame 1; others start on a random frame
+      slideState[id] = "fromStart" in first.dataset ? 0 : Math.floor(Math.random() * total);
       const tick = () => {
         slideState[id] = (slideState[id] + 1) % total;
         showSlide(id, slideState[id]);
