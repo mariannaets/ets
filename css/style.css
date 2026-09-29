@@ -1,0 +1,29 @@
+@font-face { font-family: "PP Migra"; src: url("../fonts/PPMigra-Italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "PP Hatton"; src: url("../fonts/PPHatton-Medium.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "PP Lettra Mono"; src: url("../fonts/PPLettraMono-Medium.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Relative Pitch"; src: url("../fonts/Relative-10Pitch.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "PP Gatwick"; src: url("../fonts/PPGatwick-JetSemibold.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "PP Right Serif"; src: url("../fonts/PP-Right-Serif-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "PP Stellar"; src: url("../fonts/PPStellar-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "PP Watch"; src: url("../fonts/PPWatch-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "PP Telegraf"; src: url("../fonts/PPTelegraf-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "PP Telegraf"; src: url("../fonts/PPTelegraf-Bold.woff2") format("woff2"); font-weight: 600 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "PP Frama"; src: url("../fonts/PPFrama-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "PP Playground"; src: url("../fonts/PPPlayground-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+:root { --pad-left: 124px; --pad-news: 340px; --pad-people: 620px; --pad-about: 900px; --pad-contact: 1180px; --accent: #ff0000; --ink: #0D0D0E; --paper: #FAFFFD; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { background: var(--paper); color: var(--ink); font-family: "Relative Pitch", ui-monospace, monospace; -webkit-font-smoothing: antialiased; overflow-x: clip; min-height: 100vh; }
+::selection { background: #001aff; color: var(--paper); }
+a { color: var(--ink); text-decoration: none; }
+.hoverlink:hover { color: var(--accent); }
+.backlink:hover { color: var(--accent); border-color: var(--accent); }
+.hero-hover { transition: transform 700ms cubic-bezier(0.16,1,0.3,1); }
+.hero-hover:hover { transform: scale(1.015); }
+.top-card > div[style*="background-image"] { transition: transform 700ms cubic-bezier(0.16,1,0.3,1); }
+.top-card:hover, .card-hover-black:hover, .card-zoom-only:hover { transform: scale(1.008); transition: transform 700ms cubic-bezier(0.16,1,0.3,1); }
+.card-hover-black, .card-zoom-only { transition: transform 700ms cubic-bezier(0.16,1,0.3,1); }
+.top-card::after, .card-hover-black::after { content: ""; position: absolute; inset: 0; background: #0D0D0E; opacity: 0; pointer-events: none; z-index: 1; }
+.top-card:hover::after, .card-hover-black:hover::after { opacity: 1; }
+#app main { animation: fade-in 700ms cubic-bezier(0.16,1,0.3,1) both; }
+@keyframes fade-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
