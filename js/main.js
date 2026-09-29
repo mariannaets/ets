@@ -1,3 +1,7 @@
+// ============================================================
+// CONTENT — edit texts, news, team and projects here
+// ============================================================
+
 const DESC = "electric architects, along with tumo centre for creative technologies has been appointed as curators and authors of armenian national pavilion at venice biennale of architecture 2025. the concept evolves around training a new ai model with 3d scanned files of armenian cultural heritage in order to create a new mechanism which allows to endlessly interpret or reinvent these heritage artefacts into new models and shapes. this project refers to preservation of lost and endangered monuments while allowing their further resilience and development via modern technologies.";
 
 const ABOUT_TEXT = "electric architects is a yerevan-based studio working across architecture, interiors and urban design. we treat every commission as a chance to test a new idea about materials, space or context — from a single bar interior to a masterplan. the studio is small by choice: every project passes through the same two hands, from first sketch to last detail on site.";
@@ -84,33 +88,33 @@ const TOP_CARDS = [
     slideshow: true, slides: SIMONA_SLIDES, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
 ];
 
+// ============================================================
+// APP — state, navigation, rendering (no content below)
+// ============================================================
+
+const MOBILE_MQ = window.matchMedia("(max-width: 720px)");
+
 const state = {
   view: "home", filter: null, yearFilter: null, project: "simona",
   scrolled: false, menuOpen: null,
-  isMobile: window.matchMedia("(max-width: 720px)").matches,
+  isMobile: MOBILE_MQ.matches,
   mobileMenuOpen: false,
 };
 
-function go(view, filter) {
-  state.view = view; state.filter = filter === undefined ? null : filter; state.yearFilter = null; state.menuOpen = null; state.mobileMenuOpen = false;
+function navigate(changes) {
+  Object.assign(state, changes, { menuOpen: null, mobileMenuOpen: false });
   window.scrollTo(0, 0);
   render();
 }
-function openProject(id) {
-  state.view = "project"; state.project = id; state.menuOpen = null; state.mobileMenuOpen = false;
-  window.scrollTo(0, 0);
-  render();
-}
-function openPost(id) {
-  state.view = "post"; state.post = id; state.menuOpen = null; state.mobileMenuOpen = false;
-  window.scrollTo(0, 0);
-  render();
-}
+function go(view, filter) { navigate({ view, filter: filter === undefined ? null : filter, yearFilter: null }); }
+function openProject(id) { navigate({ view: "project", project: id }); }
+function openPost(id) { navigate({ view: "post", post: id }); }
 function toggleMobileMenu() { state.mobileMenuOpen = !state.mobileMenuOpen; render(); }
 
+// note: does not escape HTML — content is trusted, written by us
 const esc = (s) => String(s);
 
-function cardHtml(c, index) {
+function cardHtml(c) {
   const h = state.isMobile ? c.mobileHeight : c.height;
   const inner = `
     <div style="position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:space-between;${state.isMobile ? "align-items:center;text-align:center;padding:24px;" : `align-items:flex-start;text-align:left;padding:30px 100px 30px var(--pad-left);`}color:#fafafa;">
@@ -137,15 +141,6 @@ function titleWrap(title, subtitle, color, titleFont, paddingTop, justify) {
     <div style="${style}">
       <span style="font-family:${titleFont || "'PP Gatwick',sans-serif"};font-weight:700;font-size:clamp(32px,6vw,52px);line-height:1.2;${c}">${title}</span>
       ${subtitle ? `<span style="font-size:16px;line-height:1.3;font-family:'PP Stellar',sans-serif;${c}">${subtitle}</span>` : ""}
-    </div>
-  </div>`;
-}
-
-function metaBlock(lines) {
-  const align = state.isMobile ? "align-items:center;text-align:center;" : "align-items:flex-start;text-align:left;";
-  return `<div style="background:#f4f4f4;padding:100px 0;">
-    <div style="display:flex;flex-direction:column;margin-left:${state.isMobile ? "0px" : "var(--pad-left)"};${align}">
-      ${lines.map((l) => `<span style="font-family:'PP Hatton',serif;font-size:22px;line-height:60px;">${esc(l)}</span>`).join("")}
     </div>
   </div>`;
 }
@@ -218,7 +213,6 @@ function headerHtml() {
 function mobileMenuHtml() {
   if (!(state.isMobile && state.mobileMenuOpen)) return "";
   const projectsSub = ["architecture", "urban design", "interior", "exhibition"];
-  const newsSub = ["thought", "parties"];
   return `<div style="position:fixed;inset:0;z-index:30;background:#FAFFFD;padding:clamp(20px,5vw,50px) clamp(20px,6vw,100px) clamp(20px,6vw,40px);display:flex;flex-direction:column;overflow-y:auto;font-family:'PP Playground',sans-serif;">
     <div style="display:flex;justify-content:space-between;align-items:center;">
       <img data-go="home" src="images/logo-ets-black.svg" alt="e/ts" style="width:70px;height:21px;cursor:pointer;display:block;">
@@ -254,7 +248,6 @@ function mobileMenuHtml() {
 
 function heroSubnavHtml() {
   const projectsSub = ["architecture", "urban design", "interior", "exhibition"];
-  const newsSub = [];
   if (state.isMobile) {
     return `<div style="display:flex;justify-content:space-between;gap:24px;margin-top:40px;">
       <div style="display:flex;flex-direction:column;gap:12px;font-family:'PP Telegraf',sans-serif;font-weight:700;">
@@ -266,14 +259,10 @@ function heroSubnavHtml() {
     <div style="position:absolute;top:0;left:var(--pad-left);display:flex;flex-direction:column;gap:12px;font-family:'PP Telegraf',sans-serif;font-weight:700;">
       ${projectsSub.map((key) => `<span data-filter="${key}" class="hoverlink" style="font-size:16px;color:#0D0D0E;cursor:pointer;">${key}</span>`).join("")}
     </div>
-    <div style="position:absolute;top:0;left:var(--pad-news);display:flex;flex-direction:column;gap:12px;font-family:'PP Right Serif',serif;">
-      ${newsSub.map((key) => `<span data-filter="${key}" class="hoverlink" style="font-size:16px;color:#0D0D0E;cursor:pointer;">${key}</span>`).join("")}
-    </div>
   </div>`;
 }
 
 function homeHtml() {
-  const anyVisible = TOP_CARDS.some((c) => !state.filter || c.cat === state.filter);
   const cards = TOP_CARDS.filter((c) => !state.filter || c.cat === state.filter);
   const align = state.isMobile ? "text-align:center;" : "text-align:left;";
   return `<main style="padding:0 clamp(20px,6vw,100px);">
@@ -330,10 +319,10 @@ function projectsLayoutHtml(realCards) {
   const phItems = PLACEHOLDER_ITEMS.filter((p) => (!state.filter || p.cat === state.filter) && (!state.yearFilter || String(p.year) === state.yearFilter)).map((p) => ({ ...p, kind: "ph" }));
   const items = [...realItems, ...phItems].sort((a, b) => b.year - a.year);
   const renderBig = (it) => it.kind === "real" ? cardHtml(TOP_CARDS.find((c) => c.id === it.id)) : bigCardHtml(it);
-  let html = "", i = 0;
+  let html = "";
   const firstBig = items.slice(0, 3);
   if (firstBig.length) html += `<div style="display:flex;flex-direction:column;gap:10px;">${firstBig.map(renderBig).join("")}</div>`;
-  i = 3;
+  let i = 3;
   while (i < items.length) {
     const chunk = items.slice(i, i + 4);
     html += smallCardsHtml(chunk);
@@ -347,7 +336,6 @@ function projectsLayoutHtml(realCards) {
 }
 
 function projectsHtml() {
-  const anyVisible = TOP_CARDS.some((c) => (!state.filter || c.cat === state.filter) && (!state.yearFilter || String(c.year) === state.yearFilter));
   const cards = TOP_CARDS.filter((c) => (!state.filter || c.cat === state.filter) && (!state.yearFilter || String(c.year) === state.yearFilter)).sort((a, b) => b.year - a.year);
   const align = state.isMobile ? "text-align:center;" : "text-align:left;";
   const years = [...new Set([...TOP_CARDS, ...PLACEHOLDER_META.map((m) => ({ cat: m[2], year: m[3] }))].filter((c) => !state.filter || c.cat === state.filter).map((c) => String(c.year)))].sort((a, b) => b - a);
@@ -585,7 +573,7 @@ function footerHtml() {
       <a href="mailto:studio@e-ts.am" class="hoverlink" style="font-size:16px;line-height:1;color:#0D0D0E;order:${order.email};">email</a>
       <span data-go="contact" class="hoverlink" style="font-size:16px;line-height:1;cursor:pointer;order:${order.timeFlies};">Time flies.</span>
       <span style="grid-column:2 / -1;text-align:center;font-size:16px;font-family:'PP Lettra Mono',monospace;order:${order.address};">Azatutyan 24/12, Yerevan, Armenia 0014</span>
-      <span style="order:0;"></span>
+      <span style="order:0;"></span><!-- empty cell: keeps year + instagram on the right grid columns -->
       <span style="font-size:16px;line-height:1;font-family:'PP Hatton',serif;order:${order.year};">2026</span>
       <a href="https://instagram.com" target="_blank" rel="noreferrer" class="hoverlink" style="justify-self:end;font-size:16px;line-height:1;color:#0D0D0E;font-family:'PP Migra',serif;order:${order.instagram};">instagram</a>
     </div>
@@ -647,45 +635,42 @@ document.addEventListener("click", (e) => {
   if (projEl) { openProject(projEl.dataset.openProject); return; }
   const postEl = e.target.closest("[data-open-post]");
   if (postEl) { openPost(postEl.dataset.openPost); return; }
-  const backEl = e.target.closest("[data-back-home]");
-  if (backEl) { go("home"); return; }
   const mobileToggleEl = e.target.closest("[data-toggle-mobile-menu]");
   if (mobileToggleEl) { toggleMobileMenu(); return; }
 });
 
 window.addEventListener("resize", measurePad);
 
-const mq = window.matchMedia("(max-width: 720px)");
-mq.addEventListener("change", (e) => { state.isMobile = e.matches; state.mobileMenuOpen = false; render(); });
+MOBILE_MQ.addEventListener("change", (e) => { state.isMobile = e.matches; state.mobileMenuOpen = false; render(); });
 
-state.slideIndex = 0;
-const slideTimers = {};
+const slideState = {}; // card id -> current slide index (timer keeps running across re-renders)
+const slideDelay = () => 1400 + Math.random() * 1400;
+function showSlide(id, idx) {
+  document.querySelectorAll(`[data-card-id="${id}"]`).forEach((el) => {
+    el.style.opacity = Number(el.dataset.slideIndex) === idx ? 1 : 0;
+  });
+}
 function initSlideshows() {
   const ids = new Set(Array.from(document.querySelectorAll("[data-card-id]")).map((el) => el.dataset.cardId));
   ids.forEach((id) => {
-    const els = document.querySelectorAll(`[data-card-id="${id}"]`);
-    if (!els.length) return;
-    const total = Number(els[0].dataset.slideTotal);
-    if (slideTimers[id]) return;
-    let idx = Math.floor(Math.random() * total);
-    els.forEach((el) => { el.style.opacity = Number(el.dataset.slideIndex) === idx ? 1 : 0; });
-    const tick = () => {
-      idx = (idx + 1) % total;
-      document.querySelectorAll(`[data-card-id="${id}"]`).forEach((el) => {
-        el.style.opacity = Number(el.dataset.slideIndex) === idx ? 1 : 0;
-      });
-      slideTimers[id] = setTimeout(tick, 1400 + Math.random() * 1400);
-    };
-    slideTimers[id] = setTimeout(tick, 1400 + Math.random() * 1400);
+    if (!(id in slideState)) {
+      const total = Number(document.querySelector(`[data-card-id="${id}"]`).dataset.slideTotal);
+      slideState[id] = Math.floor(Math.random() * total);
+      const tick = () => {
+        slideState[id] = (slideState[id] + 1) % total;
+        showSlide(id, slideState[id]);
+        setTimeout(tick, slideDelay());
+      };
+      setTimeout(tick, slideDelay());
+    }
+    showSlide(id, slideState[id]);
   });
 }
-initSlideshows();
 
 const CARD_COLORS = ["#000000", "#39ff14", "#ff00ff", "#00f0ff", "#ffe600", "#ff2079", "#000000"];
 const cardColorTimers = {};
 function initCardColors() {
   document.querySelectorAll("[data-color-card]").forEach((card, i) => {
-    if (!card.dataset.colorId) card.dataset.colorId = "c" + Math.random().toString(36).slice(2);
     const id = card.dataset.colorId;
     const interval = 2000 * (1 + i * 0.05);
     card.style.backgroundColor = CARD_COLORS[Math.floor(Math.random() * CARD_COLORS.length)];
