@@ -373,14 +373,11 @@ function projectsLayoutHtml(realCards) {
   const items = [...realItems, ...phItems].sort((a, b) => b.year - a.year);
   const renderBig = (it) => it.kind === "real" ? cardHtml(TOP_CARDS.find((c) => c.id === it.id)) : bigCardHtml(it);
   let html = "";
+  // mobile: one column of identical tall cards with the title on top
+  if (state.isMobile) return items.length ? smallCardsHtml(items) : "";
   const firstBig = items.slice(0, 3);
   if (firstBig.length) html += `<div style="display:flex;flex-direction:column;gap:10px;">${firstBig.map(renderBig).join("")}</div>`;
   let i = 3;
-  // mobile: after the first 3 big cards, everything is one column of tall cards with the title on top
-  if (state.isMobile) {
-    if (i < items.length) html += smallCardsHtml(items.slice(i));
-    return html;
-  }
   while (i < items.length) {
     const chunk = items.slice(i, i + 4);
     html += smallCardsHtml(chunk);
