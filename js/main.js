@@ -460,7 +460,7 @@ function homePeopleHtml() {
         </div>`).join("")}
     </div>
     <div style="margin:100px 0 0;margin-left:${state.isMobile ? "0px" : "var(--pad-left)"};${align}">
-      <span data-go="people" class="backlink" style="font-family:'PP Hatton',serif;font-weight:500;font-size:16px;cursor:pointer;border-bottom:1px solid #000;padding-bottom:4px;">all people →</span>
+      <span data-go="people" class="backlink" style="font-family:'PP Hatton',serif;font-weight:500;font-size:16px;cursor:pointer;border-bottom:1px solid #000;padding-bottom:4px;">people →</span>
     </div>
   </div>`;
 }
