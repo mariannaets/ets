@@ -229,8 +229,8 @@ function relatedProjectsHtml() {
     <div style="display:flex;flex-direction:column;align-items:${state.isMobile ? "center" : "flex-start"};gap:10px;margin-top:30px;">
       ${ids.map((id) => {
         const rp = PROJECTS[id];
-        return `<div data-card-fit data-color-card data-color-id="${id}" data-open-project="${id}" class="card-zoom-only" style="position:relative;width:auto;max-width:100%;padding:0 100px;cursor:pointer;overflow:hidden;background-color:#0D0D0E;height:${cardH};">
-          <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:24px;color:#fafafa;">
+        return `<div data-card-fit data-color-card data-color-id="${id}" data-open-project="${id}" class="card-zoom-only card-hover-black" style="position:relative;width:auto;max-width:100%;padding:0 100px;cursor:pointer;overflow:hidden;background-color:#0D0D0E;height:${cardH};">
+          <div style="position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:space-between;padding:24px;color:#fafafa;">
             <span style="font-family:'PP Lettra Mono',monospace;font-size:16px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis;">${esc(rp.cat)}</span>
             <span style="font-family:${rp.titleFont || "'PP Gatwick',sans-serif"};font-weight:600;font-size:${state.isMobile ? "clamp(28px,7vw,44px)" : "clamp(20px,2.6vw,32px)"};line-height:1.1;${state.isMobile ? "display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;white-space:normal;" : "white-space:nowrap;"}overflow:hidden;text-overflow:ellipsis;" data-fit-title>${esc(rp.title)}</span>
             <span style="font-family:'PP Hatton',serif;font-size:16px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis;">${esc(rp.year)}</span>
@@ -352,12 +352,12 @@ function smallCardsHtml(items) {
     const real = item.kind === "real" ? TOP_CARDS.find((c) => c.id === item.id) : null;
     const boxH = state.isMobile ? mobileHeights[i % mobileHeights.length] : heights[i % heights.length];
     const box = real
-      ? `<div style="position:relative;overflow:hidden;width:100%;height:${boxH};background:#e5e5e5;">${slidesHtml(real)}</div>`
+      ? `<div class="card-box" style="position:relative;overflow:hidden;width:100%;height:${boxH};background:#e5e5e5;">${slidesHtml(real)}</div>`
       : `<div style="width:100%;height:${boxH};background:#e5e5e5;background-image:repeating-linear-gradient(135deg,#e5e5e5 0 2px,#dcdcdc 2px 4px);display:flex;align-items:center;justify-content:center;">
         <span style="font-family:'PP Lettra Mono',monospace;font-size:13px;color:#8a8a8a;">image — ${esc(item.title)}</span>
       </div>`;
     return `
-    <div data-open-project="${item.id}" style="display:flex;flex-direction:column;gap:16px;cursor:pointer;width:${state.isMobile ? "100%" : `calc(50% - ${gapShare}px)`};${align}">
+    <div data-open-project="${item.id}" class="small-card" style="display:flex;flex-direction:column;gap:16px;cursor:pointer;width:${state.isMobile ? "100%" : `calc(50% - ${gapShare}px)`};${align}">
       <div style="display:flex;flex-direction:column;gap:8px;">
         <span style="font-family:${titleFonts[i % titleFonts.length]};font-weight:600;font-size:clamp(20px,3vw,40px);line-height:1.2;text-wrap:pretty;">${esc(item.title)}</span>
         <span style="font-family:'PP Stellar',sans-serif;font-size:16px;line-height:1.4;color:#5a5a5a;">${esc(catLabel(item.cat))} — ${esc(item.year)}</span>
