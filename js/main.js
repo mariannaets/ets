@@ -330,7 +330,7 @@ function smallCardsHtml(items) {
   const align = state.isMobile ? "text-align:center;" : "text-align:left;";
   const gapShare = 12;
   const heightPool = ["clamp(380px, 46vw, 560px)", "clamp(460px, 56vw, 680px)", "clamp(320px, 40vw, 480px)", "clamp(420px, 50vw, 600px)"];
-  const mobileHeightPool = ["70vw", "95vw", "82vw", "60vw"];
+  const mobileHeightPool = ["85vh"]; // same height as the big mobile cards
   const shuffle = (arr) => { const a = arr.slice(); for (let k = a.length - 1; k > 0; k--) { const j = Math.floor(Math.random() * (k + 1)); [a[k], a[j]] = [a[j], a[k]]; } return a; };
   const heights = shuffle(heightPool);
   const mobileHeights = shuffle(mobileHeightPool);
@@ -376,6 +376,11 @@ function projectsLayoutHtml(realCards) {
   const firstBig = items.slice(0, 3);
   if (firstBig.length) html += `<div style="display:flex;flex-direction:column;gap:10px;">${firstBig.map(renderBig).join("")}</div>`;
   let i = 3;
+  // mobile: after the first 3 big cards, everything is one column of tall cards with the title on top
+  if (state.isMobile) {
+    if (i < items.length) html += smallCardsHtml(items.slice(i));
+    return html;
+  }
   while (i < items.length) {
     const chunk = items.slice(i, i + 4);
     html += smallCardsHtml(chunk);
