@@ -33,7 +33,7 @@ a { color: var(--ink); text-decoration: none; }
 .lb.open { opacity: 1; }
 .lb button { all: unset; cursor: pointer; font-family: "PP Lettra Mono", monospace; font-size: 28px; line-height: 1; color: var(--ink); padding: 8px; transition: color 150ms ease; }
 .lb button:hover { color: var(--accent); }
-.lb .lb-close { grid-column: 2 / 4; grid-row: 2; justify-self: end; margin-right: clamp(0px, 2vw, 20px); }
+.lb .lb-close { position: absolute; top: clamp(20px,5vw,50px); right: clamp(20px,6vw,100px); padding: 0; } /* same corner as the site paddings */
 .lb .lb-prev, .lb .lb-next { grid-row: 3; align-self: center; justify-self: center; }
 .lb .lb-prev { grid-column: 1; } .lb .lb-next { grid-column: 3; }
 .lb-stage { grid-column: 2; grid-row: 3; position: relative; min-height: 0; padding: 20px 0; }
