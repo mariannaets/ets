@@ -120,7 +120,7 @@ const TOP_CARDS = [
   { id: "barevdzez", cat: "exhibition", catLabel: "Exhibition", catLabelFont: "'PP Hatton',serif", title: "Venice Biennale of Architecture", year: "2025",
     slideshow: true, slides: BAREVDZEZ_SLIDES, mobileSlides: [1, 2, 3, 4, 5].map((n) => `images/barevdzez/mobile/${n}.webp`), fromStart: true, pos: "50% 50%", height: "clamp(360px, 44vw, 660px)", mobileHeight: "85vh" },
   { id: "vallee", cat: "architecture", catLabel: "Architecture", catLabelFont: "'PP Hatton',serif", title: "Vallée de l'Arpa", year: "2024",
-    slideshow: true, slides: VALLEE_SLIDES, fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
+    slideshow: true, slides: VALLEE_SLIDES, mobileSlides: [1, 2, 3, 4, 5].map((n) => `images/vallee/mobile/${n}.webp`), fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
   { id: "totaldrama", cat: "exhibition", catLabel: "Exhibition", catLabelFont: "'PP Hatton',serif", title: "Total Drama", year: "2024",
     slideshow: true, slides: TOTALDRAMA_SLIDES, fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
   { id: "dilijan", cat: "architecture", catLabel: "Architecture", catLabelFont: "'PP Hatton',serif", title: "Dilijan Houses", year: "2024",
