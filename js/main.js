@@ -4,25 +4,25 @@
 
 const STUDIO_INSTAGRAM = "https://www.instagram.com/electricarchitects/";
 
-const DESC = "electric architects, along with tumo centre for creative technologies has been appointed as curators and authors of armenian national pavilion at venice biennale of architecture 2025. the concept evolves around training a new ai model with 3d scanned files of armenian cultural heritage in order to create a new mechanism which allows to endlessly interpret or reinvent these heritage artefacts into new models and shapes. this project refers to preservation of lost and endangered monuments while allowing their further resilience and development via modern technologies.";
+const DESC = "Electric Architects, together with TUMO Centre for Creative Technologies, were appointed curators and authors of the Armenian National Pavilion at the Venice Biennale of Architecture 2025. The concept revolves around training a new AI model on 3D-scanned artefacts of Armenian cultural heritage, creating a mechanism that can endlessly reinterpret and reinvent them into new models and shapes. The project addresses the preservation of lost and endangered monuments, while letting them stay resilient and keep evolving through modern technology.";
 
-const ABOUT_TEXT = "electric architects is a yerevan-based studio working across architecture, interiors and urban design. we treat every commission as a chance to test a new idea about materials, space or context — from a single bar interior to a masterplan. the studio is small by choice: every project passes through the same two hands, from first sketch to last detail on site.";
+const ABOUT_TEXT = "Electric Architects is a Yerevan-based studio working across architecture, interiors and urban design. We treat every commission as a chance to test a new idea about materials, space or context — from a single bar interior to a masterplan. The studio is small by choice: every project passes through the same two hands, from first sketch to last detail on site.";
 
 const NEWS_FONTS = ["'PP Gatwick',sans-serif", "'PP Telegraf',sans-serif", "'PP Hatton',serif", "'PP Right Serif',serif", "'PP Stellar',sans-serif", "'PP Lettra Mono',monospace"];
 const NEWS_ITEMS = [
-  { id: "towers-topped", title: "Sunday towers, topped out", date: "march 2026", titleFont: NEWS_FONTS[0], author: "Aram Sargsyan",
-    text: "construction on sunday towers has reached its final floor. the residential complex reinterprets yerevan's tuff-stone facades through a contemporary lens, pairing red volcanic stone with deep-set loggias.",
+  { id: "towers-topped", title: "Sunday Towers, topped out", date: "March 2026", titleFont: NEWS_FONTS[0], author: "Aram Sargsyan",
+    text: "Construction on Sunday Towers has reached its final floor. The residential complex reinterprets Yerevan's tuff-stone facades through a contemporary lens, pairing red volcanic stone with deep-set loggias.",
     image: "images/news-spread.webp", imgSize: "100% 112.565%", imgPos: "50% 0%" },
-  { id: "biennale-selected", title: "selected for venice biennale 2025", date: "january 2026", titleFont: NEWS_FONTS[2], author: "Lucine Hakobyan",
+  { id: "biennale-selected", title: "Selected for the Venice Biennale 2025", date: "January 2026", titleFont: NEWS_FONTS[2], author: "Lucine Hakobyan",
     text: DESC, image: "images/hero-bar.webp", imgSize: "cover", imgPos: "100% 55.267%" },
 ];
 
 const TEAM = [
-  { name: "Marianna Karapetyan", role: "founder / architect", linkedin: "https://linkedin.com", instagram: "https://instagram.com" },
-  { name: "Karen", role: "partner / interiors", linkedin: "https://linkedin.com", instagram: "https://instagram.com" },
-  { name: "Maria", role: "project architect", linkedin: "https://linkedin.com", instagram: "https://instagram.com" },
-  { name: "Name", role: "urban design lead", linkedin: "https://linkedin.com", instagram: "https://instagram.com" },
-  { name: "Name", role: "architectural designer", linkedin: "https://linkedin.com", instagram: "https://instagram.com" },
+  { name: "Marianna Karapetyan", role: "Founder / architect", linkedin: "https://linkedin.com", instagram: "https://instagram.com" },
+  { name: "Karen", role: "Partner / interiors", linkedin: "https://linkedin.com", instagram: "https://instagram.com" },
+  { name: "Maria", role: "Project architect", linkedin: "https://linkedin.com", instagram: "https://instagram.com" },
+  { name: "Name", role: "Urban design lead", linkedin: "https://linkedin.com", instagram: "https://instagram.com" },
+  { name: "Name", role: "Architectural designer", linkedin: "https://linkedin.com", instagram: "https://instagram.com" },
 ];
 
 const PROJECT_CAPTIONS = {
@@ -42,41 +42,41 @@ const PROJECT_CAPTIONS = {
 };
 
 const PROJECTS = {
-  simona: { cat: "interior", title: "simona", year: "2026", subtitleOverride: "2026",
+  simona: { cat: "interior", title: "Simona", year: "2026", subtitleOverride: "2026",
     info: { status: "Completed", client: "Private Client", sector: "Interior Design, Hospitality", location: "Yerevan, AM",
       collaborators: "Local Joinery Workshops, Terrazzo Studio", staff: "Aram Sargsyan, Lucine Hakobyan, Davit Ghukasyan" },
     hero: "images/portrait-bw.webp", heroPos: "30% 30%",
     second: "images/shopfront.webp", secondPos: "50% 55%", desc: DESC },
-  barevdzez: { cat: "exhibition", title: "Venice biennale of architecture", year: "2025", titleFont: "'PP Hatton',serif", subtitleOverride: "2025",
+  barevdzez: { cat: "exhibition", title: "Venice Biennale of Architecture", year: "2025", titleFont: "'PP Hatton',serif", subtitleOverride: "2025",
     info: { status: "In construction", client: "Emaar Development UAE", sector: "Exhibition", location: "Venice, IT",
       collaborators: "General Vlasov", staff: "Marianna Karapetyan, Karen Sheikh, Aram Sargsyan, Mane Petrosyan, Karen Avetisyan" },
     // photos: shown on the project page in this order, at their natural proportions
     photos: ["01","02","03","04","05","06","07","08","09"].map((n) => `images/barevdzez/project/${n}.webp`),
-    desc: "electric architects, together with tumo centre for creative technologies, were appointed curators and authors of the armenian national pavilion at the venice biennale of architecture 2025. the concept revolves around training a new ai model on 3d-scanned artefacts of armenian cultural heritage, creating a mechanism that can endlessly reinterpret and reinvent them into new models and shapes. the project addresses the preservation of lost and endangered monuments, while letting them stay resilient and keep evolving through modern technology." },
-  vallee: { cat: "architecture", title: "vallée de l'arpa", year: "2024", titleFont: "'PP Lettra Mono',monospace",
+    desc: DESC },
+  vallee: { cat: "architecture", title: "Vallée de l'Arpa", year: "2024", titleFont: "'PP Lettra Mono',monospace",
     info: { status: "In construction", client: "Emaar Development UAE", sector: "Architecture", location: "Yerevan, AM",
       collaborators: "General Vlasov", staff: "Marianna Karapetyan, Karen Sheikh, Aram Sargsyan, Mane Petrosyan, Karen Avetisyan" },
     // photos: shown on the project page in this order, at their natural proportions
     photos: ["01","02","03","04","05","06","07","08","09","10"].map((n) => `images/vallee/project/${n}.webp`),
-    desc: "a winery and guest house complex in aghavnadzor village, in the vayots dzor region of armenia. the picturesque landscape of aghavnadzor shapes the scenario of the vineyards and the winery, and invites visitors to stay for a while in the guest houses. these sit on the northern part of the plot and form a welcoming area — from a modest entry zone into a maze of modular elements: different types of guest house units and their public zones, such as a restaurant, a spa and other common rooms. from there, a path leads through the vineyards to the brutalist forms of the winery, intertwined with the landscape through a series of voids and monumental shapes. both the guest houses and the winery use local stone mixed with concrete — a sustainable building technology in which the outer walls provide insulation while keeping the construction lightweight." },
+    desc: "A winery and guest house complex in Aghavnadzor village, in the Vayots Dzor region of Armenia. The picturesque landscape of Aghavnadzor shapes the scenario of the vineyards and the winery, and invites visitors to stay for a while in the guest houses. These sit on the northern part of the plot and form a welcoming area — from a modest entry zone into a maze of modular elements: different types of guest house units and their public zones, such as a restaurant, a spa and other common rooms. From there, a path leads through the vineyards to the brutalist forms of the winery, intertwined with the landscape through a series of voids and monumental shapes. Both the guest houses and the winery use local stone mixed with concrete — a sustainable building technology in which the outer walls provide insulation while keeping the construction lightweight." },
   totaldrama: { cat: "exhibition", title: "Total Drama", year: "2024", titleFont: "'PP Hatton',serif",
     info: { status: "Done", client: "Sunday Towers", sector: "Exhibition", location: "Yerevan, AM",
       collaborators: "General Vlasov", staff: "Marianna Karapetyan, Karen Sheikh, Aram Sargsyan, Mane Petrosyan, Karen Avetisyan" },
     // photos: shown on the project page in this order, at their natural proportions
     photos: ["01","02","03","04","05"].map((n) => `images/totaldrama/project/${n}.webp`),
-    desc: "“total drama” is a month-long festival, established by electric architects as a curated program for the library for architecture. it explores the performativity of architecture and the spatiality of theatre. the program opens with a 5,000 m² exhibition of contemporary art on the verge of theatre and architecture, followed by a month of lectures, workshops, public talks, film screenings, urban installations and scenography production." },
-  dilijan: { cat: "architecture", title: "dilijan houses", year: "2024", titleFont: "'PP Lettra Mono',monospace",
+    desc: "“Total Drama” is a month-long festival, established by Electric Architects as a curated program for the Library for Architecture. It explores the performativity of architecture and the spatiality of theatre. The program opens with a 5,000 m² exhibition of contemporary art on the verge of theatre and architecture, followed by a month of lectures, workshops, public talks, film screenings, urban installations and scenography production." },
+  dilijan: { cat: "architecture", title: "Dilijan Houses", year: "2024", titleFont: "'PP Lettra Mono',monospace",
     info: { status: "In construction", client: "Emaar Development UAE", sector: "Architecture", location: "Dilijan, AM",
       collaborators: "General Vlasov", staff: "Marianna Karapetyan, Karen Sheikh, Aram Sargsyan, Mane Petrosyan, Karen Avetisyan" },
     // photos: shown on the project page in this order, at their natural proportions
     photos: ["01","02","03","04","05","06","07","08","09","10"].map((n) => `images/dilijan/project/${n}.webp`),
-    desc: "two private houses in the forests of dilijan, connected by a shared public area with a pool and an outdoor kitchen. the concept of the houses revolves around the breathtaking views across the site onto the mountainous landscapes of dilijan. the architecture refers to and reinterprets local architectural traditions — delicate woodwork and large terraces set against more brutal concrete volumes. double-height spaces accentuate the uninterrupted views of the surroundings." },
-  towers: { cat: "architecture", title: "sunday towers", year: "2022", titleFont: "'PP Lettra Mono',monospace",
+    desc: "Two private houses in the forests of Dilijan, connected by a shared public area with a pool and an outdoor kitchen. The concept of the houses revolves around the breathtaking views across the site onto the mountainous landscapes of Dilijan. The architecture refers to and reinterprets local architectural traditions — delicate woodwork and large terraces set against more brutal concrete volumes. Double-height spaces accentuate the uninterrupted views of the surroundings." },
+  towers: { cat: "architecture", title: "Sunday Towers", year: "2022", titleFont: "'PP Lettra Mono',monospace",
     info: { status: "In construction", client: "Emaar Development UAE", sector: "Architecture", location: "Yerevan, AM",
       collaborators: "General Vlasov", staff: "Marianna Karapetyan, Karen Sheikh, Aram Sargsyan, Mane Petrosyan, Karen Avetisyan" },
     // photos: shown on the project page in this order, at their natural proportions
     photos: ["01","02","03","04","05","06","07","08","09","10","11"].map((n) => `images/towers/project/${n}.webp`),
-    desc: "1.4 hectares of a former industrial site in the arabkir district are being transformed into a high-end mixed-use district. six buildings, from 6 to 14 floors, sit above commercial and office spaces on the lower levels. every building has its own distinct architectural character, with careful detailing, stonework and metal cladding. every apartment is designed around the needs of modern living — comfort, and room for social interaction." },
+    desc: "1.4 hectares of a former industrial site in the Arabkir district are being transformed into a high-end mixed-use district. Six buildings, from 6 to 14 floors, sit above commercial and office spaces on the lower levels. Every building has its own distinct architectural character, with careful detailing, stonework and metal cladding. Every apartment is designed around the needs of modern living — comfort, and room for social interaction." },
 };
 
 const SIMONA_SLIDES = ["images/simona/1.webp","images/simona/2.webp","images/simona/3.webp","images/simona/4.webp","images/simona/5.webp","images/simona/6.webp"];
@@ -107,7 +107,7 @@ PLACEHOLDER_META.forEach(([id, title, cat, year]) => {
 const TOP_CARDS = [
   { id: "towers", cat: "architecture", catLabel: "Architecture", catLabelFont: "'PP Hatton',serif", title: "Sunday Towers", year: "2022",
     slideshow: true, slides: TOWERS_SLIDES, fromStart: true, pos: "50% 55%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
-  { id: "barevdzez", cat: "exhibition", catLabel: "Exhibition", catLabelFont: "'PP Hatton',serif", title: "Venice biennale of Architecture", year: "2025",
+  { id: "barevdzez", cat: "exhibition", catLabel: "Exhibition", catLabelFont: "'PP Hatton',serif", title: "Venice Biennale of Architecture", year: "2025",
     slideshow: true, slides: BAREVDZEZ_SLIDES, fromStart: true, pos: "50% 50%", height: "clamp(360px, 44vw, 660px)", mobileHeight: "85vh" },
   { id: "vallee", cat: "architecture", catLabel: "Architecture", catLabelFont: "'PP Hatton',serif", title: "Vallée de l'Arpa", year: "2024",
     slideshow: true, slides: VALLEE_SLIDES, fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
@@ -463,7 +463,7 @@ function projectHtml() {
   return `<main style="padding:0 clamp(20px,6vw,100px);">
     <div id="wrap" style="max-width:1512px;margin:0 auto;">
       ${heroSubnavHtml()}
-      ${titleWrap(p.title, p.subtitleOverride || `${p.cat} — ${p.year}`, null, null, 100)}
+      ${titleWrap(p.title, p.subtitleOverride || `${p.cat.charAt(0).toUpperCase() + p.cat.slice(1)} — ${p.year}`, null, null, 100)}
       ${infoTable(p.info)}
       <div style="padding:100px 0 100px;margin-left:${state.isMobile ? "0px" : "var(--pad-left)"};${align}">
         <p style="max-width:600px;margin:${margin};font-size:16px;line-height:30px;">${p.desc}</p>
