@@ -94,16 +94,8 @@ const DILIJAN_SLIDES = [1, 2, 3, 4, 5].map((n) => `images/dilijan/${n}.webp`);
 const COAF_SLIDES = [1, 2, 3, 4, 5].map((n) => `images/coaf/${n}.webp`);
 const SLIDES_MAP = { simona: SIMONA_SLIDES, barevdzez: BAREVDZEZ_SLIDES, towers: TOWERS_SLIDES, vallee: VALLEE_SLIDES, totaldrama: TOTALDRAMA_SLIDES, dilijan: DILIJAN_SLIDES, coaf: COAF_SLIDES };
 const catLabel = (c) => c.replace(/\b\w/g, (ch) => ch.toUpperCase());
-const PLACEHOLDER_META = [
-  ["ph1", "Lake House", "interior", "2022"], ["ph2", "Civic Pavilion", "urban design", "2021"],
-  ["ph3", "Red Terraces", "architecture", "2020"], ["ph4", "Glass Atelier", "exhibition", "2019"],
-  ["ph5", "Harbor House", "architecture", "2019"], ["ph6", "Studio Loft", "interior", "2022"],
-  ["ph7", "Museum Wing", "exhibition", "2021"], ["ph8", "Timber Pavilion", "urban design", "2020"],
-  ["ph9", "Coastal Retreat", "interior", "2018"], ["ph10", "Granite Hall", "architecture", "2018"],
-  ["ph11", "Paper Gallery", "exhibition", "2017"], ["ph12", "Orchard Villa", "interior", "2017"],
-  ["ph13", "Steel Bridge", "urban design", "2016"], ["ph14", "Courtyard House", "architecture", "2016"],
-  ["ph15", "Linear Museum", "exhibition", "2015"],
-];
+// placeholder projects (grey boxes) — empty now, real projects only
+const PLACEHOLDER_META = [];
 const PLACEHOLDER_ITEMS = PLACEHOLDER_META.map(([id, title, cat, year]) => ({ id, title, cat, year }));
 PLACEHOLDER_META.forEach(([id, title, cat, year]) => {
   PROJECTS[id] = { cat, title, year, placeholder: true,
