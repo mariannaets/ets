@@ -71,6 +71,12 @@ const PROJECTS = {
     // photos: shown on the project page in this order, at their natural proportions
     photos: ["01","02","03","04","05","06","07","08","09","10"].map((n) => `images/dilijan/project/${n}.webp`),
     desc: "Two private houses in the forests of Dilijan, connected by a shared public area with a pool and an outdoor kitchen. The concept of the houses revolves around the breathtaking views across the site onto the mountainous landscapes of Dilijan. The architecture refers to and reinterprets local architectural traditions — delicate woodwork and large terraces set against more brutal concrete volumes. Double-height spaces accentuate the uninterrupted views of the surroundings." },
+  coaf: { cat: "architecture", title: "COAF", year: "2022", titleFont: "'PP Lettra Mono',monospace",
+    info: { status: "Concept", client: "Emaar Development UAE", sector: "Architecture", location: "Yerevan, AM",
+      collaborators: "General Vlasov", staff: "Marianna Karapetyan, Karen Sheikh, Aram Sargsyan, Mane Petrosyan, Karen Avetisyan" },
+    // photos: shown on the project page in this order, at their natural proportions
+    photos: ["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"].map((n) => `images/coaf/project/${n}.webp`),
+    desc: "The three blocks of the COAF campus are located at various points along the river, which will be activated through a new circulation system with reservoirs and pumps on the site. The buildings are variations of the caravanserai typology, where indoor spaces are set in a frame surrounding a garden.\n\nEach building changes its relationship with water according to its location and program. Enclosed courtyards act as the main collective spaces for the surrounding functions. Every room has access to the courtyard and to the green spaces located between the outer walls and the indoor spaces. This layer of gardens surrounding the rooms acts as a natural ventilation and cooling system for classrooms and other facilities." },
   towers: { cat: "architecture", title: "Sunday Towers", year: "2022", titleFont: "'PP Lettra Mono',monospace",
     info: { status: "In construction", client: "Emaar Development UAE", sector: "Architecture", location: "Yerevan, AM",
       collaborators: "General Vlasov", staff: "Marianna Karapetyan, Karen Sheikh, Aram Sargsyan, Mane Petrosyan, Karen Avetisyan" },
@@ -85,7 +91,8 @@ const TOWERS_SLIDES = ["images/towers/1.webp","images/towers/2.webp","images/tow
 const VALLEE_SLIDES = [1, 2, 3, 4, 5].map((n) => `images/vallee/${n}.webp`);
 const TOTALDRAMA_SLIDES = [1, 2, 3, 4, 5].map((n) => `images/totaldrama/${n}.webp`);
 const DILIJAN_SLIDES = [1, 2, 3, 4, 5].map((n) => `images/dilijan/${n}.webp`);
-const SLIDES_MAP = { simona: SIMONA_SLIDES, barevdzez: BAREVDZEZ_SLIDES, towers: TOWERS_SLIDES, vallee: VALLEE_SLIDES, totaldrama: TOTALDRAMA_SLIDES, dilijan: DILIJAN_SLIDES };
+const COAF_SLIDES = [1, 2, 3, 4, 5].map((n) => `images/coaf/${n}.webp`);
+const SLIDES_MAP = { simona: SIMONA_SLIDES, barevdzez: BAREVDZEZ_SLIDES, towers: TOWERS_SLIDES, vallee: VALLEE_SLIDES, totaldrama: TOTALDRAMA_SLIDES, dilijan: DILIJAN_SLIDES, coaf: COAF_SLIDES };
 const catLabel = (c) => c.replace(/\b\w/g, (ch) => ch.toUpperCase());
 const PLACEHOLDER_META = [
   ["ph1", "Lake House", "interior", "2022"], ["ph2", "Civic Pavilion", "urban design", "2021"],
@@ -115,6 +122,8 @@ const TOP_CARDS = [
     slideshow: true, slides: TOTALDRAMA_SLIDES, fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
   { id: "dilijan", cat: "architecture", catLabel: "Architecture", catLabelFont: "'PP Hatton',serif", title: "Dilijan Houses", year: "2024",
     slideshow: true, slides: DILIJAN_SLIDES, fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
+  { id: "coaf", cat: "architecture", catLabel: "Architecture", catLabelFont: "'PP Hatton',serif", title: "COAF", year: "2022",
+    slideshow: true, slides: COAF_SLIDES, fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
   { id: "simona", cat: "interior", catLabel: "Interior", catLabelFont: "'PP Right Serif',serif", title: "Simona", year: "2026",
     slideshow: true, slides: SIMONA_SLIDES, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
 ];
@@ -466,7 +475,7 @@ function projectHtml() {
       ${titleWrap(p.title, p.subtitleOverride || `${p.cat.charAt(0).toUpperCase() + p.cat.slice(1)} — ${p.year}`, null, null, 100)}
       ${infoTable(p.info)}
       <div style="padding:100px 0 100px;margin-left:${state.isMobile ? "0px" : "var(--pad-left)"};${align}">
-        <p style="max-width:600px;margin:${margin};font-size:16px;line-height:30px;">${p.desc}</p>
+        <p style="max-width:600px;margin:${margin};font-size:16px;line-height:30px;">${p.desc.split("\n\n").join("<br><br>")}</p>
       </div>
       ${p.photos ? p.photos.map((src) => `
         <img class="hero-hover" src="${src}" alt="${esc(p.title)}" loading="lazy" style="display:block;width:100%;height:auto;margin-bottom:10px;background-color:#e5e5e5;">`).join("") : p.placeholder ? `<div class="hero-hover" style="width:100%;height:clamp(420px, 58vw, 880px);margin-bottom:10px;background:#e5e5e5;background-image:repeating-linear-gradient(135deg,#e5e5e5 0 2px,#dcdcdc 2px 4px);display:flex;align-items:center;justify-content:center;"><span style="font-family:'PP Lettra Mono',monospace;font-size:13px;color:#8a8a8a;">image — ${esc(p.title)}</span></div>` : `<div class="hero-hover" style="width:100%;height:clamp(420px, 58vw, 880px);margin-bottom:10px;background-size:cover;background-repeat:no-repeat;background-color:#e5e5e5;background-image:url(${p.hero});background-position:${p.heroPos};"></div>`}
