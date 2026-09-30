@@ -779,3 +779,61 @@ window.addEventListener("resize", fitCardTitles);
 
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(measurePad);
 render();
+
+// ============================================================
+// GALLERY — click a photo on a project page to view it full screen (desktop only)
+// ============================================================
+const lightbox = { el: null, list: [], i: 0 };
+function lbShow(i) {
+  const n = lightbox.list.length;
+  lightbox.i = (i + n) % n;
+  const img = lightbox.el.querySelector(".lb-stage img");
+  img.style.opacity = 0;
+  const src = lightbox.list[lightbox.i];
+  img.onload = () => { img.style.opacity = 1; };
+  if (img.getAttribute("src") === src) img.style.opacity = 1;
+  else setTimeout(() => { img.src = src; }, img.getAttribute("src") ? 150 : 0);
+  lightbox.el.querySelector(".lb-count").textContent = `${lightbox.i + 1} / ${n}`;
+  [1, -1].forEach((d) => { new Image().src = lightbox.list[(lightbox.i + d + n) % n]; }); // preload neighbours
+}
+function lbOpen(list, i) {
+  lightbox.list = list;
+  const el = document.createElement("div");
+  el.className = "lb";
+  el.innerHTML = `<button class="lb-close" aria-label="Close">×</button>
+    <button class="lb-prev" aria-label="Previous">←</button>
+    <div class="lb-stage"><img alt=""></div>
+    <button class="lb-next" aria-label="Next">→</button>
+    <div class="lb-count"></div>`;
+  document.body.appendChild(el);
+  document.body.style.overflow = "hidden";
+  lightbox.el = el;
+  lbShow(i);
+  requestAnimationFrame(() => el.classList.add("open"));
+  el.addEventListener("click", (e) => {
+    if (e.target.closest(".lb-prev")) lbShow(lightbox.i - 1);
+    else if (e.target.closest(".lb-next") || e.target.closest(".lb-stage img")) lbShow(lightbox.i + 1);
+    else lbClose(); // cross or empty space
+  });
+}
+function lbClose() {
+  const el = lightbox.el;
+  if (!el) return;
+  lightbox.el = null;
+  el.classList.remove("open");
+  document.body.style.overflow = "";
+  setTimeout(() => el.remove(), 250);
+}
+document.addEventListener("click", (e) => {
+  const img = e.target.closest("main img.hero-hover");
+  if (!img || state.view !== "project" || state.isMobile || lightbox.el) return;
+  const imgs = Array.from(document.querySelectorAll("main img.hero-hover"));
+  lbOpen(imgs.map((x) => x.getAttribute("src")), imgs.indexOf(img));
+});
+document.addEventListener("keydown", (e) => {
+  if (!lightbox.el) return;
+  if (e.key === "Escape") lbClose();
+  else if (e.key === "ArrowRight") lbShow(lightbox.i + 1);
+  else if (e.key === "ArrowLeft") lbShow(lightbox.i - 1);
+});
+MOBILE_MQ.addEventListener("change", () => { if (MOBILE_MQ.matches) lbClose(); });
