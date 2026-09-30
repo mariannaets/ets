@@ -115,7 +115,7 @@ PLACEHOLDER_META.forEach(([id, title, cat, year]) => {
 });
 
 const TOP_CARDS = [
-  { id: "towers", home: true, cat: "architecture", catLabel: "Architecture", catLabelFont: "'PP Hatton',serif", title: "Sunday Towers", year: "2022",
+  { id: "towers", home: true, mobileSlides: [1, 2, 3, 4, 5].map((n) => `images/towers/mobile/${n}.webp`), cat: "architecture", catLabel: "Architecture", catLabelFont: "'PP Hatton',serif", title: "Sunday Towers", year: "2022",
     slideshow: true, slides: TOWERS_SLIDES, fromStart: true, pos: "50% 55%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
   { id: "barevdzez", cat: "exhibition", catLabel: "Exhibition", catLabelFont: "'PP Hatton',serif", title: "Venice Biennale of Architecture", year: "2025",
     slideshow: true, slides: BAREVDZEZ_SLIDES, fromStart: true, pos: "50% 50%", height: "clamp(360px, 44vw, 660px)", mobileHeight: "85vh" },
