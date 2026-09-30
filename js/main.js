@@ -42,7 +42,7 @@ const PROJECT_CAPTIONS = {
 };
 
 const PROJECTS = {
-  simona: { cat: "interior", title: "Simona", year: "2026", subtitleOverride: "2026",
+  simona: { hidden: true, cat: "interior", title: "Simona", year: "2026", subtitleOverride: "2026",
     info: { status: "Completed", client: "Private Client", sector: "Interior Design, Hospitality", location: "Yerevan, AM",
       collaborators: "Local Joinery Workshops, Terrazzo Studio", staff: "Aram Sargsyan, Lucine Hakobyan, Davit Ghukasyan" },
     hero: "images/portrait-bw.webp", heroPos: "30% 30%",
@@ -84,6 +84,7 @@ const PROJECTS = {
     photos: ["01","02","03","04","05","06","07","08","09","10","11"].map((n) => `images/towers/project/${n}.webp`),
     desc: "1.4 hectares of a former industrial site in the Arabkir district are being transformed into a high-end mixed-use district. Six buildings, from 6 to 14 floors, sit above commercial and office spaces on the lower levels. Every building has its own distinct architectural character, with careful detailing, stonework and metal cladding. Every apartment is designed around the needs of modern living — comfort, and room for social interaction." },
 };
+Object.keys(PROJECTS).forEach((id) => { if (PROJECTS[id].hidden) delete PROJECTS[id]; });
 
 const SIMONA_SLIDES = ["images/simona/1.webp","images/simona/2.webp","images/simona/3.webp","images/simona/4.webp","images/simona/5.webp","images/simona/6.webp"];
 const BAREVDZEZ_SLIDES = ["images/barevdzez/1.webp","images/barevdzez/2.webp","images/barevdzez/3.webp","images/barevdzez/4.webp","images/barevdzez/5.webp"];
@@ -116,9 +117,9 @@ const TOP_CARDS = [
     slideshow: true, slides: DILIJAN_SLIDES, fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
   { id: "coaf", cat: "architecture", catLabel: "Architecture", catLabelFont: "'PP Hatton',serif", title: "COAF", year: "2022",
     slideshow: true, slides: COAF_SLIDES, fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
-  { id: "simona", cat: "interior", catLabel: "Interior", catLabelFont: "'PP Right Serif',serif", title: "Simona", year: "2026",
+  { id: "simona", hidden: true, cat: "interior", catLabel: "Interior", catLabelFont: "'PP Right Serif',serif", title: "Simona", year: "2026",
     slideshow: true, slides: SIMONA_SLIDES, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
-];
+].filter((c) => !c.hidden); // hidden: true — project is kept in the code but not shown on the site
 
 // ============================================================
 // APP — state, navigation, rendering (no content below)
