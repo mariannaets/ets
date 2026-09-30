@@ -42,48 +42,48 @@ const PROJECT_CAPTIONS = {
 };
 
 const PROJECTS = {
-  simona: { hidden: true, cat: "interior", title: "Simona", year: "2026", subtitleOverride: "2026",
+  simona: { slug: "simona", hidden: true, cat: "interior", title: "Simona", year: "2026", subtitleOverride: "2026",
     info: { status: "Completed", client: "Private Client", sector: "Interior Design, Hospitality", location: "Yerevan, AM",
       collaborators: "Local Joinery Workshops, Terrazzo Studio", staff: "Aram Sargsyan, Lucine Hakobyan, Davit Ghukasyan" },
     hero: "images/portrait-bw.webp", heroPos: "30% 30%",
     second: "images/shopfront.webp", secondPos: "50% 55%", desc: DESC },
-  barevdzez: { cat: "exhibition", title: "Venice Biennale of Architecture", year: "2025", titleFont: "'PP Hatton',serif", subtitleOverride: "2025",
+  barevdzez: { slug: "venice-biennale", cat: "exhibition", title: "Venice Biennale of Architecture", year: "2025", titleFont: "'PP Hatton',serif", subtitleOverride: "2025",
     info: { status: "In construction", client: "Emaar Development UAE", sector: "Exhibition", location: "Venice, IT",
       collaborators: "General Vlasov", staff: "Marianna Karapetyan, Karen Sheikh, Aram Sargsyan, Mane Petrosyan, Karen Avetisyan" },
     // photos: shown on the project page in this order, at their natural proportions
     photos: ["01","02","03","04","05","06","07","08","09"].map((n) => `images/barevdzez/project/${n}.webp`),
     desc: DESC },
-  vallee: { cat: "architecture", title: "Vallée de l'Arpa", year: "2024", titleFont: "'PP Lettra Mono',monospace",
+  vallee: { slug: "vallee-de-larpa", cat: "architecture", title: "Vallée de l'Arpa", year: "2024", titleFont: "'PP Lettra Mono',monospace",
     info: { status: "In construction", client: "Emaar Development UAE", sector: "Architecture", location: "Yerevan, AM",
       collaborators: "General Vlasov", staff: "Marianna Karapetyan, Karen Sheikh, Aram Sargsyan, Mane Petrosyan, Karen Avetisyan" },
     // photos: shown on the project page in this order, at their natural proportions
     photos: ["01","02","03","04","05","06","07","08","09","10"].map((n) => `images/vallee/project/${n}.webp`),
     desc: "A winery and guest house complex in Aghavnadzor village, in the Vayots Dzor region of Armenia. The picturesque landscape of Aghavnadzor shapes the scenario of the vineyards and the winery, and invites visitors to stay for a while in the guest houses. These sit on the northern part of the plot and form a welcoming area — from a modest entry zone into a maze of modular elements: different types of guest house units and their public zones, such as a restaurant, a spa and other common rooms. From there, a path leads through the vineyards to the brutalist forms of the winery, intertwined with the landscape through a series of voids and monumental shapes. Both the guest houses and the winery use local stone mixed with concrete — a sustainable building technology in which the outer walls provide insulation while keeping the construction lightweight." },
-  totaldrama: { cat: "exhibition", title: "Total Drama", year: "2024", titleFont: "'PP Hatton',serif",
+  totaldrama: { slug: "total-drama", cat: "exhibition", title: "Total Drama", year: "2024", titleFont: "'PP Hatton',serif",
     info: { status: "Done", client: "Sunday Towers", sector: "Exhibition", location: "Yerevan, AM",
       collaborators: "General Vlasov", staff: "Marianna Karapetyan, Karen Sheikh, Aram Sargsyan, Mane Petrosyan, Karen Avetisyan" },
     // photos: shown on the project page in this order, at their natural proportions
     photos: ["01","02","03","04","05"].map((n) => `images/totaldrama/project/${n}.webp`),
     desc: "“Total Drama” is a month-long festival, established by Electric Architects as a curated program for the Library for Architecture. It explores the performativity of architecture and the spatiality of theatre. The program opens with a 5,000 m² exhibition of contemporary art on the verge of theatre and architecture, followed by a month of lectures, workshops, public talks, film screenings, urban installations and scenography production." },
-  dilijan: { cat: "architecture", title: "Dilijan Houses", year: "2024", titleFont: "'PP Lettra Mono',monospace",
+  dilijan: { slug: "dilijan-houses", cat: "architecture", title: "Dilijan Houses", year: "2024", titleFont: "'PP Lettra Mono',monospace",
     info: { status: "In construction", client: "Emaar Development UAE", sector: "Architecture", location: "Dilijan, AM",
       collaborators: "General Vlasov", staff: "Marianna Karapetyan, Karen Sheikh, Aram Sargsyan, Mane Petrosyan, Karen Avetisyan" },
     // photos: shown on the project page in this order, at their natural proportions
     photos: ["01","02","03","04","05","06","07","08","09","10"].map((n) => `images/dilijan/project/${n}.webp`),
     desc: "Two private houses in the forests of Dilijan, connected by a shared public area with a pool and an outdoor kitchen. The concept of the houses revolves around the breathtaking views across the site onto the mountainous landscapes of Dilijan. The architecture refers to and reinterprets local architectural traditions — delicate woodwork and large terraces set against more brutal concrete volumes. Double-height spaces accentuate the uninterrupted views of the surroundings." },
-  coaf: { cat: "architecture", title: "COAF", year: "2022", titleFont: "'PP Lettra Mono',monospace",
+  coaf: { slug: "coaf", cat: "architecture", title: "COAF", year: "2022", titleFont: "'PP Lettra Mono',monospace",
     info: { status: "Concept", client: "Emaar Development UAE", sector: "Architecture", location: "Yerevan, AM",
       collaborators: "General Vlasov", staff: "Marianna Karapetyan, Karen Sheikh, Aram Sargsyan, Mane Petrosyan, Karen Avetisyan" },
     // photos: shown on the project page in this order, at their natural proportions
     photos: ["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"].map((n) => `images/coaf/project/${n}.webp`),
     desc: "The three blocks of the COAF campus are located at various points along the river, which will be activated through a new circulation system with reservoirs and pumps on the site. The buildings are variations of the caravanserai typology, where indoor spaces are set in a frame surrounding a garden.\n\nEach building changes its relationship with water according to its location and program. Enclosed courtyards act as the main collective spaces for the surrounding functions. Every room has access to the courtyard and to the green spaces located between the outer walls and the indoor spaces. This layer of gardens surrounding the rooms acts as a natural ventilation and cooling system for classrooms and other facilities." },
-  arleam: { cat: "architecture, urban design", title: "Arleam", year: "2021", titleFont: "'PP Lettra Mono',monospace",
+  arleam: { slug: "arleam", cat: "architecture, urban design", title: "Arleam", year: "2021", titleFont: "'PP Lettra Mono',monospace",
     info: { status: "Completed", client: "Emaar Development UAE", sector: "Architecture, Urban design", location: "Yerevan, AM",
       collaborators: "General Vlasov", staff: "Marianna Karapetyan, Karen Sheikh, Aram Sargsyan, Mane Petrosyan, Karen Avetisyan" },
     // photos: shown on the project page in this order, at their natural proportions
     photos: ["01","02","03","04","05","06"].map((n) => `images/arleam/project/${n}.webp`),
     desc: "The farm is part of a 100-hectare masterplanning project with industrial, agricultural, private and public amenities. It is an animal farm, realised in the form of a small village with a sequence of public spaces. The horse stables, chicken coop, dove tower and hay storage are wooden structures, while the goat stables, traditional bakery and guest house are built of concrete and stone. The farm complex is integrated with a small pond on a higher level, with a series of connections throughout the area. Every space has its own scenario, with a variety of uses and views." },
-  towers: { cat: "architecture", title: "Sunday Towers", year: "2022", titleFont: "'PP Lettra Mono',monospace",
+  towers: { slug: "sunday-towers", cat: "architecture", title: "Sunday Towers", year: "2022", titleFont: "'PP Lettra Mono',monospace",
     info: { status: "In construction", client: "Emaar Development UAE", sector: "Architecture", location: "Yerevan, AM",
       collaborators: "General Vlasov", staff: "Marianna Karapetyan, Karen Sheikh, Aram Sargsyan, Mane Petrosyan, Karen Avetisyan" },
     // photos: shown on the project page in this order, at their natural proportions
@@ -148,6 +148,7 @@ const state = {
 
 function navigate(changes) {
   Object.assign(state, changes, { menuOpen: null, mobileMenuOpen: false });
+  syncUrl(false);
   window.scrollTo(0, 0);
   render();
 }
@@ -496,6 +497,9 @@ function projectHtml() {
         <img class="hero-hover" src="${src}" alt="${esc(p.title)}" loading="lazy" style="display:block;width:100%;height:auto;margin-bottom:10px;background-color:#e5e5e5;">`).join("") : p.placeholder ? `<div class="hero-hover" style="width:100%;height:clamp(420px, 58vw, 880px);margin-bottom:10px;background:#e5e5e5;background-image:repeating-linear-gradient(135deg,#e5e5e5 0 2px,#dcdcdc 2px 4px);display:flex;align-items:center;justify-content:center;"><span style="font-family:'PP Lettra Mono',monospace;font-size:13px;color:#8a8a8a;">image — ${esc(p.title)}</span></div>` : `<div class="hero-hover" style="width:100%;height:clamp(420px, 58vw, 880px);margin-bottom:10px;background-size:cover;background-repeat:no-repeat;background-color:#e5e5e5;background-image:url(${p.hero});background-position:${p.heroPos};"></div>`}
       ${slides.map((src, i) => `
         <div class="hero-hover" style="width:100%;height:clamp(420px, 46vw, 680px);margin-bottom:10px;background-image:url(${src});background-size:cover;background-position:50% 50%;background-repeat:no-repeat;background-color:#e5e5e5;"></div>`).join("")}
+      <div style="margin:60px 0 0;margin-left:${state.isMobile ? "0px" : "var(--pad-left)"};${align}">
+        <span data-share class="backlink" style="font-family:'PP Hatton',serif;font-weight:500;font-size:16px;cursor:pointer;border-bottom:1px solid #000;padding-bottom:4px;">share</span>
+      </div>
       ${relatedProjectsHtml()}
       <div style="margin:100px 0 0;margin-left:${state.isMobile ? "0px" : "var(--pad-left)"};${align}">
         <span data-go="projects" class="backlink" style="font-family:'PP Hatton',serif;font-weight:500;font-size:16px;cursor:pointer;border-bottom:1px solid #000;padding-bottom:4px;">← all projects</span>
@@ -778,7 +782,6 @@ function fitCardTitles() {
 window.addEventListener("resize", fitCardTitles);
 
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(measurePad);
-render();
 
 // ============================================================
 // GALLERY — click a photo on a project page to view it full screen (desktop only)
@@ -837,3 +840,70 @@ document.addEventListener("keydown", (e) => {
   else if (e.key === "ArrowLeft") lbShow(lightbox.i - 1);
 });
 MOBILE_MQ.addEventListener("change", () => { if (MOBILE_MQ.matches) lbClose(); });
+
+// ============================================================
+// URLS — every page has its own address: projects/coaf/, news/…, about/ …
+// (the pages themselves are generated by tools/build.py)
+// ============================================================
+const BASE = new URL(document.baseURI).pathname; // "/ets/" on github.io, "/" on our own domain
+const CAT_SLUGS = { architecture: "architecture", "urban design": "urban-design", interior: "interior", exhibition: "exhibition" };
+const SIMPLE_VIEWS = ["news", "people", "about", "contact"];
+function projectSlug(id) { return (PROJECTS[id] && PROJECTS[id].slug) || id; }
+function pathFor(s) {
+  if (s.view === "projects") return s.filter ? `projects/${CAT_SLUGS[s.filter] || ""}/` : "projects/";
+  if (s.view === "project") return `projects/${projectSlug(s.project)}/`;
+  if (s.view === "post") return `news/${s.post}/`;
+  if (SIMPLE_VIEWS.includes(s.view)) return `${s.view}/`;
+  return "";
+}
+function stateFromPath() {
+  const [a, b] = location.pathname.slice(BASE.length).split("/").filter(Boolean).map(decodeURIComponent);
+  if (a === "projects") {
+    if (!b) return { view: "projects", filter: null, yearFilter: null };
+    const cat = Object.keys(CAT_SLUGS).find((k) => CAT_SLUGS[k] === b);
+    if (cat) return { view: "projects", filter: cat, yearFilter: null };
+    const id = Object.keys(PROJECTS).find((k) => projectSlug(k) === b);
+    if (id) return { view: "project", project: id };
+  }
+  if (a === "news" && b && NEWS_ITEMS.some((n) => n.id === b)) return { view: "post", post: b };
+  if (SIMPLE_VIEWS.includes(a) && !b) return { view: a };
+  return { view: "home", filter: null };
+}
+function titleFor(s) {
+  const site = "Electric Architects";
+  if (s.view === "project" && PROJECTS[s.project]) return `${PROJECTS[s.project].title} — ${site}`;
+  if (s.view === "post") { const n = NEWS_ITEMS.find((x) => x.id === s.post); if (n) return `${n.title} — ${site}`; }
+  if (s.view === "projects") return `${s.filter ? catLabel(s.filter) : "Projects"} — ${site}`;
+  if (SIMPLE_VIEWS.includes(s.view)) return `${catLabel(s.view)} — ${site}`;
+  return site;
+}
+function syncUrl(replace) {
+  const url = BASE + pathFor(state);
+  if (location.pathname !== url) history[replace ? "replaceState" : "pushState"](null, "", url);
+  document.title = titleFor(state);
+}
+window.addEventListener("popstate", () => {
+  lbClose();
+  Object.assign(state, stateFromPath(), { menuOpen: null, mobileMenuOpen: false });
+  document.title = titleFor(state);
+  window.scrollTo(0, 0);
+  render();
+});
+
+// share: phone → native share sheet, desktop → copy the link
+document.addEventListener("click", (e) => {
+  const el = e.target.closest("[data-share]");
+  if (!el) return;
+  const url = location.href;
+  if (state.isMobile && navigator.share) { navigator.share({ title: document.title, url }).catch(() => {}); return; }
+  const done = () => { el.textContent = "link copied"; setTimeout(() => { el.textContent = "share"; }, 1600); };
+  if (navigator.clipboard) navigator.clipboard.writeText(url).then(done, () => window.prompt("Copy this link:", url));
+  else window.prompt("Copy this link:", url);
+});
+
+// ============================================================
+// START — open the page the URL points to
+// ============================================================
+Object.assign(state, stateFromPath());
+syncUrl(true);
+render();

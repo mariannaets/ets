@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mariannaets.github.io/ets/sitemap.xml
