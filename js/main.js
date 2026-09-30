@@ -77,6 +77,12 @@ const PROJECTS = {
     // photos: shown on the project page in this order, at their natural proportions
     photos: ["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"].map((n) => `images/coaf/project/${n}.webp`),
     desc: "The three blocks of the COAF campus are located at various points along the river, which will be activated through a new circulation system with reservoirs and pumps on the site. The buildings are variations of the caravanserai typology, where indoor spaces are set in a frame surrounding a garden.\n\nEach building changes its relationship with water according to its location and program. Enclosed courtyards act as the main collective spaces for the surrounding functions. Every room has access to the courtyard and to the green spaces located between the outer walls and the indoor spaces. This layer of gardens surrounding the rooms acts as a natural ventilation and cooling system for classrooms and other facilities." },
+  arleam: { cat: "architecture, urban design", title: "Arleam", year: "2021", titleFont: "'PP Lettra Mono',monospace",
+    info: { status: "Completed", client: "Emaar Development UAE", sector: "Architecture, Urban design", location: "Yerevan, AM",
+      collaborators: "General Vlasov", staff: "Marianna Karapetyan, Karen Sheikh, Aram Sargsyan, Mane Petrosyan, Karen Avetisyan" },
+    // photos: shown on the project page in this order, at their natural proportions
+    photos: ["01","02","03","04","05","06"].map((n) => `images/arleam/project/${n}.webp`),
+    desc: "The farm is part of a 100-hectare masterplanning project with industrial, agricultural, private and public amenities. It is an animal farm, realised in the form of a small village with a sequence of public spaces. The horse stables, chicken coop, dove tower and hay storage are wooden structures, while the goat stables, traditional bakery and guest house are built of concrete and stone. The farm complex is integrated with a small pond on a higher level, with a series of connections throughout the area. Every space has its own scenario, with a variety of uses and views." },
   towers: { cat: "architecture", title: "Sunday Towers", year: "2022", titleFont: "'PP Lettra Mono',monospace",
     info: { status: "In construction", client: "Emaar Development UAE", sector: "Architecture", location: "Yerevan, AM",
       collaborators: "General Vlasov", staff: "Marianna Karapetyan, Karen Sheikh, Aram Sargsyan, Mane Petrosyan, Karen Avetisyan" },
@@ -93,8 +99,12 @@ const VALLEE_SLIDES = [1, 2, 3, 4, 5].map((n) => `images/vallee/${n}.webp`);
 const TOTALDRAMA_SLIDES = [1, 2, 3, 4, 5].map((n) => `images/totaldrama/${n}.webp`);
 const DILIJAN_SLIDES = [1, 2, 3, 4, 5].map((n) => `images/dilijan/${n}.webp`);
 const COAF_SLIDES = [1, 2, 3, 4, 5].map((n) => `images/coaf/${n}.webp`);
-const SLIDES_MAP = { simona: SIMONA_SLIDES, barevdzez: BAREVDZEZ_SLIDES, towers: TOWERS_SLIDES, vallee: VALLEE_SLIDES, totaldrama: TOTALDRAMA_SLIDES, dilijan: DILIJAN_SLIDES, coaf: COAF_SLIDES };
+const ARLEAM_SLIDES = [1, 2, 3, 4, 5].map((n) => `images/arleam/${n}.webp`);
+const SLIDES_MAP = { simona: SIMONA_SLIDES, barevdzez: BAREVDZEZ_SLIDES, towers: TOWERS_SLIDES, vallee: VALLEE_SLIDES, totaldrama: TOTALDRAMA_SLIDES, dilijan: DILIJAN_SLIDES, coaf: COAF_SLIDES, arleam: ARLEAM_SLIDES };
 const catLabel = (c) => c.replace(/\b\w/g, (ch) => ch.toUpperCase());
+// a project can have several categories: cat: "architecture, urban design"
+const catList = (c) => String(c).split(",").map((x) => x.trim());
+const inCat = (c, f) => !f || catList(c).includes(f);
 // placeholder projects (grey boxes) — empty now, real projects only
 const PLACEHOLDER_META = [];
 const PLACEHOLDER_ITEMS = PLACEHOLDER_META.map(([id, title, cat, year]) => ({ id, title, cat, year }));
@@ -117,6 +127,8 @@ const TOP_CARDS = [
     slideshow: true, slides: DILIJAN_SLIDES, fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
   { id: "coaf", cat: "architecture", catLabel: "Architecture", catLabelFont: "'PP Hatton',serif", title: "COAF", year: "2022",
     slideshow: true, slides: COAF_SLIDES, fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
+  { id: "arleam", cat: "architecture, urban design", catLabel: "Architecture, Urban Design", catLabelFont: "'PP Hatton',serif", title: "Arleam", year: "2021",
+    slideshow: true, slides: ARLEAM_SLIDES, mobileSlides: [1, 2, 3, 4, 5].map((n) => `images/arleam/mobile/${n}.webp`), fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
   { id: "simona", hidden: true, cat: "interior", catLabel: "Interior", catLabelFont: "'PP Right Serif',serif", title: "Simona", year: "2026",
     slideshow: true, slides: SIMONA_SLIDES, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
 ].filter((c) => !c.hidden); // hidden: true — project is kept in the code but not shown on the site
@@ -203,7 +215,7 @@ function infoTable(info) {
 
 function relatedProjectsHtml() {
   const currentCat = PROJECTS[state.project]?.cat;
-  let ids = Object.keys(PROJECTS).filter((id) => id !== state.project && PROJECTS[id].cat === currentCat).slice(0, 3);
+  let ids = Object.keys(PROJECTS).filter((id) => id !== state.project && catList(PROJECTS[id].cat).some((x) => catList(currentCat).includes(x))).slice(0, 3);
   if (ids.length < 3) {
     const rest = Object.keys(PROJECTS).filter((id) => id !== state.project && !ids.includes(id));
     ids = [...ids, ...rest.slice(0, 3 - ids.length)];
@@ -306,7 +318,7 @@ function heroSubnavHtml() {
 
 function homeHtml() {
   // home shows 3 projects: those marked home: true first, then the most recent ones
-  const pool = TOP_CARDS.filter((c) => !state.filter || c.cat === state.filter);
+  const pool = TOP_CARDS.filter((c) => inCat(c.cat, state.filter));
   const pinned = pool.filter((c) => c.home);
   const recent = pool.filter((c) => !c.home).sort((a, b) => b.year - a.year);
   const cards = [...pinned, ...recent].slice(0, 3);
@@ -369,7 +381,7 @@ function bigCardHtml(item) {
 
 function projectsLayoutHtml(realCards) {
   const realItems = realCards.map((c) => ({ id: c.id, title: c.title, cat: c.cat, year: c.year, kind: "real" }));
-  const phItems = PLACEHOLDER_ITEMS.filter((p) => (!state.filter || p.cat === state.filter) && (!state.yearFilter || String(p.year) === state.yearFilter)).map((p) => ({ ...p, kind: "ph" }));
+  const phItems = PLACEHOLDER_ITEMS.filter((p) => inCat(p.cat, state.filter) && (!state.yearFilter || String(p.year) === state.yearFilter)).map((p) => ({ ...p, kind: "ph" }));
   const items = [...realItems, ...phItems].sort((a, b) => b.year - a.year);
   const renderBig = (it) => it.kind === "real" ? cardHtml(TOP_CARDS.find((c) => c.id === it.id)) : bigCardHtml(it);
   let html = "";
@@ -391,9 +403,9 @@ function projectsLayoutHtml(realCards) {
 }
 
 function projectsHtml() {
-  const cards = TOP_CARDS.filter((c) => (!state.filter || c.cat === state.filter) && (!state.yearFilter || String(c.year) === state.yearFilter)).sort((a, b) => b.year - a.year);
+  const cards = TOP_CARDS.filter((c) => inCat(c.cat, state.filter) && (!state.yearFilter || String(c.year) === state.yearFilter)).sort((a, b) => b.year - a.year);
   const align = state.isMobile ? "text-align:center;" : "text-align:left;";
-  const years = [...new Set([...TOP_CARDS, ...PLACEHOLDER_META.map((m) => ({ cat: m[2], year: m[3] }))].filter((c) => !state.filter || c.cat === state.filter).map((c) => String(c.year)))].sort((a, b) => b - a);
+  const years = [...new Set([...TOP_CARDS, ...PLACEHOLDER_META.map((m) => ({ cat: m[2], year: m[3] }))].filter((c) => inCat(c.cat, state.filter)).map((c) => String(c.year)))].sort((a, b) => b - a);
   return `<main style="padding:0 clamp(20px,6vw,100px);">
     <div id="wrap" style="max-width:1512px;margin:0 auto;">
       ${heroSubnavHtml()}
@@ -475,7 +487,7 @@ function projectHtml() {
   return `<main style="padding:0 clamp(20px,6vw,100px);">
     <div id="wrap" style="max-width:1512px;margin:0 auto;">
       ${heroSubnavHtml()}
-      ${titleWrap(p.title, p.subtitleOverride || `${p.cat.charAt(0).toUpperCase() + p.cat.slice(1)} — ${p.year}`, null, null, 100)}
+      ${titleWrap(p.title, p.subtitleOverride || `${catLabel(p.cat)} — ${p.year}`, null, null, 100)}
       ${infoTable(p.info)}
       <div style="padding:100px 0 100px;margin-left:${state.isMobile ? "0px" : "var(--pad-left)"};${align}">
         <p style="max-width:600px;margin:${margin};font-size:16px;line-height:30px;">${p.desc.split("\n\n").join("<br><br>")}</p>
