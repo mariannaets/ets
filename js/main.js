@@ -126,7 +126,7 @@ const TOP_CARDS = [
   { id: "dilijan", cat: "architecture", catLabel: "Architecture", catLabelFont: "'PP Hatton',serif", title: "Dilijan Houses", year: "2024",
     slideshow: true, slides: DILIJAN_SLIDES, fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
   { id: "coaf", cat: "architecture", catLabel: "Architecture", catLabelFont: "'PP Hatton',serif", title: "COAF", year: "2022",
-    slideshow: true, slides: COAF_SLIDES, fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
+    slideshow: true, slides: COAF_SLIDES, mobileSlides: [1, 2, 3, 4, 5].map((n) => `images/coaf/mobile/${n}.webp`), fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
   { id: "arleam", cat: "architecture, urban design", catLabel: "Architecture, Urban Design", catLabelFont: "'PP Hatton',serif", title: "Arleam", year: "2021",
     slideshow: true, slides: ARLEAM_SLIDES, mobileSlides: [1, 2, 3, 4, 5].map((n) => `images/arleam/mobile/${n}.webp`), fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
   { id: "simona", hidden: true, cat: "interior", catLabel: "Interior", catLabelFont: "'PP Right Serif',serif", title: "Simona", year: "2026",
