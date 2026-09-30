@@ -352,7 +352,7 @@ function smallCardsHtml(items) {
       ${box}
     </div>`;
   };
-  return `<div style="display:flex;flex-wrap:wrap;gap:100px 24px;margin-left:${state.isMobile ? "0px" : "var(--pad-left)"};margin-right:0px;margin-top:100px;margin-bottom:100px;">
+  return `<div style="display:flex;flex-wrap:wrap;gap:100px 24px;margin-left:${state.isMobile ? "0px" : "var(--pad-left)"};margin-right:0px;margin-top:${state.isMobile ? "0px" : "100px"};margin-bottom:100px;">
     ${items.map((item, i) => row(item, i)).join("")}
   </div>`;
 }
