@@ -902,6 +902,31 @@ document.addEventListener("click", (e) => {
 });
 
 // ============================================================
+// TOUCH — cards turn black only while a finger is held on them
+// (short delay so scrolling past a card doesn't flash it)
+// ============================================================
+const press = { el: null, timer: null, x: 0, y: 0 };
+function pressRelease() {
+  clearTimeout(press.timer);
+  if (press.el) press.el.classList.remove("pressed");
+  press.el = null;
+}
+document.addEventListener("touchstart", (e) => {
+  pressRelease();
+  const el = e.target.closest(".top-card, .card-hover-black");
+  if (!el || e.touches.length > 1) return;
+  press.x = e.touches[0].clientX; press.y = e.touches[0].clientY;
+  press.timer = setTimeout(() => { press.el = el; el.classList.add("pressed"); }, 100);
+}, { passive: true });
+document.addEventListener("touchmove", (e) => {
+  const t = e.touches[0];
+  if (Math.abs(t.clientX - press.x) > 8 || Math.abs(t.clientY - press.y) > 8) pressRelease();
+}, { passive: true });
+document.addEventListener("touchend", pressRelease, { passive: true });
+document.addEventListener("touchcancel", pressRelease, { passive: true });
+window.addEventListener("pageshow", pressRelease);
+
+// ============================================================
 // START — open the page the URL points to
 // ============================================================
 Object.assign(state, stateFromPath());
