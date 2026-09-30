@@ -105,7 +105,7 @@ PLACEHOLDER_META.forEach(([id, title, cat, year]) => {
 });
 
 const TOP_CARDS = [
-  { id: "towers", cat: "architecture", catLabel: "Architecture", catLabelFont: "'PP Hatton',serif", title: "Sunday Towers", year: "2022",
+  { id: "towers", home: true, cat: "architecture", catLabel: "Architecture", catLabelFont: "'PP Hatton',serif", title: "Sunday Towers", year: "2022",
     slideshow: true, slides: TOWERS_SLIDES, fromStart: true, pos: "50% 55%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
   { id: "barevdzez", cat: "exhibition", catLabel: "Exhibition", catLabelFont: "'PP Hatton',serif", title: "Venice Biennale of Architecture", year: "2025",
     slideshow: true, slides: BAREVDZEZ_SLIDES, fromStart: true, pos: "50% 50%", height: "clamp(360px, 44vw, 660px)", mobileHeight: "85vh" },
@@ -300,8 +300,11 @@ function heroSubnavHtml() {
 }
 
 function homeHtml() {
-  // home always shows the 3 most recent projects (same as the top of "all projects")
-  const cards = TOP_CARDS.filter((c) => !state.filter || c.cat === state.filter).slice().sort((a, b) => b.year - a.year).slice(0, 3);
+  // home shows 3 projects: those marked home: true first, then the most recent ones
+  const pool = TOP_CARDS.filter((c) => !state.filter || c.cat === state.filter);
+  const pinned = pool.filter((c) => c.home);
+  const recent = pool.filter((c) => !c.home).sort((a, b) => b.year - a.year);
+  const cards = [...pinned, ...recent].slice(0, 3);
   const align = state.isMobile ? "text-align:center;" : "text-align:left;";
   return `<main style="padding:0 clamp(20px,6vw,100px);">
     <div id="wrap" style="max-width:1512px;margin:0 auto;">
