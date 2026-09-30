@@ -148,7 +148,12 @@ function toggleMobileMenu() { state.mobileMenuOpen = !state.mobileMenuOpen; rend
 const esc = (s) => String(s);
 
 function slidesHtml(c) {
-  return c.slides.map((src, i) => `<div data-card-id="${c.id}" data-slide-index="${i}" data-slide-total="${c.slides.length}"${c.fromStart ? " data-from-start" : ""} style="position:absolute;inset:0;background-image:url(${src});background-size:cover;background-position:${c.pos};background-repeat:no-repeat;opacity:0;"></div>`).join("");
+  // on mobile, cards with mobileSlides use their own (vertical) frames
+  const mobile = state.isMobile && c.mobileSlides && c.mobileSlides.length;
+  const list = mobile ? c.mobileSlides : c.slides;
+  const key = mobile ? `${c.id}@m` : c.id;
+  const pos = mobile ? "50% 50%" : c.pos;
+  return list.map((src, i) => `<div data-card-id="${key}" data-slide-index="${i}" data-slide-total="${list.length}"${c.fromStart ? " data-from-start" : ""} style="position:absolute;inset:0;background-image:url(${src});background-size:cover;background-position:${pos};background-repeat:no-repeat;opacity:0;"></div>`).join("");
 }
 
 function cardHtml(c) {
