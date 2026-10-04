@@ -18,7 +18,7 @@ Needs: node, python3, Pillow (pip install pillow).
 import html, json, os, shutil, subprocess, sys
 from PIL import Image
 
-SITE_URL = "https://mariannaets.github.io/ets/"   # later: "https://electricarchitects.com/"
+SITE_URL = "https://www.electricarchitects.com/"   # was: https://mariannaets.github.io/ets/
 SITE_NAME = "Electric Architects"
 SITE_DESC = "Electric Architects — architectural and urban design studio based in Yerevan, Armenia."
 
