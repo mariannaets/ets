@@ -212,7 +212,7 @@ function titleWrap(title, subtitle, color, titleFont, paddingTop, justify) {
 function infoTable(info) {
   const rows = [
     ["Status", info.status], ["Partner", info.client], ["Sector", info.sector],
-    ["Location", info.location], ["Collaborators", info.collaborators], ["e / People", info.staff],
+    ["Location", info.location], ["Collaborators", info.collaborators],
   ];
   return `<div style="padding:0;margin-left:${state.isMobile ? "0px" : "var(--pad-left)"};">
     ${rows.map(([label, value], i) => `
