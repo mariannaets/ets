@@ -245,7 +245,7 @@ const PLACEHOLDER_INFO = {
     desc: "An existing building of former sports facilities is transformed into headquarters of VTB Armenia for 500 employees and training center. An additional level with an outdoor terrace was added to the building. The construction process duration was 1 year and it included the construction of additional floor and full fit out of 8 levels with large open spaces and private offices." },
 };
 // photos already uploaded: images/<id>/project/01.webp ... NN.webp (number = how many)
-const PLACEHOLDER_PHOTOS = { "airport-administration": 8, "andaco": 7, "dilijan-village": 8, "media-relations-space": 7, "red-house": 8 };
+const PLACEHOLDER_PHOTOS = { "airport-administration": 8, "andaco": 7, "dilijan-village": 8, "media-relations-space": 7, "red-house": 8, "noble-row": 11, "woods-residence": 14, "kapybara": 10, "hayelectro": 10, "koor-winery": 5 };
 const PLACEHOLDER_ITEMS = PLACEHOLDER_META.map(([id, title, cat, year]) => ({ id, title, cat, year }));
 PLACEHOLDER_META.forEach(([id, title, cat, year]) => {
   const x = PLACEHOLDER_INFO[id] || {};
