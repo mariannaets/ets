@@ -244,10 +244,13 @@ const PLACEHOLDER_INFO = {
   "vtb-bank-head-office": { info: {"status":"Completed","client":"VTB Bank Armenia","sector":"Commercial","location":"Yerevan, Armenia"},
     desc: "An existing building of former sports facilities is transformed into headquarters of VTB Armenia for 500 employees and training center. An additional level with an outdoor terrace was added to the building. The construction process duration was 1 year and it included the construction of additional floor and full fit out of 8 levels with large open spaces and private offices." },
 };
+// photos already uploaded: images/<id>/project/01.webp ... NN.webp (number = how many)
+const PLACEHOLDER_PHOTOS = { "airport-administration": 8, "andaco": 7, "dilijan-village": 8, "media-relations-space": 7, "red-house": 8 };
 const PLACEHOLDER_ITEMS = PLACEHOLDER_META.map(([id, title, cat, year]) => ({ id, title, cat, year }));
 PLACEHOLDER_META.forEach(([id, title, cat, year]) => {
   const x = PLACEHOLDER_INFO[id] || {};
   PROJECTS[id] = { cat, title, year, placeholder: true,
+    photos: PLACEHOLDER_PHOTOS[id] ? Array.from({ length: PLACEHOLDER_PHOTOS[id] }, (_, i) => `images/${id}/project/${String(i + 1).padStart(2, "0")}.webp`) : undefined,
     info: Object.assign({ status: "—", client: "—", sector: catLabel(cat), location: "—", collaborators: "—", staff: "—" }, x.info),
     desc: x.desc || DESC };
 });
