@@ -42,11 +42,11 @@ const PROJECT_CAPTIONS = {
 };
 
 const PROJECTS = {
-  simona: { slug: "simona", hidden: true, cat: "interior", title: "Simona", year: "2026", subtitleOverride: "2026",
-    info: { status: "—", client: "—", sector: "—", location: "—",
+  simona: { slug: "simona", cat: "interior", title: "Simona", year: "2026", subtitleOverride: "2026",
+    info: { status: "Completed", client: "Simona Bar", sector: "Horeca", location: "Yerevan, Armenia",
       collaborators: "—", staff: "—" },
     hero: "images/portrait-bw.webp", heroPos: "30% 30%",
-    second: "images/shopfront.webp", secondPos: "50% 55%", desc: DESC },
+    second: "images/shopfront.webp", secondPos: "50% 55%", desc: "For over a decade, Simona has shaped Yerevan’s cocktail culture. Its transformation was not about change, but about giving the legend the space it deserved. Centered around the “zero ground” contact bar, the design dissolves barriers and celebrates gathering. A red led halo declaring “Simona gathers” floods the steel and glass interior with cinematic light. Salvaged Soviet-era lamps, layered monochrome reds, and touches of modern kitsch create a bold, communal atmosphere that bridges institution and destination." },
   barevdzez: { slug: "venice-biennale", cat: "exhibition", title: "Venice Biennale of Architecture", year: "2025", titleFont: "'PP Hatton',serif", subtitleOverride: "2025",
     info: { status: "Completed", client: "—", sector: "Temporary", location: "Venice, Italy",
       collaborators: "—", staff: "—" },
@@ -156,6 +156,14 @@ const PLACEHOLDER_META = [
   ["ground-zero-pop-up","Ground Zero Pop-Up","interior","2024"],
   ["sweet-coast-komitas","Sweet Coast Komitas","interior","2024"],
   ["vtb-bank-head-office","VTB Bank Head Office","interior, architecture","2022"],
+  ["tumo-masis","TUMO Masis","architecture, interior","2024"],
+  ["agbu-coworking","AGBU Co-Working","interior","2024"],
+  ["milan-design-week-alcova","Milan Design Week 2026 — Alcova","exhibition","2026"],
+  ["milan-design-week-deoron","Milan Design Week 2026 — Deoron","exhibition","2026"],
+  ["mov","MOV","interior","2024"],
+  ["sweet-coast","Sweet Coast","interior","2020"],
+  ["zoie","Zoie","interior, architecture","2025"],
+  ["vtb-vip","VTB VIP","interior","2022"],
 ];
 // text-only projects (photos to come): info + description per id
 const PLACEHOLDER_INFO = {
@@ -243,6 +251,22 @@ const PLACEHOLDER_INFO = {
     desc: "The new Komitas branch of Sweet Coast bakery reinterprets the brand’s visual identity through a distinct architectural approach. The interior is intentionally minimalist and muted, directing attention toward a monumental central service counter clad in layered local tuff stone. Inspired by the structure of a honey cake, the counter transforms regional materiality into a graphic element that celebrates the craft and process of baking." },
   "vtb-bank-head-office": { info: {"status":"Completed","client":"VTB Bank Armenia","sector":"Commercial","location":"Yerevan, Armenia"},
     desc: "An existing building of former sports facilities is transformed into headquarters of VTB Armenia for 500 employees and training center. An additional level with an outdoor terrace was added to the building. The construction process duration was 1 year and it included the construction of additional floor and full fit out of 8 levels with large open spaces and private offices." },
+  "tumo-masis": { info: {"status":"Under Construction","client":"TUMO","sector":"Educational","location":"Masis, Armenia"},
+    desc: "TUMO Masis building is designed as a modular model building to be replicated as a TUMO branch in every location where is an unoccupied plot around the world. It is a lightweight wood and steel structure for simultaneously educating 1500 students. The modular building is evolved around a central courtyard, which can be expanded or tightened according to the needs of the certain location or city where new TUMO branch is coming. The building is well thought to operate with natural ventilation and light sources suitable for educational reasons." },
+  "agbu-coworking": { info: {"status":"Under Construction","client":"AGBU","sector":"Commercial","location":"Yerevan, Armenia"},
+    desc: "The AGBU coworking project breathes new life into a four-story building that sat dormant for years, transforming it into a dynamic hub for young businesses and entrepreneurs relocated from Artsakh. Driven by a mission to support economic resilience and community integration, the interior design relies on bold geometry, vibrant colors, and flexible spatial solutions to create an inspiring and adaptable work environment focused on collaboration and professional growth." },
+  "milan-design-week-alcova": { info: {"status":"Completed","client":"Alcova","sector":"Temporary","location":"Milan, Italy"},
+    desc: "The anatomy lamp, designed by Electric Studios in collaboration with the Swiss acoustic brand Impact Acoustic and presented with the Architectural Association at Alcova during Milan Design Week 2026, explores the intersection of structural organicism and spatial wellness. Conceived as an exposed architectural framework, the lamp is constructed from sustainable acoustic felt that absorbs ambient noise while shaping the atmosphere of a space. Combining material science with lighting design, the project creates a dialogue between radical form, transparency, and sensory silence." },
+  "milan-design-week-deoron": { info: {"status":"Completed","client":"Deoron","sector":"Temporary","location":"Milan, Italy"},
+    desc: "The vice consumption collection, designed by Electric Studios, is a series of architectural smoking accouterments that shifts the focus from functional product design to the philosophy of human habit. Premiered at the Deoron platform during Milan Design Week 2026, the collection explores the “architecture of the vice,” proposing consumption as a deliberate, self-reflective ritual rather than a mindless routine. Heavy, structural, and ceremonial, the objects act as a contemporary memento mori, creating a dialogue between material permanence, the ephemerality of habit, and the honesty of self-reflection." },
+  "mov": { info: {"status":"Completed","client":"MOV","sector":"Horeca","location":"Yerevan, Armenia"},
+    desc: "An Armenian restaurant with no direct references. The client’s brief was to create an authentic restaurant but avoiding using any direct ethnic elements or ornaments in the design. Our approach was to use the most traditionally Armenian colors and materials to achieve this effect, creating surprising forms and patterns reminding of local aesthetics but never being too precise." },
+  "sweet-coast": { info: {"status":"Completed","client":"The Coast","sector":"Horeca","location":"Yerevan, Armenia"},
+    desc: "The interior of this pastry shop / cafe is inspired by the nearby located Cascade complex in central Yerevan. Cascade’s sculptural shapes made of travertine marble, light and shadow play and everchanging perspective views translated into a minimalist space, where the light acts as the major attraction. This aesthetic is in interplay with Mediterranean notes of general ‘The Coast’ concept. It was an uneasy task to mix the context, the brand identity and to make a pastry shop in way that customers would enjoy spending time there." },
+  "zoie": { info: {"status":"Completed","client":"The Coast","sector":"Horeca","location":"Yerevan, Armenia"},
+    desc: "A new Mediterranean restaurant in Cascade area in Yerevan was divided into three distinctive color palette areas with consistent approach to material usage and sculptural shapes. The first area is very bright in color and full of natural light, with main accent on sculptures, while the second one is vibrant and colorful, reminding of the emotions the Mediterranean colors bring." },
+  "vtb-vip": { info: {"status":"Completed","client":"VTB Bank Armenia","sector":"Commercial","location":"Yerevan, Armenia"},
+    desc: "A very narrow space of two floors with 5 and 4 meters high ceilings were designed to represent the exceptional service of vip branch of the bank. Large number of granite and wood slabs were used to clad the walls, and transfer the qualities of these materials everywhere where the customer interacts with touching them. Every additional space was enclosed in lightweight glazed islands, with possibilities of providing privacy through drapes curtains and acoustic panels. An artist was commissioned to create paintings for specific rooms with their own color palettes and scale." },
 };
 // photos already uploaded: images/<id>/project/01.webp ... NN.webp (number = how many)
 const PLACEHOLDER_PHOTOS = { "airport-administration": 8, "andaco": 7, "dilijan-village": 8, "media-relations-space": 7, "red-house": 8, "noble-row": 11, "woods-residence": 14, "kapybara": 10, "hayelectro": 10, "koor-winery": 5, "2750-anniversary-park-renovation": 5, "upd-sales-office": 12, "asteria": 7, "cofix": 2, "martini": 3, "moskovyan-22": 7, "pushkin-street": 3, "poplavok-park-renovation": 3, "saryan-street-public-space": 2, "school-park-renovation": 1, "rustaveli-32": 4, "apri": 13, "jrvezh-forest-park": 8, "gevorg-kochar-street": 11, "nera-project-showroom": 8, "nork-residential": 7, "parpetsi-street-redesign": 6, "freedom-square-renovation": 16, "wu": 11, "yadro-armenia": 10, "wakepark-armenia": 22, "hotel-le-blanc": 32, "zithopia": 24, "youth-sport-centre": 17, "ac-design-head-office": 28, "avobar-abu-dhabi": 19, "vtb-bank-head-office": 8 };
@@ -272,7 +296,7 @@ const TOP_CARDS = [
     slideshow: true, slides: ARLEAM_SLIDES, mobileSlides: [1, 2, 3, 4, 5].map((n) => `images/arleam/mobile/${n}.webp`), fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
   { id: "affordable", cat: "architecture, interior", catLabel: "Architecture, Interior", catLabelFont: "'PP Hatton',serif", title: "Affordable Housing", year: "2023",
     slideshow: true, slides: AFFORDABLE_SLIDES, mobileSlides: [1, 2, 3, 4, 5].map((n) => `images/affordable/mobile/${n}.webp`), fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
-  { id: "simona", hidden: true, cat: "interior", catLabel: "Interior", catLabelFont: "'PP Right Serif',serif", title: "Simona", year: "2026",
+  { id: "simona", cat: "interior", catLabel: "Interior", catLabelFont: "'PP Right Serif',serif", title: "Simona", year: "2026",
     slideshow: true, slides: SIMONA_SLIDES, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
 ].filter((c) => !c.hidden); // hidden: true — project is kept in the code but not shown on the site
 
