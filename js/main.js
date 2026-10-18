@@ -143,7 +143,6 @@ const PLACEHOLDER_META = [
   ["saryan-street-public-space","Saryan Street Public Space","urban design","2024"],
   ["school-park-renovation","School Park Renovation","urban design","2024"],
   ["wakepark-armenia","Wakepark Armenia","architecture, urban design","2024"],
-  ["woods-center-blue-building","WOODS Center - Blue Building","architecture","2025"],
   ["woods-residence","WOODS Residence","architecture, urban design","2024"],
   ["wu","WU","interior","2023"],
   ["yadro-armenia","Yadro Armenia","interior","2022"],
@@ -151,19 +150,10 @@ const PLACEHOLDER_META = [
   ["zithopia","Zithopia","interior","2024"],
   ["ac-design-head-office","AC Design Head Office","architecture, interior","2025"],
   ["avobar-abu-dhabi","Avobar Abu Dhabi","interior","2023"],
-  ["avobar-london","Avobar London","interior","2024"],
   ["creme-de-la-creme","Crème de la Crème","interior","2025"],
   ["ground-zero-pop-up","Ground Zero Pop-Up","interior","2024"],
   ["sweet-coast-komitas","Sweet Coast Komitas","interior","2024"],
   ["vtb-bank-head-office","VTB Bank Head Office","interior, architecture","2022"],
-  ["tumo-masis","TUMO Masis","architecture, interior","2024"],
-  ["agbu-coworking","AGBU Co-Working","interior","2024"],
-  ["milan-design-week-alcova","Milan Design Week 2026 — Alcova","exhibition","2026"],
-  ["milan-design-week-deoron","Milan Design Week 2026 — Deoron","exhibition","2026"],
-  ["mov","MOV","interior","2024"],
-  ["sweet-coast","Sweet Coast","interior","2020"],
-  ["zoie","Zoie","interior, architecture","2025"],
-  ["vtb-vip","VTB VIP","interior","2022"],
 ];
 // text-only projects (photos to come): info + description per id
 const PLACEHOLDER_INFO = {
