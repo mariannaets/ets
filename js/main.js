@@ -558,7 +558,7 @@ function projectsListHtml(items) {
       <span style="${body}">${esc(status)}</span>
     </div>`;
   };
-  return `<div style="margin-left:${m ? "0px" : "var(--pad-left)"};margin-right:0;margin-bottom:100px;"><style>.list-row:hover .list-title{color:#001aff;}</style>${items.map(row).join("")}</div>`;
+  return `<div style="margin-left:${m ? "0px" : "var(--pad-left)"};margin-right:0;margin-bottom:100px;"><style>.list-row:hover .list-title{color:#001aff !important;}</style>${items.map(row).join("")}</div>`;
 }
 
 function projectsLayoutHtml(realCards) {
