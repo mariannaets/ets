@@ -541,23 +541,24 @@ function bigCardHtml(item) {
 function projectsListHtml(items) {
   const m = state.isMobile;
   const labelCol = "calc(var(--pad-news) - var(--pad-left))";
-  const gray = "font-family:'PP Telegraf',sans-serif;font-weight:600;font-size:16px;color:#0D0D0E4D;";
+  const gray = "font-family:'PP Stellar',sans-serif;font-size:16px;line-height:1.5;color:#0D0D0E4D;";
+  const ttl = "font-family:'PP Telegraf',sans-serif;font-weight:600;font-size:16px;line-height:1.5;color:#0D0D0E;";
   const body = "font-family:'PP Stellar',sans-serif;font-size:16px;line-height:1.5;color:#0D0D0E;";
   const row = (it, i) => {
     const info = (PROJECTS[it.id] && PROJECTS[it.id].info) || {};
     const status = info.status && info.status !== "—" ? info.status : "";
-    if (m) return `<div data-open-project="${it.id}" style="cursor:pointer;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:20px 0;${i === 0 ? "" : "border-top:1px solid #000;"}">
-      <span class="hoverlink" style="font-family:'PP Gatwick',sans-serif;font-weight:600;font-size:22px;line-height:1.2;">${esc(it.title)}</span>
+    if (m) return `<div data-open-project="${it.id}" class="list-row" style="cursor:pointer;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:20px 0;${i === 0 ? "" : "border-top:1px solid #000;"}">
+      <span class="list-title" style="${ttl}">${esc(it.title)}</span>
       <span style="${body}color:#0D0D0E80;">${esc(catLabel(it.cat))} — ${esc(it.year)}${status ? ` — ${esc(status)}` : ""}</span>
     </div>`;
-    return `<div data-open-project="${it.id}" style="cursor:pointer;display:grid;grid-template-columns:${labelCol} minmax(0,3fr) minmax(0,2fr) minmax(0,2fr);align-items:baseline;padding:20px 0;${i === 0 ? "" : "border-top:1px solid #000;"}">
+    return `<div data-open-project="${it.id}" class="list-row" style="cursor:pointer;display:grid;grid-template-columns:${labelCol} minmax(0,3fr) minmax(0,2fr) minmax(0,2fr);align-items:baseline;padding:20px 0;${i === 0 ? "" : "border-top:1px solid #000;"}">
       <span style="${gray}">${esc(it.year)}</span>
-      <span class="hoverlink" style="font-family:'PP Gatwick',sans-serif;font-weight:600;font-size:22px;line-height:1.2;">${esc(it.title)}</span>
+      <span class="list-title" style="${ttl}">${esc(it.title)}</span>
       <span style="${body}">${esc(catLabel(it.cat))}</span>
       <span style="${body}">${esc(status)}</span>
     </div>`;
   };
-  return `<div style="margin-left:${m ? "0px" : "var(--pad-left)"};margin-right:0;margin-bottom:100px;">${items.map(row).join("")}</div>`;
+  return `<div style="margin-left:${m ? "0px" : "var(--pad-left)"};margin-right:0;margin-bottom:100px;"><style>.list-row:hover .list-title{color:#001aff;}</style>${items.map(row).join("")}</div>`;
 }
 
 function projectsLayoutHtml(realCards) {
