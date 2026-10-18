@@ -298,6 +298,7 @@ const MOBILE_MQ = window.matchMedia("(max-width: 720px)");
 
 const state = {
   view: "home", filter: null, yearFilter: null, project: "simona",
+  viewMode: (() => { try { return localStorage.getItem("ets-view") === "list" ? "list" : "grid"; } catch (e) { return "grid"; } })(),
   scrolled: false, menuOpen: null,
   isMobile: MOBILE_MQ.matches,
   mobileMenuOpen: false,
@@ -537,11 +538,34 @@ function bigCardHtml(item) {
   </div>`;
 }
 
+function projectsListHtml(items) {
+  const m = state.isMobile;
+  const labelCol = "calc(var(--pad-news) - var(--pad-left))";
+  const gray = "font-family:'PP Telegraf',sans-serif;font-weight:600;font-size:16px;color:#0D0D0E4D;";
+  const body = "font-family:'PP Stellar',sans-serif;font-size:16px;line-height:1.5;color:#0D0D0E;";
+  const row = (it, i) => {
+    const info = (PROJECTS[it.id] && PROJECTS[it.id].info) || {};
+    const status = info.status && info.status !== "—" ? info.status : "";
+    if (m) return `<div data-open-project="${it.id}" style="cursor:pointer;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:20px 0;${i === 0 ? "" : "border-top:1px solid #000;"}">
+      <span class="hoverlink" style="font-family:'PP Gatwick',sans-serif;font-weight:600;font-size:22px;line-height:1.2;">${esc(it.title)}</span>
+      <span style="${body}color:#0D0D0E80;">${esc(catLabel(it.cat))} — ${esc(it.year)}${status ? ` — ${esc(status)}` : ""}</span>
+    </div>`;
+    return `<div data-open-project="${it.id}" style="cursor:pointer;display:grid;grid-template-columns:${labelCol} minmax(0,3fr) minmax(0,2fr) minmax(0,2fr);align-items:baseline;padding:20px 0;${i === 0 ? "" : "border-top:1px solid #000;"}">
+      <span style="${gray}">${esc(it.year)}</span>
+      <span class="hoverlink" style="font-family:'PP Gatwick',sans-serif;font-weight:600;font-size:22px;line-height:1.2;">${esc(it.title)}</span>
+      <span style="${body}">${esc(catLabel(it.cat))}</span>
+      <span style="${body}">${esc(status)}</span>
+    </div>`;
+  };
+  return `<div style="margin-left:${m ? "0px" : "var(--pad-left)"};margin-right:0;margin-bottom:100px;">${items.map(row).join("")}</div>`;
+}
+
 function projectsLayoutHtml(realCards) {
   const realItems = realCards.map((c) => ({ id: c.id, title: c.title, cat: c.cat, year: c.year, kind: "real" }));
   const phItems = PLACEHOLDER_ITEMS.filter((p) => inCat(p.cat, state.filter) && (!state.yearFilter || String(p.year) === state.yearFilter)).map((p) => ({ ...p, kind: "ph" }));
   const items = [...realItems, ...phItems].sort((a, b) => b.year - a.year);
   const renderBig = (it) => it.kind === "real" ? cardHtml(TOP_CARDS.find((c) => c.id === it.id)) : bigCardHtml(it);
+  if (state.viewMode === "list") return projectsListHtml(items);
   let html = "";
   // mobile: one column of identical tall cards with the title on top
   if (state.isMobile) return items.length ? smallCardsHtml(items) : "";
@@ -572,8 +596,13 @@ function projectsHtml() {
           <span style="font-family:'PP Gatwick',sans-serif;font-weight:700;font-size:clamp(32px,6vw,52px);line-height:1.2;">all projects</span>
           ${state.filter ? `<span style="font-family:'PP Telegraf',sans-serif;font-weight:700;font-size:32px;line-height:1.2;color:#0D0D0E80;">${state.filter}</span>` : ""}
         </div>
-        <div style="display:flex;gap:6px;margin-top:100px;padding-bottom:100px;${state.isMobile ? "flex-wrap:wrap;justify-content:center;" : ""}">
+        <div style="display:flex;${state.isMobile ? "flex-direction:column;align-items:center;gap:20px;" : "align-items:baseline;justify-content:space-between;gap:24px;"}margin-top:100px;padding-bottom:100px;">
+        <div style="display:flex;gap:6px;${state.isMobile ? "flex-wrap:wrap;justify-content:center;" : ""}">
           ${years.map((y, i) => `${i > 0 ? `<span style="font-size:16px;font-family:'PP Stellar',sans-serif;color:#0D0D0E4D;">/</span>` : ""}<span data-year-filter="${y}" class="hoverlink" style="cursor:pointer;font-size:16px;font-family:'PP Stellar',sans-serif;${state.yearFilter === y ? "opacity:0.5;" : ""}">${state.isMobile || i === 0 ? y : y.slice(2)}</span>`).join("")}
+        </div>
+        <div style="display:flex;gap:6px;font-size:16px;font-family:'PP Stellar',sans-serif;">
+          <span data-view-mode="grid" class="hoverlink" style="cursor:pointer;${state.viewMode === "grid" ? "" : "color:#0D0D0E4D;"}">grid view</span><span style="color:#0D0D0E4D;">/</span><span data-view-mode="list" class="hoverlink" style="cursor:pointer;${state.viewMode === "list" ? "" : "color:#0D0D0E4D;"}">list view</span>
+        </div>
         </div>
       </div>
       ${projectsLayoutHtml(cards)}
@@ -858,6 +887,8 @@ document.addEventListener("click", (e) => {
   if (goEl) { go(goEl.dataset.go); return; }
   const filterEl = e.target.closest("[data-filter]");
   if (filterEl) { go("projects", filterEl.dataset.filter); return; }
+  const viewEl = e.target.closest("[data-view-mode]");
+  if (viewEl) { state.viewMode = viewEl.dataset.viewMode === "list" ? "list" : "grid"; try { localStorage.setItem("ets-view", state.viewMode); } catch (err) {} render(); return; }
   const yearEl = e.target.closest("[data-year-filter]");
   if (yearEl) { state.yearFilter = state.yearFilter === yearEl.dataset.yearFilter ? null : yearEl.dataset.yearFilter; render(); return; }
   const projEl = e.target.closest("[data-open-project]");
