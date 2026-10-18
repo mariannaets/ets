@@ -42,7 +42,7 @@ const PROJECT_CAPTIONS = {
 };
 
 const PROJECTS = {
-  simona: { slug: "simona", cat: "interior", title: "Simona", year: "2026", subtitleOverride: "2026",
+  simona: { slug: "simona", photos: ["images/simona/project/01.webp","images/simona/project/02.webp","images/simona/project/03.webp","images/simona/project/04.webp","images/simona/project/05.webp","images/simona/project/06.webp","images/simona/project/07.webp","images/simona/project/08.webp","images/simona/project/09.webp","images/simona/project/10.webp","images/simona/project/11.webp","images/simona/project/12.webp"], cat: "interior", title: "Simona", year: "2026", subtitleOverride: "2026",
     info: { status: "Completed", client: "Simona Bar", sector: "Horeca", location: "Yerevan, Armenia",
       collaborators: "—", staff: "—" },
     hero: "images/portrait-bw.webp", heroPos: "30% 30%",
