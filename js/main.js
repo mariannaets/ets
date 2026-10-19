@@ -18,11 +18,8 @@ const NEWS_ITEMS = [
 ];
 
 const TEAM = [
-  { name: "Marianna Karapetyan", role: "Founder / architect", linkedin: "https://linkedin.com", instagram: "https://instagram.com" },
-  { name: "Karen", role: "Partner / interiors", linkedin: "https://linkedin.com", instagram: "https://instagram.com" },
-  { name: "Maria", role: "Project architect", linkedin: "https://linkedin.com", instagram: "https://instagram.com" },
-  { name: "Name", role: "Urban design lead", linkedin: "https://linkedin.com", instagram: "https://instagram.com" },
-  { name: "Name", role: "Architectural designer", linkedin: "https://linkedin.com", instagram: "https://instagram.com" },
+  { name: "Marianna Karapetyan", role: "Founder / urbanist", linkedin: "https://linkedin.com", instagram: "https://instagram.com" },
+  { name: "Karen Badalian", role: "Art director / architect", linkedin: "https://linkedin.com", instagram: "https://instagram.com" },
 ];
 
 const PROJECT_CAPTIONS = {
