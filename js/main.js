@@ -975,9 +975,37 @@ if (document.fonts && document.fonts.ready) document.fonts.ready.then(measurePad
 // ============================================================
 // GALLERY — click a photo on a project page to view it full screen (desktop only)
 // ============================================================
-const lightbox = { el: null, list: [], i: 0 };
+const lightbox = { el: null, list: [], i: 0, next: null, end: false };
+// project order = the order of the projects page (newest first); after the last one we go back to the first
+function projectOrder() {
+  return [
+    ...TOP_CARDS.map((c) => ({ id: c.id, title: c.title, cat: c.cat, year: c.year })),
+    ...PLACEHOLDER_ITEMS.map((p) => ({ id: p.id, title: p.title, cat: p.cat, year: p.year })),
+  ].sort((a, b) => b.year - a.year);
+}
+function nextProjectAfter(id) {
+  const order = projectOrder();
+  const k = order.findIndex((p) => p.id === id);
+  if (k < 0 || order.length < 2) return null;
+  const p = order[(k + 1) % order.length];
+  const pr = PROJECTS[p.id] || {};
+  return { id: p.id, title: p.title, img: (pr.photos && pr.photos[0]) || (SLIDES_MAP[p.id] || [])[0] || pr.hero || null };
+}
+function lbEnd(on) {
+  if (!lightbox.el) return;
+  lightbox.end = on;
+  lightbox.el.classList.toggle("lb-end", on);
+}
+function lbGoNext() {
+  const nx = lightbox.next;
+  if (!nx) return;
+  lbClose();
+  openProject(nx.id); // lands on the top of the next project's page
+}
 function lbShow(i) {
   const n = lightbox.list.length;
+  if (i >= n && lightbox.next) { lbEnd(true); return; } // past the last photo → "next project" screen
+  lbEnd(false);
   lightbox.i = (i + n) % n;
   const img = lightbox.el.querySelector(".lb-stage img");
   img.style.opacity = 0;
@@ -990,19 +1018,39 @@ function lbShow(i) {
 }
 function lbOpen(list, i) {
   lightbox.list = list;
+  lightbox.end = false;
+  const nx = lightbox.next = nextProjectAfter(state.project);
+  if (nx && nx.img) new Image().src = nx.img;
   const el = document.createElement("div");
   el.className = "lb";
-  el.innerHTML = `<button class="lb-close" aria-label="Close">×</button>
+  el.innerHTML = `<style>
+    .lb.lb-end { background: #0D0D0E; }
+    .lb.lb-end button { color: #FAFFFD; z-index: 2; }
+    .lb.lb-end .lb-stage, .lb.lb-end .lb-count { visibility: hidden; }
+    .lb-endscreen { display: none; position: absolute; inset: 0; z-index: 1; flex-direction: column; align-items: center; justify-content: center; gap: 22px; text-align: center; padding: 0 24px; cursor: pointer; }
+    .lb.lb-end .lb-endscreen { display: flex; }
+    .lb-end-label { font-family: 'PP Stellar', sans-serif; font-size: 16px; color: #FAFFFD99; }
+    .lb-end-title { font-family: 'PP Gatwick', sans-serif; font-weight: 600; font-size: clamp(28px, 4vw, 52px); line-height: 1.1; color: #FAFFFD; }
+    .lb-end-img { width: 400px; max-width: 80vw; height: auto; display: block; margin-top: 18px; }
+  </style>
+    <button class="lb-close" aria-label="Close">×</button>
     <button class="lb-prev" aria-label="Previous">←</button>
     <div class="lb-stage"><img alt=""></div>
     <button class="lb-next" aria-label="Next">→</button>
-    <div class="lb-count"></div>`;
+    <div class="lb-count"></div>
+    ${nx ? `<div class="lb-endscreen"><span class="lb-end-label">next project</span><span class="lb-end-title"></span>${nx.img ? `<img class="lb-end-img" src="${nx.img}" alt="">` : ""}</div>` : ""}`;
+  if (nx) el.querySelector(".lb-end-title").textContent = nx.title;
   document.body.appendChild(el);
   document.body.style.overflow = "hidden";
   lightbox.el = el;
   lbShow(i);
   requestAnimationFrame(() => el.classList.add("open"));
   el.addEventListener("click", (e) => {
+    if (lightbox.end && !e.target.closest(".lb-close")) {
+      if (e.target.closest(".lb-prev")) lbShow(lightbox.list.length - 1); // back to the last photo
+      else lbGoNext(); // → arrow, or a tap/click anywhere on the screen
+      return;
+    }
     if (e.target.closest(".lb-prev")) lbShow(lightbox.i - 1);
     else if (e.target.closest(".lb-next") || e.target.closest(".lb-stage img")) lbShow(lightbox.i + 1);
     else lbClose(); // cross or empty space
@@ -1025,8 +1073,8 @@ document.addEventListener("click", (e) => {
 document.addEventListener("keydown", (e) => {
   if (!lightbox.el) return;
   if (e.key === "Escape") lbClose();
-  else if (e.key === "ArrowRight") lbShow(lightbox.i + 1);
-  else if (e.key === "ArrowLeft") lbShow(lightbox.i - 1);
+  else if (e.key === "ArrowRight") { if (lightbox.end) lbGoNext(); else lbShow(lightbox.i + 1); }
+  else if (e.key === "ArrowLeft") lbShow(lightbox.end ? lightbox.list.length - 1 : lightbox.i - 1);
 });
 MOBILE_MQ.addEventListener("change", () => { if (MOBILE_MQ.matches) lbClose(); });
 
