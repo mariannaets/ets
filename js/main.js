@@ -18,8 +18,8 @@ const NEWS_ITEMS = [
 ];
 
 const TEAM = [
-  { name: "Marianna Karapetyan", role: "Founder / urbanist", linkedin: "https://linkedin.com", instagram: "https://instagram.com" },
-  { name: "Karen Badalian", role: "Art director / architect", linkedin: "https://linkedin.com", instagram: "https://instagram.com" },
+  { name: "Marianna Karapetyan", role: "Founder / urbanist", linkedin: "https://www.linkedin.com/in/marianna-karapetyan-641515369/", instagram: "https://www.instagram.com/marianna_mntp/" },
+  { name: "Karen Badalian", role: "Art director / architect", linkedin: "", instagram: "https://www.instagram.com/sheikhkar/" },
 ];
 
 const PROJECT_CAPTIONS = {
@@ -769,6 +769,14 @@ function postHtml() {
   </main>`;
 }
 
+// a person's link; no URL yet → grey, inactive label
+function personLink(p, key) {
+  const style = `font-family:${p.linksFont || "'PP Stellar',sans-serif"};font-size:16px;line-height:1.4;`;
+  return p[key]
+    ? `<a href="${p[key]}" target="_blank" rel="noreferrer" class="hoverlink" style="${style}color:#0D0D0E;">${key}</a>`
+    : `<span style="${style}color:#0D0D0E4D;cursor:default;">${key}</span>`;
+}
+
 function peopleHtml() {
   const cols = [[], []];
   TEAM.forEach((p, i) => cols[i % 2].push(p));
@@ -789,8 +797,8 @@ function peopleHtml() {
                   <span style="font-family:${p.nameFont || "'PP Telegraf',sans-serif"};font-weight:600;font-size:16px;line-height:1.4;white-space:nowrap;">${esc(p.name)}</span>
                   <span style="font-family:${p.roleFont || "'PP Watch',sans-serif"};font-size:16px;line-height:1.4;color:#5a5a5a;">${esc(p.role)}</span>
                   <div style="display:flex;gap:16px;">
-                    <a href="${p.linkedin}" target="_blank" rel="noreferrer" class="hoverlink" style="font-family:${p.linksFont || "'PP Stellar',sans-serif"};font-size:16px;line-height:1.4;color:#0D0D0E;">linkedin</a>
-                    <a href="${p.instagram}" target="_blank" rel="noreferrer" class="hoverlink" style="font-family:${p.linksFont || "'PP Stellar',sans-serif"};font-size:16px;line-height:1.4;color:#0D0D0E;">instagram</a>
+                    ${personLink(p, "linkedin")}
+                    ${personLink(p, "instagram")}
                   </div>
                 </div>
               </div>`).join("")}
