@@ -260,7 +260,11 @@ const PLACEHOLDER_INFO = {
 };
 // photos already uploaded: images/<id>/project/01.webp ... NN.webp (number = how many)
 const PLACEHOLDER_PHOTOS = { "airport-administration": 8, "andaco": 7, "dilijan-village": 8, "media-relations-space": 7, "red-house": 8, "noble-row": 11, "woods-residence": 14, "kapybara": 10, "hayelectro": 10, "koor-winery": 5, "2750-anniversary-park-renovation": 5, "upd-sales-office": 12, "asteria": 7, "cofix": 2, "martini": 3, "moskovyan-22": 7, "pushkin-street": 3, "poplavok-park-renovation": 3, "saryan-street-public-space": 2, "school-park-renovation": 1, "rustaveli-32": 4, "apri": 13, "jrvezh-forest-park": 8, "gevorg-kochar-street": 11, "nera-project-showroom": 8, "nork-residential": 7, "parpetsi-street-redesign": 6, "freedom-square-renovation": 16, "wu": 11, "yadro-armenia": 10, "wakepark-armenia": 22, "hotel-le-blanc": 32, "zithopia": 24, "youth-sport-centre": 17, "ac-design-head-office": 28, "avobar-abu-dhabi": 19, "vtb-bank-head-office": 8, "creme-de-la-creme": 33, "ground-zero-pop-up": 19, "sweet-coast-komitas": 14 };
-const PLACEHOLDER_ITEMS = PLACEHOLDER_META.map(([id, title, cat, year]) => ({ id, title, cat, year }));
+// projects that already have their own card (5 desktop + 5 mobile frames in <dir>/<id>/ and <dir>/<id>/mobile/) — shown as real cards, not grey placeholders
+const CARD_IDS = ["airport-administration", "andaco", "dilijan-village", "media-relations-space", "hotel-le-blanc", "red-house", "youth-sport-centre", "creme-de-la-creme", "2750-anniversary-park-renovation", "ac-design-head-office"];
+// the second batch of card frames was uploaded into the folder "images 2" (written images%202 in URLs)
+const CARD_DIR = (id) => ["red-house", "youth-sport-centre", "creme-de-la-creme", "2750-anniversary-park-renovation", "ac-design-head-office"].includes(id) ? "images%202" : "images";
+const PLACEHOLDER_ITEMS = PLACEHOLDER_META.filter(([id]) => !CARD_IDS.includes(id)).map(([id, title, cat, year]) => ({ id, title, cat, year }));
 PLACEHOLDER_META.forEach(([id, title, cat, year]) => {
   const x = PLACEHOLDER_INFO[id] || {};
   PROJECTS[id] = { cat, title, year, placeholder: true,
@@ -288,6 +292,13 @@ const TOP_CARDS = [
     slideshow: true, slides: AFFORDABLE_SLIDES, mobileSlides: [1, 2, 3, 4, 5].map((n) => `images/affordable/mobile/${n}.webp`), fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
   { id: "simona", cat: "interior", catLabel: "Interior", catLabelFont: "'PP Right Serif',serif", title: "Simona", year: "2026",
     slideshow: true, slides: SIMONA_SLIDES, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
+  ...CARD_IDS.map((id) => {
+    const [, title, cat, year] = PLACEHOLDER_META.find((r) => r[0] === id);
+    const d = CARD_DIR(id);
+    return { id, cat, catLabel: catLabel(cat), catLabelFont: "'PP Hatton',serif", title, year,
+      slideshow: true, slides: [1, 2, 3, 4, 5].map((n) => `${d}/${id}/${n}.webp`), mobileSlides: [1, 2, 3, 4, 5].map((n) => `${d}/${id}/mobile/${n}.webp`),
+      fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" };
+  }),
 ].filter((c) => !c.hidden); // hidden: true — project is kept in the code but not shown on the site
 
 // ============================================================
