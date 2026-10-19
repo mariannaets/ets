@@ -1090,6 +1090,58 @@ document.addEventListener("click", (e) => {
   else window.prompt("Copy this link:", url);
 });
 
+// list view: small hover preview of the project's first photo (desktop with a mouse only)
+(function () {
+  if (!window.matchMedia || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+  let img = null, current = null;
+  const firstImage = (id) => {
+    const p = PROJECTS[id];
+    if (!p) return null;
+    return (p.photos && p.photos[0]) || (SLIDES_MAP[id] || [])[0] || p.hero || null;
+  };
+  const ensure = () => {
+    if (img) return img;
+    img = document.createElement("img");
+    img.alt = "";
+    img.style.cssText = "position:fixed;left:0;top:0;width:200px;height:auto;pointer-events:none;z-index:60;opacity:0;transition:opacity .15s ease;display:block;";
+    document.body.appendChild(img);
+    return img;
+  };
+  const place = (x, y) => {
+    if (!img) return;
+    const w = 200, h = img.offsetHeight || 140;
+    let l = x + 24, t = y + 24;
+    if (l + w > window.innerWidth - 8) l = x - w - 24;
+    if (t + h > window.innerHeight - 8) t = y - h - 24;
+    img.style.left = Math.max(8, l) + "px";
+    img.style.top = Math.max(8, t) + "px";
+  };
+  const hide = () => { if (img) img.style.opacity = "0"; current = null; };
+  document.addEventListener("mouseover", (e) => {
+    const row = e.target.closest && e.target.closest(".list-row");
+    if (!row) return;
+    const id = row.dataset.openProject;
+    const src = firstImage(id);
+    if (!src) return;
+    ensure();
+    if (current !== id) { current = id; img.src = src; }
+    place(e.clientX, e.clientY);
+    img.style.opacity = "1";
+  });
+  document.addEventListener("mousemove", (e) => {
+    if (!img || img.style.opacity !== "1") return;
+    if (!(e.target.closest && e.target.closest(".list-row"))) { hide(); return; }
+    place(e.clientX, e.clientY);
+  });
+  document.addEventListener("mouseout", (e) => {
+    const row = e.target.closest && e.target.closest(".list-row");
+    if (!row) return;
+    if (e.relatedTarget && row.contains(e.relatedTarget)) return;
+    hide();
+  });
+  document.addEventListener("click", hide);
+})();
+
 // ============================================================
 // START — open the page the URL points to
 // ============================================================
