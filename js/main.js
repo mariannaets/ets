@@ -288,7 +288,7 @@ const TOP_CARDS = [
   { id: "affordable", cat: "architecture, interior", catLabel: "Architecture, Interior", catLabelFont: "'PP Hatton',serif", title: "Affordable Housing", year: "2023",
     slideshow: true, slides: AFFORDABLE_SLIDES, mobileSlides: [1, 2, 3, 4, 5].map((n) => `images/affordable/mobile/${n}.webp`), fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
   { id: "simona", cat: "interior", catLabel: "Interior", catLabelFont: "'PP Right Serif',serif", title: "Simona", year: "2026",
-    slideshow: true, slides: SIMONA_SLIDES, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
+    slideshow: true, slides: [1, 2, 3, 4, 5].map((n) => `images%203/simona/${n}.webp`), mobileSlides: [1, 2, 3, 4, 5].map((n) => `images%203/simona/mobile/${n}.webp`), fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" }, // card frames were uploaded into the folder "images 3"
   ...CARD_IDS.map((id) => {
     const [, title, cat, year] = PLACEHOLDER_META.find((r) => r[0] === id);
     const d = CARD_DIR(id);
