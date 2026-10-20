@@ -450,7 +450,7 @@ function mobileMenuHtml() {
       <span data-go="about" style="font-family:'PP Gatwick',sans-serif;cursor:pointer;font-size:16px;${navStyle("about")}">about</span>
     </div>
     <div style="display:flex;justify-content:space-between;align-items:center;margin-top:60px;font-size:22px;font-weight:700;">
-      <a href="mailto:studio@e-ts.am" style="font-family:'PP Frama',sans-serif;color:#0D0D0E;font-size:16px;">email</a>
+      <a href="mailto:contact@electricarchitects.com" style="font-family:'PP Frama',sans-serif;color:#0D0D0E;font-size:16px;">email</a>
       <a href="${STUDIO_INSTAGRAM}" target="_blank" rel="noreferrer" style="font-family:'PP Stellar',sans-serif;font-style:italic;color:#0D0D0E;font-size:16px;">instagram</a>
     </div>
     <div style="margin-top:60px;font-family:'PP Lettra Mono',monospace;font-size:16px;line-height:1.4;">
@@ -825,7 +825,7 @@ function contactHtml() {
       ${titleWrap("e / hello", "", null, "'PP Telegraf',sans-serif", 100)}
       <div style="display:flex;flex-direction:column;gap:30px;padding:0 0 200px;margin-left:${state.isMobile ? "0px" : "var(--pad-left)"};${align}">
         <span style="font-size:16px;">Azatutyan 24/12, Yerevan, Armenia 0014</span>
-        <a href="mailto:studio@e-ts.am" class="backlink" style="font-family:'PP Telegraf',sans-serif;font-weight:500;font-size:16px;line-height:1;width:fit-content;border-bottom:1px solid #000;padding-bottom:6px;color:#0D0D0E;">email</a>
+        <a href="mailto:contact@electricarchitects.com" class="backlink" style="font-family:'PP Telegraf',sans-serif;font-weight:500;font-size:16px;line-height:1;width:fit-content;border-bottom:1px solid #000;padding-bottom:6px;color:#0D0D0E;">email</a>
         <a href="${STUDIO_INSTAGRAM}" target="_blank" rel="noreferrer" class="backlink" style="font-family:'PP Hatton',serif;font-weight:500;font-size:16px;line-height:1;width:fit-content;border-bottom:1px solid #000;padding-bottom:6px;color:#0D0D0E;text-decoration-line:none;">instagram</a>
       </div>
     </div>
@@ -842,7 +842,7 @@ function footerHtml() {
   return `<footer style="padding:clamp(80px,20vw,200px) clamp(20px,6vw,100px) clamp(40px,8vw,80px);">
     <div style="${gridStyle}">
       <img data-go="home" src="images/logo-ets-black.svg" alt="e/ts" style="width:80px;height:24px;cursor:pointer;display:block;order:${order.logo};">
-      <a href="mailto:studio@e-ts.am" class="hoverlink" style="font-size:16px;line-height:1;color:#0D0D0E;order:${order.email};">email</a>
+      <a href="mailto:contact@electricarchitects.com" class="hoverlink" style="font-size:16px;line-height:1;color:#0D0D0E;order:${order.email};">email</a>
       <span data-go="contact" class="hoverlink" style="font-size:16px;line-height:1;cursor:pointer;order:${order.timeFlies};">Time flies.</span>
       <span style="grid-column:2 / -1;text-align:center;font-size:16px;font-family:'PP Lettra Mono',monospace;order:${order.address};">Azatutyan 24/12, Yerevan, Armenia 0014</span>
       <span style="order:0;"></span><!-- empty cell: keeps year + instagram on the right grid columns -->
