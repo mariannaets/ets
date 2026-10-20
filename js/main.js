@@ -843,11 +843,11 @@ function footerHtml() {
     <div style="${gridStyle}">
       <img data-go="home" src="images/logo-ets-black.svg" alt="e/ts" style="width:80px;height:24px;cursor:pointer;display:block;order:${order.logo};">
       <a href="mailto:contact@electricarchitects.com" class="hoverlink" style="font-size:16px;line-height:1;color:#0D0D0E;order:${order.email};">email</a>
-      <span data-go="contact" class="hoverlink" style="font-size:16px;line-height:1;cursor:pointer;order:${order.timeFlies};">Time flies.</span>
+      <a href="${STUDIO_INSTAGRAM}" target="_blank" rel="noreferrer" class="hoverlink" style="justify-self:end;font-size:16px;line-height:1;color:#0D0D0E;font-family:'PP Migra',serif;order:${order.instagram};">instagram</a>
       <span style="grid-column:2 / -1;text-align:center;font-size:16px;font-family:'PP Lettra Mono',monospace;order:${order.address};">Azatutyan 24/12, Yerevan, Armenia 0014</span>
       <span style="order:0;"></span><!-- empty cell: keeps year + instagram on the right grid columns -->
       <span style="font-size:16px;line-height:1;font-family:'PP Hatton',serif;order:${order.year};">2026</span>
-      <a href="${STUDIO_INSTAGRAM}" target="_blank" rel="noreferrer" class="hoverlink" style="justify-self:end;font-size:16px;line-height:1;color:#0D0D0E;font-family:'PP Migra',serif;order:${order.instagram};">instagram</a>
+      <span style="justify-self:end;font-size:16px;line-height:1;order:${order.timeFlies};">Time flies.</span>
     </div>
   </footer>`;
 }
