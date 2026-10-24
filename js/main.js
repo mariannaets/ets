@@ -3,6 +3,7 @@
 // ============================================================
 
 const STUDIO_INSTAGRAM = "https://www.instagram.com/electricarchitects/";
+const STUDIO_LINKEDIN = "https://www.linkedin.com/company/electricarchitects/posts/";
 
 const DESC = "Electric Architects, together with TUMO Centre for Creative Technologies, were appointed curators and authors of the Armenian National Pavilion at the Venice Biennale of Architecture 2025. The concept revolves around training a new AI model on 3D-scanned artefacts of Armenian cultural heritage, creating a mechanism that can endlessly reinterpret and reinvent them into new models and shapes. The project addresses the preservation of lost and endangered monuments, while letting them stay resilient and keep evolving through modern technology.";
 
@@ -837,8 +838,8 @@ function footerHtml() {
     ? "display:flex;flex-direction:column;gap:clamp(56px,12vw,84px);align-items:center;text-align:center;"
     : "max-width:1512px;margin:0 auto;display:grid;grid-template-columns:var(--pad-left) 1fr auto;row-gap:clamp(60px,10vw,100px);align-items:center;";
   const order = state.isMobile
-    ? { logo: 1, email: 2, address: 3, instagram: 4, year: 5, timeFlies: 6 }
-    : { logo: 0, email: 0, address: 0, instagram: 0, year: 0, timeFlies: 0 };
+    ? { logo: 1, email: 2, address: 3, instagram: 4, year: 5, linkedin: 6 }
+    : { logo: 0, email: 0, address: 0, instagram: 0, year: 0, linkedin: 0 };
   return `<footer style="padding:clamp(80px,20vw,200px) clamp(20px,6vw,100px) clamp(40px,8vw,80px);">
     <div style="${gridStyle}">
       <img data-go="home" src="images/logo-ets-black.svg" alt="e/ts" style="width:80px;height:24px;cursor:pointer;display:block;order:${order.logo};">
@@ -847,7 +848,7 @@ function footerHtml() {
       <span style="grid-column:2 / -1;text-align:center;font-size:16px;font-family:'PP Lettra Mono',monospace;order:${order.address};">Azatutyan 24/12, Yerevan, Armenia 0014</span>
       <span style="order:0;"></span><!-- empty cell: keeps year + instagram on the right grid columns -->
       <span style="font-size:16px;line-height:1;font-family:'PP Hatton',serif;order:${order.year};">2026</span>
-      <span style="justify-self:end;font-size:16px;line-height:1;order:${order.timeFlies};">Time flies.</span>
+      <a href="${STUDIO_LINKEDIN}" target="_blank" rel="noreferrer" class="hoverlink" style="justify-self:end;font-size:16px;line-height:1;color:#0D0D0E;order:${order.linkedin};">linkedin</a>
     </div>
   </footer>`;
 }
