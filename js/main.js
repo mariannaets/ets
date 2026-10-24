@@ -3,7 +3,7 @@
 // ============================================================
 
 const STUDIO_INSTAGRAM = "https://www.instagram.com/electricarchitects/";
-const STUDIO_LINKEDIN = "https://www.linkedin.com/company/electricarchitects/posts/";
+const STUDIO_LINKEDIN = "https://www.linkedin.com/company/electricarchitects";
 
 const DESC = "Electric Architects, together with TUMO Centre for Creative Technologies, were appointed curators and authors of the Armenian National Pavilion at the Venice Biennale of Architecture 2025. The concept revolves around training a new AI model on 3D-scanned artefacts of Armenian cultural heritage, creating a mechanism that can endlessly reinterpret and reinvent them into new models and shapes. The project addresses the preservation of lost and endangered monuments, while letting them stay resilient and keep evolving through modern technology.";
 
