@@ -459,7 +459,7 @@ function mobileMenuHtml() {
     </div>
     <div style="flex:1;min-height:40px;"></div>
     <div style="display:flex;justify-content:space-between;align-items:center;font-size:16px;">
-      <span data-go="contact" style="cursor:pointer;font-family:'PP Frama',sans-serif;">Time flies</span>
+      <a href="${STUDIO_LINKEDIN}" target="_blank" rel="noreferrer" style="font-family:'PP Frama',sans-serif;color:#0D0D0E;">linkedin</a>
       <span style="font-family:'PP Frama',sans-serif;">2026</span>
     </div>
   </div>`;
