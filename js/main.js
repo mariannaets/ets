@@ -7,7 +7,7 @@ const STUDIO_LINKEDIN = "https://www.linkedin.com/company/electricarchitects";
 
 const DESC = "Electric Architects, together with TUMO Centre for Creative Technologies, were appointed curators and authors of the Armenian National Pavilion at the Venice Biennale of Architecture 2025. The concept revolves around training a new AI model on 3D-scanned artefacts of Armenian cultural heritage, creating a mechanism that can endlessly reinterpret and reinvent them into new models and shapes. The project addresses the preservation of lost and endangered monuments, while letting them stay resilient and keep evolving through modern technology.";
 
-// about page text (all paragraphs); the home page shows the first two as a teaser
+// about page text (all paragraphs); ABOUT_TEXT = its opening (used for the about page description); ABOUT_HOME = the short text on the home page
 const ABOUT_PARAGRAPHS = [
   "electric architects treats architecture as cinema.",
   "every project is a scenario: a sequence of spaces, light and emotions that someone moves through and remembers. we compose buildings, interiors and cities the way a film is composed, with rhythm, tension and surprise, and we make sure they work as well as they look.",
@@ -16,6 +16,11 @@ const ABOUT_PARAGRAPHS = [
   "we believe in the added value of great design and place making. we work at every scale, from the detail of a surface to the logic of a city, and we aim for places that daze and inspire."
 ];
 const ABOUT_TEXT = ABOUT_PARAGRAPHS.slice(0, 2).join(" ");
+const ABOUT_HOME = [
+  "electric architects is a yerevan-based architecture and urban design studio with an international practice spanning london, paris, moscow, and beyond.",
+  "since 2011, we have worked across architecture, urban strategy, interior design, and design research, marked by narrative precision and spatial intelligence. we curated armenia’s pavilion at the venice architecture biennale, presented at milan design week, and authored over twenty public spaces in yerevan.",
+  "our work operates at every scale, from the detail of a surface to the logic of a city."
+];
 
 const NEWS_FONTS = ["'PP Gatwick',sans-serif", "'PP Telegraf',sans-serif", "'PP Hatton',serif", "'PP Right Serif',serif", "'PP Stellar',sans-serif", "'PP Lettra Mono',monospace"];
 const NEWS_ITEMS = [
@@ -676,7 +681,7 @@ function homeAboutHtml() {
   return `<div style="padding:0 0 60px;">
     ${titleWrap("about", "", null, null, 100)}
     <div style="margin-left:${state.isMobile ? "0px" : "var(--pad-left)"};${align}">
-      ${aboutParasHtml(ABOUT_PARAGRAPHS.slice(0, 2), margin)}
+      ${aboutParasHtml(ABOUT_HOME, margin)}
     </div>
     <div style="margin:100px 0 0;margin-left:${state.isMobile ? "0px" : "var(--pad-left)"};${align}">
       <span data-go="about" class="backlink" style="font-family:'PP Hatton',serif;font-weight:500;font-size:16px;cursor:pointer;border-bottom:1px solid #000;padding-bottom:4px;">read more →</span>
