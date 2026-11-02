@@ -7,7 +7,15 @@ const STUDIO_LINKEDIN = "https://www.linkedin.com/company/electricarchitects";
 
 const DESC = "Electric Architects, together with TUMO Centre for Creative Technologies, were appointed curators and authors of the Armenian National Pavilion at the Venice Biennale of Architecture 2025. The concept revolves around training a new AI model on 3D-scanned artefacts of Armenian cultural heritage, creating a mechanism that can endlessly reinterpret and reinvent them into new models and shapes. The project addresses the preservation of lost and endangered monuments, while letting them stay resilient and keep evolving through modern technology.";
 
-const ABOUT_TEXT = "Electric Architects is a Yerevan-based studio working across architecture, interiors and urban design. We treat every commission as a chance to test a new idea about materials, space or context — from a single bar interior to a masterplan. The studio is small by choice: every project passes through the same two hands, from first sketch to last detail on site.";
+// about page text (all paragraphs); the home page shows the first two as a teaser
+const ABOUT_PARAGRAPHS = [
+  "electric architects treats architecture as cinema.",
+  "every project is a scenario: a sequence of spaces, light and emotions that someone moves through and remembers. we compose buildings, interiors and cities the way a film is composed, with rhythm, tension and surprise, and we make sure they work as well as they look.",
+  "we are a yerevan-based studio working across architecture, urban strategy, interior design and design research. since 2011 we have delivered projects in armenia, london, paris, moscow and beyond. we curated armenia’s pavilion at the venice architecture biennale, presented at milan design week, and authored over twenty public spaces in yerevan, along with some of the city’s most significant cultural and commercial developments.",
+  "behind the cinema there is method. thorough research and context analysis lead each project to a diagram: a single formula that sets the hierarchy of spaces and the sequence of experience, and stays the benchmark for every decision after it. urban thinking is at the core of this approach, with the scenario as the task and the city as the composition. the result is design that is structured, legible and viable for everyone it touches, from the client to the community.",
+  "we believe in the added value of great design and place making. we work at every scale, from the detail of a surface to the logic of a city, and we aim for places that daze and inspire."
+];
+const ABOUT_TEXT = ABOUT_PARAGRAPHS.slice(0, 2).join(" ");
 
 const NEWS_FONTS = ["'PP Gatwick',sans-serif", "'PP Telegraf',sans-serif", "'PP Hatton',serif", "'PP Right Serif',serif", "'PP Stellar',sans-serif", "'PP Lettra Mono',monospace"];
 const NEWS_ITEMS = [
@@ -658,13 +666,17 @@ function homePeopleHtml() {
   </div>`;
 }
 
+function aboutParasHtml(list, margin) {
+  return list.map((t, i) => `<p style="max-width:600px;margin:${margin};${i ? "margin-top:30px;" : ""}font-size:16px;line-height:30px;">${t}</p>`).join("");
+}
+
 function homeAboutHtml() {
   const align = state.isMobile ? "text-align:center;" : "text-align:left;";
   const margin = state.isMobile ? "0 auto" : "0";
   return `<div style="padding:0 0 60px;">
     ${titleWrap("about", "", null, null, 100)}
     <div style="margin-left:${state.isMobile ? "0px" : "var(--pad-left)"};${align}">
-      <p style="max-width:600px;margin:${margin};font-size:16px;line-height:30px;">${ABOUT_TEXT}</p>
+      ${aboutParasHtml(ABOUT_PARAGRAPHS.slice(0, 2), margin)}
     </div>
     <div style="margin:100px 0 0;margin-left:${state.isMobile ? "0px" : "var(--pad-left)"};${align}">
       <span data-go="about" class="backlink" style="font-family:'PP Hatton',serif;font-weight:500;font-size:16px;cursor:pointer;border-bottom:1px solid #000;padding-bottom:4px;">read more →</span>
@@ -812,7 +824,7 @@ function aboutHtml() {
       ${heroSubnavHtml()}
       ${titleWrap("e / story", "", null, null, 100, "flex-end")}
       <div style="padding:0 0 140px;margin-left:${state.isMobile ? "0px" : "var(--pad-left)"};${state.isMobile ? "text-align:center;" : "text-align:left;"}">
-        <p style="max-width:600px;margin:${state.isMobile ? "0 auto" : "0"};font-size:16px;line-height:30px;">${ABOUT_TEXT}</p>
+        ${aboutParasHtml(ABOUT_PARAGRAPHS, state.isMobile ? "0 auto" : "0")}
       </div>
     </div>
   </main>`;
