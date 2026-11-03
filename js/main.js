@@ -32,8 +32,8 @@ const NEWS_ITEMS = [
 ];
 
 const TEAM = [
-  { name: "Marianna Karapetyan", role: "Founder / urbanist", linkedin: "https://www.linkedin.com/in/marianna-karapetyan-641515369/", instagram: "https://www.instagram.com/marianna_mntp/" },
-  { name: "Karen Badalian", role: "Art director / architect", linkedin: "", instagram: "https://www.instagram.com/sheikhkar/" },
+  { name: "Marianna Karapetyan", role: "Founder / urbanist", photo: "images/team-marianna-karapetyan.webp", photoPos: "50% 40%", linkedin: "https://www.linkedin.com/in/marianna-karapetyan-641515369/", instagram: "https://www.instagram.com/marianna_mntp/" },
+  { name: "Karen Badalian", role: "Art director / architect", photo: "images/team-karen-badalian.webp", photoPos: "55% 55%", linkedin: "", instagram: "https://www.instagram.com/sheikhkar/" },
 ];
 
 const PROJECT_CAPTIONS = {
@@ -658,13 +658,7 @@ function homePeopleHtml() {
   const align = state.isMobile ? "text-align:center;" : "text-align:left;";
   return `<div style="padding:0 0 60px;">
     ${titleWrap("e / people", "", null, null, 100)}
-    <div style="display:flex;flex-direction:column;margin-left:${state.isMobile ? "0px" : "var(--pad-left)"};margin-right:${state.isMobile ? "0px" : "clamp(20px,6vw,100px)"};">
-      ${TEAM.map((p, i) => `
-        <div style="display:flex;flex-direction:column;gap:8px;padding:20px 0;${i === 0 ? "" : "border-top:1px solid #000;"}${align}">
-          <span style="font-family:${p.nameFont || "'PP Telegraf',sans-serif"};font-weight:600;font-size:16px;line-height:1.4;">${esc(p.name)}</span>
-          <span style="font-family:${p.roleFont || "'PP Watch',sans-serif"};font-size:16px;line-height:1.4;color:#5a5a5a;">${esc(p.role)}</span>
-        </div>`).join("")}
-    </div>
+    ${peopleCardsHtml(false, "0px")}
     <div style="margin:100px 0 0;margin-left:${state.isMobile ? "0px" : "var(--pad-left)"};${align}">
       <span data-go="people" class="backlink" style="font-family:'PP Hatton',serif;font-weight:500;font-size:16px;cursor:pointer;border-bottom:1px solid #000;padding-bottom:4px;">people →</span>
     </div>
@@ -792,33 +786,47 @@ function personLink(p, key) {
     : `<span style="${style}color:#0D0D0E4D;cursor:default;">${key}</span>`;
 }
 
-function peopleHtml() {
+// portrait: photo (cropped to the card) or the grey placeholder while there is no photo
+function personPhotoHtml(p) {
+  const h = state.isMobile ? "aspect-ratio:4/5;" : "height:clamp(320px, 34vw, 480px);";
+  if (p.photo) {
+    return `<div style="width:100%;${h}background:#e5e5e5;overflow:hidden;"><img src="${p.photo}" alt="${esc(p.name)}" loading="lazy" style="display:block;width:100%;height:100%;object-fit:cover;object-position:${p.photoPos || "50% 50%"};"></div>`;
+  }
+  return `<div style="width:100%;height:${state.isMobile ? "60vw" : "clamp(320px, 34vw, 480px)"};background:#e5e5e5;background-image:repeating-linear-gradient(135deg,#e5e5e5 0 2px,#dcdcdc 2px 4px);display:flex;align-items:center;justify-content:center;">
+    <span style="font-family:'PP Lettra Mono',monospace;font-size:13px;color:#8a8a8a;">portrait — ${esc(p.name)}</span>
+  </div>`;
+}
+
+// the people cards, shared by the people page (with links) and the home page (without)
+function peopleCardsHtml(withLinks, bottomPad) {
   const cols = [[], []];
   TEAM.forEach((p, i) => cols[i % 2].push(p));
   const widths = [["100%", "66%", "82%"], ["78%", "100%"]];
+  return `<div style="margin-left:${state.isMobile ? "0px" : "var(--pad-left)"};margin-right:${state.isMobile ? "0px" : "clamp(20px,6vw,100px)"};display:${state.isMobile ? "flex" : "grid"};${state.isMobile ? "flex-direction:column;" : "grid-template-columns:1fr 1fr;"}gap:40px;padding-bottom:${bottomPad};">
+    ${cols.map((col, ci) => `
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        ${col.map((p, pi) => `
+          <div style="display:flex;flex-direction:column;gap:16px;width:${state.isMobile ? "100%" : widths[ci][pi]};text-align:left;">
+            ${personPhotoHtml(p)}
+            <div style="display:flex;flex-direction:column;gap:8px;${state.isMobile ? "align-items:center;text-align:center;" : ""}">
+              <span style="font-family:${p.nameFont || "'PP Telegraf',sans-serif"};font-weight:600;font-size:16px;line-height:1.4;white-space:nowrap;">${esc(p.name)}</span>
+              <span style="font-family:${p.roleFont || "'PP Watch',sans-serif"};font-size:16px;line-height:1.4;color:#5a5a5a;">${esc(p.role)}</span>
+              ${withLinks ? `<div style="display:flex;gap:16px;">
+                ${personLink(p, "linkedin")}
+                ${personLink(p, "instagram")}
+              </div>` : ""}
+            </div>
+          </div>`).join("")}
+      </div>`).join("")}
+  </div>`;
+}
+
+function peopleHtml() {
   return `<main style="padding:0 clamp(20px,6vw,100px);">
     <div id="wrap" style="max-width:1512px;margin:0 auto;">
       ${heroSubnavHtml()}
       ${titleWrap("e / people", "", null, "'PP Stellar',sans-serif", 100)}
-      <div style="margin-left:${state.isMobile ? "0px" : "var(--pad-left)"};margin-right:${state.isMobile ? "0px" : "clamp(20px,6vw,100px)"};display:${state.isMobile ? "flex" : "grid"};${state.isMobile ? "flex-direction:column;" : "grid-template-columns:1fr 1fr;"}gap:40px;padding-bottom:160px;">
-        ${cols.map((col, ci) => `
-          <div style="display:flex;flex-direction:column;gap:20px;">
-            ${col.map((p, pi) => `
-              <div style="display:flex;flex-direction:column;gap:16px;width:${state.isMobile ? "100%" : widths[ci][pi]};text-align:left;">
-                <div style="width:100%;height:${state.isMobile ? "60vw" : "clamp(320px, 34vw, 480px)"};background:#e5e5e5;background-image:repeating-linear-gradient(135deg,#e5e5e5 0 2px,#dcdcdc 2px 4px);display:flex;align-items:center;justify-content:center;">
-                  <span style="font-family:'PP Lettra Mono',monospace;font-size:13px;color:#8a8a8a;">portrait — ${esc(p.name)}</span>
-                </div>
-                <div style="display:flex;flex-direction:column;gap:8px;${state.isMobile ? "align-items:center;text-align:center;" : ""}">
-                  <span style="font-family:${p.nameFont || "'PP Telegraf',sans-serif"};font-weight:600;font-size:16px;line-height:1.4;white-space:nowrap;">${esc(p.name)}</span>
-                  <span style="font-family:${p.roleFont || "'PP Watch',sans-serif"};font-size:16px;line-height:1.4;color:#5a5a5a;">${esc(p.role)}</span>
-                  <div style="display:flex;gap:16px;">
-                    ${personLink(p, "linkedin")}
-                    ${personLink(p, "instagram")}
-                  </div>
-                </div>
-              </div>`).join("")}
-          </div>`).join("")}
-      </div>
+      ${peopleCardsHtml(true, "160px")}
     </div>
   </main>`;
 }
