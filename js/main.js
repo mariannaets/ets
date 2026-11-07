@@ -83,7 +83,7 @@ const PROJECT_CAPTIONS = {
 };
 
 const PROJECTS = {
-  simona: { slug: "simona", photos: ["images/simona/project/01.webp","images/simona/project/02.webp","images/simona/project/03.webp","images/simona/project/04.webp","images/simona/project/05.webp","images/simona/project/06.webp","images/simona/project/07.webp","images/simona/project/08.webp","images/simona/project/09.webp","images/simona/project/10.webp","images/simona/project/11.webp","images/simona/project/12.webp"], cat: "interior", title: "Simona", year: "2026", subtitleOverride: "2026",
+  simona: { slug: "simona", photos: ["images/simona/project/01.webp","images/simona/project/02.webp","images/simona/project/03.webp","images/simona/project/04.webp","images/simona/project/05.webp","images/simona/project/06.webp","images/simona/project/07.webp","images/simona/project/08.webp","images/simona/project/09.webp","images/simona/project/10.webp","images/simona/project/11.webp","images/simona/project/12.webp"], cat: "interior", title: "Simona", year: "2025", subtitleOverride: "2025",
     info: { status: "Completed", client: "Simona Bar", sector: "Horeca", location: "Yerevan, Armenia",
       collaborators: "—", staff: "—" },
     hero: "images/portrait-bw.webp", heroPos: "30% 30%",
@@ -130,7 +130,7 @@ const PROJECTS = {
     // photos: shown on the project page in this order, at their natural proportions
     photos: ["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25"].map((n) => `images/affordable/project/${n}.webp`),
     desc: "A unique project for Armenian real estate market where affordable housing is designed to be aesthetically pleasing and unique. It’s a former kindergarten building, where additional two floors are elevated and the basement is opened to natural light to accommodate more living spaces. Every apartment on ground floor has an access to private gardens, and the communal courtyard which has no car access. Apartment on top floors have mezzanines and double height living rooms. Outer facade of building is cladded in natural tuff stone, while courtyard is painted in bright light color creating a curious contrast in shapes." },
-  towers: { slug: "sunday-towers", cat: "architecture", title: "Sunday Towers", year: "2022", titleFont: "'PP Lettra Mono',monospace",
+  towers: { slug: "sunday-towers", cat: "architecture", title: "Sunday Towers", year: "2021", titleFont: "'PP Lettra Mono',monospace",
     info: { status: "Under Construction", client: "UP Development", sector: "Residential", location: "Yerevan, Armenia",
       collaborators: "—", staff: "—" },
     // photos: shown on the project page in this order, at their natural proportions
@@ -196,8 +196,8 @@ const PLACEHOLDER_META = [
   ["sweet-coast-komitas","Sweet Coast Komitas","interior","2024"],
   ["vtb-bank-head-office","VTB Bank Head Office","interior, architecture","2022"],
   ["woods-center-blue-building","WOODS Center - Blue Building","architecture","2025"],
-  ["milan-design-week-deoron","Milan Design Week 2026","product design","2026"],
-  ["milan-design-week-alcova","Milan Design Week 2026","product design","2026"],
+  ["milan-design-week-deoron","Milan Design Week 2026","exhibition","2026"],
+  ["milan-design-week-alcova","Milan Design Week 2026","exhibition","2026"],
   ["nork-housing","Nork Housing","architecture, urban design","2022"],
   ["agbu-coworking","AGBU Co-Working","interior","2024"],
   ["vtb-vip","VTB VIP","interior, project management","2022"],
@@ -353,7 +353,7 @@ PLACEHOLDER_META.forEach(([id, title, cat, year]) => {
 });
 
 const TOP_CARDS = [
-  { id: "towers", home: true, mobileSlides: [1, 2, 3, 4, 5].map((n) => `images/towers/mobile/${n}.webp`), cat: "architecture", catLabel: "Architecture", catLabelFont: "'PP Hatton',serif", title: "Sunday Towers", year: "2022",
+  { id: "towers", home: true, mobileSlides: [1, 2, 3, 4, 5].map((n) => `images/towers/mobile/${n}.webp`), cat: "architecture", catLabel: "Architecture", catLabelFont: "'PP Hatton',serif", title: "Sunday Towers", year: "2021",
     slideshow: true, slides: TOWERS_SLIDES, fromStart: true, pos: "50% 55%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
   { id: "barevdzez", cat: "exhibition", catLabel: "Exhibition", catLabelFont: "'PP Hatton',serif", title: "Venice Biennale of Architecture", year: "2025",
     slideshow: true, slides: BAREVDZEZ_SLIDES, mobileSlides: [1, 2, 3, 4, 5].map((n) => `images/barevdzez/mobile/${n}.webp`), fromStart: true, pos: "50% 50%", height: "clamp(360px, 44vw, 660px)", mobileHeight: "85vh" },
@@ -369,7 +369,7 @@ const TOP_CARDS = [
     slideshow: true, slides: ARLEAM_SLIDES, mobileSlides: [1, 2, 3, 4, 5].map((n) => `images/arleam/mobile/${n}.webp`), fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
   { id: "affordable", cat: "architecture, interior", catLabel: "Architecture, Interior", catLabelFont: "'PP Hatton',serif", title: "Affordable Housing", year: "2023",
     slideshow: true, slides: AFFORDABLE_SLIDES, mobileSlides: [1, 2, 3, 4, 5].map((n) => `images/affordable/mobile/${n}.webp`), fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
-  { id: "simona", cat: "interior", catLabel: "Interior", catLabelFont: "'PP Right Serif',serif", title: "Simona", year: "2026",
+  { id: "simona", cat: "interior", catLabel: "Interior", catLabelFont: "'PP Right Serif',serif", title: "Simona", year: "2025",
     slideshow: true, slides: [1, 2, 3, 4, 5].map((n) => `images/simona/${n}.webp`), mobileSlides: [1, 2, 3, 4, 5].map((n) => `images/simona/mobile/${n}.webp`), fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" },
   ...CARD_IDS.map((id) => {
     const [, title, cat, year] = PLACEHOLDER_META.find((r) => r[0] === id);
@@ -378,6 +378,10 @@ const TOP_CARDS = [
       fromStart: true, pos: "50% 50%", height: "clamp(360px, 40vw, 600px)", mobileHeight: "85vh" };
   }),
 ].filter((c) => !c.hidden); // hidden: true — project is kept in the code but not shown on the site
+
+// display label for a year when a project spans several years (sorting and the year filter still use the single year above)
+const YEAR_LABELS = { "ac-design-head-office": "2022–2025" };
+const yl = (id, y) => YEAR_LABELS[id] || y;
 
 // ============================================================
 // APP — state, navigation, rendering (no content below)
@@ -422,7 +426,7 @@ function cardHtml(c) {
     <div style="position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:space-between;${state.isMobile ? "align-items:center;text-align:center;padding:24px;" : `align-items:flex-start;text-align:left;padding:30px 100px 30px var(--pad-left);`}color:#fafafa;">
       <span style="font-family:${c.catLabelFont || "'PP Lettra Mono',monospace"};font-size:22px;line-height:1.4;">${esc(c.catLabel)}</span>
       <span style="font-family:'PP Gatwick',sans-serif;font-weight:600;font-size:clamp(32px,6vw,60px);line-height:1;">${esc(c.title)}</span>
-      <span style="font-family:'PP Hatton',serif;font-size:22px;line-height:1.4;">${esc(c.year)}</span>
+      <span style="font-family:'PP Hatton',serif;font-size:22px;line-height:1.4;">${esc(yl(c.id, c.year))}</span>
     </div>`;
   const bg = c.image ? `background-image:url(${c.image});background-position:${c.pos};background-size:cover;` : "";
   let slides = "";
@@ -607,7 +611,7 @@ function smallCardsHtml(items) {
     <div data-open-project="${item.id}" class="small-card" style="display:flex;flex-direction:column;gap:16px;cursor:pointer;width:${state.isMobile ? "100%" : `calc(50% - ${gapShare}px)`};${align}">
       <div style="display:flex;flex-direction:column;gap:8px;">
         <span style="font-family:${titleFonts[i % titleFonts.length]};font-weight:600;font-size:clamp(20px,3vw,40px);line-height:1.2;text-wrap:pretty;">${esc(item.title)}</span>
-        <span style="font-family:'PP Stellar',sans-serif;font-size:16px;line-height:1.4;color:#5a5a5a;">${esc(catLabel(item.cat))} — ${esc(item.year)}</span>
+        <span style="font-family:'PP Stellar',sans-serif;font-size:16px;line-height:1.4;color:#5a5a5a;">${esc(catLabel(item.cat))} — ${esc(yl(item.id, item.year))}</span>
       </div>
       ${box}
     </div>`;
@@ -622,7 +626,7 @@ function bigCardHtml(item) {
     <div style="position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:space-between;${state.isMobile ? "align-items:center;text-align:center;padding:24px;" : `align-items:flex-start;text-align:left;padding:30px 100px 30px var(--pad-left);`}color:#0D0D0E;">
       <span style="font-family:'PP Lettra Mono',monospace;font-size:22px;line-height:1.4;">${esc(catLabel(item.cat))}</span>
       <span style="font-family:'PP Gatwick',sans-serif;font-weight:600;font-size:clamp(32px,6vw,60px);line-height:1;">${esc(item.title)}</span>
-      <span style="font-family:'PP Hatton',serif;font-size:22px;line-height:1.4;">${esc(item.year)}</span>
+      <span style="font-family:'PP Hatton',serif;font-size:22px;line-height:1.4;">${esc(yl(item.id, item.year))}</span>
     </div>
   </div>`;
 }
@@ -638,10 +642,10 @@ function projectsListHtml(items) {
     const status = info.status && info.status !== "—" ? info.status : "";
     if (m) return `<div data-open-project="${it.id}" class="list-row" style="cursor:pointer;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:20px 0;${i === 0 ? "" : "border-top:1px solid #000;"}">
       <span class="list-title" style="${ttl}">${esc(it.title)}</span>
-      <span style="${body}color:#0D0D0E80;">${esc(catLabel(it.cat))} — ${esc(it.year)}${status ? ` — ${esc(status)}` : ""}</span>
+      <span style="${body}color:#0D0D0E80;">${esc(catLabel(it.cat))} — ${esc(yl(it.id, it.year))}${status ? ` — ${esc(status)}` : ""}</span>
     </div>`;
     return `<div data-open-project="${it.id}" class="list-row" style="cursor:pointer;display:grid;grid-template-columns:${labelCol} minmax(0,3fr) minmax(0,2fr) minmax(0,2fr);align-items:baseline;padding:20px 0;${i === 0 ? "" : "border-top:1px solid #000;"}">
-      <span style="${gray}">${esc(it.year)}</span>
+      <span style="${gray}">${esc(yl(it.id, it.year))}</span>
       <span class="list-title" style="${ttl}">${esc(it.title)}</span>
       <span style="${body}">${esc(catLabel(it.cat))}</span>
       <span style="${body}">${esc(status)}</span>
@@ -762,7 +766,7 @@ function projectHtml() {
   return `<main style="padding:0 clamp(20px,6vw,100px);">
     <div id="wrap" style="max-width:1512px;margin:0 auto;">
       ${heroSubnavHtml()}
-      ${titleWrap(p.title, p.subtitleOverride || `${catLabel(p.cat)} — ${p.year}`, null, null, 100)}
+      ${titleWrap(p.title, p.subtitleOverride || `${catLabel(p.cat)} — ${yl(state.project, p.year)}`, null, null, 100)}
       ${infoTable(p.info)}
       <div style="padding:100px 0 100px;margin-left:${state.isMobile ? "0px" : "var(--pad-left)"};${align}">
         <p style="max-width:600px;margin:${margin};font-size:16px;line-height:30px;">${p.desc.split("\n\n").join("<br><br>")}</p>
