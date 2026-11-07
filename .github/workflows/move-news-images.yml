@@ -1,0 +1,24 @@
+name: Move news images (one-off)
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  move:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Move news folders from "images 2/3/4" into images/news
+        run: |
+          set -e
+          mkdir -p images/news
+          for n in "images 2" "images 3" "images 4"; do
+            if [ -d "$n/news" ]; then
+              cp -a "$n/news/." images/news/
+              git rm -rq "$n"
+            fi
+          done
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A images
+          git commit -m "Move news images from images 2/3/4 into images/news"
+          git push
