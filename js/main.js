@@ -195,6 +195,13 @@ const PLACEHOLDER_META = [
   ["ground-zero-pop-up","Ground Zero Pop-Up","interior","2024"],
   ["sweet-coast-komitas","Sweet Coast Komitas","interior","2024"],
   ["vtb-bank-head-office","VTB Bank Head Office","interior, architecture","2022"],
+  ["woods-center-blue-building","WOODS Center - Blue Building","architecture","2025"],
+  ["milan-design-week-deoron","Milan Design Week 2026","product design","2026"],
+  ["milan-design-week-alcova","Milan Design Week 2026","product design","2026"],
+  ["nork-housing","Nork Housing","architecture, urban design","2022"],
+  ["agbu-coworking","AGBU Co-Working","interior","2024"],
+  ["vtb-vip","VTB VIP","interior, project management","2022"],
+  ["tumo-masis","TUMO CENTER","architecture, interior","2024"],
 ];
 // text-only projects (photos to come): info + description per id
 const PLACEHOLDER_INFO = {
@@ -298,6 +305,8 @@ const PLACEHOLDER_INFO = {
     desc: "A new Mediterranean restaurant in Cascade area in Yerevan was divided into three distinctive color palette areas with consistent approach to material usage and sculptural shapes. The first area is very bright in color and full of natural light, with main accent on sculptures, while the second one is vibrant and colorful, reminding of the emotions the Mediterranean colors bring." },
   "vtb-vip": { info: {"status":"Completed","client":"VTB Bank Armenia","sector":"Commercial","location":"Yerevan, Armenia"},
     desc: "A very narrow space of two floors with 5 and 4 meters high ceilings were designed to represent the exceptional service of vip branch of the bank. Large number of granite and wood slabs were used to clad the walls, and transfer the qualities of these materials everywhere where the customer interacts with touching them. Every additional space was enclosed in lightweight glazed islands, with possibilities of providing privacy through drapes curtains and acoustic panels. An artist was commissioned to create paintings for specific rooms with their own color palettes and scale." },
+  "nork-housing": { info: {"status":"Under Construction","client":"AC Design Engineering","sector":"Residential","location":"Yerevan, Armenia"},
+    desc: "A unique project for Armenian real estate market where affordable housing is designed to be aesthetically pleasing and unique. It’s a former kindergarten building, where additional two floors are elevated and the basement is opened to natural light to accommodate more living spaces. Every apartment on ground floor has an access to private gardens, and the communal courtyard which has no car access. Apartment on top floors have mezzanines and double height living rooms. Outer facade of building is cladded in natural tuff stone, while courtyard is painted in bright light color creating a curious contrast in shapes." },
 };
 // photos already uploaded: images/<id>/project/01.webp ... NN.webp (number = how many)
 const PLACEHOLDER_PHOTOS = { "airport-administration": 8, "andaco": 7, "dilijan-village": 8, "media-relations-space": 7, "red-house": 8, "noble-row": 11, "woods-residence": 14, "kapybara": 10, "hayelectro": 10, "koor-winery": 5, "2750-anniversary-park-renovation": 5, "upd-sales-office": 12, "asteria": 7, "cofix": 2, "martini": 3, "moskovyan-22": 7, "pushkin-street": 3, "poplavok-park-renovation": 3, "saryan-street-public-space": 2, "school-park-renovation": 1, "rustaveli-32": 4, "apri": 13, "jrvezh-forest-park": 8, "gevorg-kochar-street": 11, "nera-project-showroom": 8, "nork-residential": 7, "parpetsi-street-redesign": 6, "freedom-square-renovation": 16, "wu": 11, "yadro-armenia": 10, "wakepark-armenia": 22, "hotel-le-blanc": 32, "zithopia": 24, "youth-sport-centre": 17, "ac-design-head-office": 28, "avobar-abu-dhabi": 19, "vtb-bank-head-office": 8, "creme-de-la-creme": 33, "ground-zero-pop-up": 19, "sweet-coast-komitas": 14 };
