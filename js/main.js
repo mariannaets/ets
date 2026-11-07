@@ -24,11 +24,41 @@ const ABOUT_HOME = [
 
 const NEWS_FONTS = ["'PP Gatwick',sans-serif", "'PP Telegraf',sans-serif", "'PP Hatton',serif", "'PP Right Serif',serif", "'PP Stellar',sans-serif", "'PP Lettra Mono',monospace"];
 const NEWS_ITEMS = [
-  { id: "towers-topped", title: "Sunday Towers, topped out", date: "March 2026", titleFont: NEWS_FONTS[0], author: "Aram Sargsyan",
-    text: "Construction on Sunday Towers has reached its final floor. The residential complex reinterprets Yerevan's tuff-stone facades through a contemporary lens, pairing red volcanic stone with deep-set loggias.",
-    image: "images/news-spread.webp", imgSize: "100% 112.565%", imgPos: "50% 0%" },
-  { id: "biennale-selected", title: "Selected for the Venice Biennale 2025", date: "January 2026", titleFont: NEWS_FONTS[2], author: "Lucine Hakobyan",
-    text: DESC, image: "images/hero-bar.webp", imgSize: "cover", imgPos: "100% 55.267%" },
+  { id: "milan-retrospective", title: "MILAN DESIGN WEEK RETROSPECTIVE JULY 2026", date: "2026", titleFont: NEWS_FONTS[0], author: "Electric Architects",
+    text: "In July, Electric Architects and its product design division Electric Studios presented a three-day retrospective at Hanrapetutyan 32 in Yerevan. It brought together the two collections premiered at Milan Design Week 2026 and the Rambalkoshe museum project.\n\nThe exhibition was installed in the former Persian Consulate, built in 1876, with its ornamental wall paintings and historic mirror-mosaic niches. The setting placed 19th-century craft in direct material dialogue with contemporary architectural design. The installation unfolded in two zones.\n\nAnatomy Lamp. Developed in technical collaboration with Swiss brand Impact Acoustic, the Anatomy Lamp was shown at Alcova alongside the Architectural Association (AA) London. It is an architectural luminaire built from structural, high-performance acoustic felt, so it reduces ambient reverberation as it lights the room.\n\nVice Consumption. The collection debuted on the Deoron platform in Milan and was featured in Dezeen and ArchDaily. It explores the physical and psychological architecture of habit through heavy, ceremonial smoking accoutrements, conceived as instruments for conscious self-reflection.\n\nContinuous analogue vinyl listening sessions accompanied the programme. It opened with a public reception on 24 July, and the exhibition stayed open to the public through 26 July.",
+    image: "images/news/milan-retrospective/01.webp", imgSize: "cover", imgPos: "50% 50%" },
+
+  { id: "kd-stand", title: "“K.D.” STAND AT DAJELI SHOWROOM", date: "2026", titleFont: NEWS_FONTS[1], author: "Electric Architects",
+    text: "Karen Badalian’s newest piece, K.D., is now on display at Dajeli in Yerevan.\n\nK.D. is a light-refracting stand in stainless steel. It is built from intersecting sheets of metal that catch and bounce light differently depending on where you stand and how the object is placed. The piece never looks quite the same twice. It changes as you move around it, and it is the kind of object you end up turning in your hands for longer than you meant to.\n\nThe stand is shown in the Dajeli showroom, designed by our colleagues at Khachaturian Architects, a fitting setting for an object so attentive to light and surface.",
+    image: "images/news/kd-stand/01.webp", imgSize: "cover", imgPos: "50% 50%" },
+
+  { id: "venice-biennale", title: "BIENNALE", date: "2025", titleFont: NEWS_FONTS[2], author: "Electric Architects",
+    text: "electric architects, along with tumo centre for creative technologies has been appointed as curators and authors of armenian national pavilion at venice biennale of architecture 2025. the concept evolves around training a new ai model with 3d scanned files of armenian cultural heritage in order to create a new mechanism which allows to endlessly interpret or reinvent these heritage artefacts into new models and shapes. this project refers to preservation of lost and endangered monuments while allowing their further resilience and development via modern technologies.",
+    image: "images/news/venice-biennale/01.webp", imgSize: "cover", imgPos: "50% 50%" },
+
+  { id: "oth-woods", title: "OTH", date: "2025", titleFont: NEWS_FONTS[3], author: "Electric Architects",
+    text: "Electric Architects has completed a new branch of OTH Café & Roastery at Woods Centre. It was a fast-track project that turned a former coffee shop into a new OTH location and set the design language for the brand along the way.\n\nThe space is organised around a large communal wooden table with benches, which works as both the visual anchor and the social heart of the café. Blue, introduced here as OTH’s new brand colour, runs through the interior and gives the café a clear, recognisable identity. Everything else is kept simple: minimalist furniture and a calm, uncluttered setting that lets the table and the colour lead.\n\nFurniture was sourced in collaboration with Monotopia, our furniture sourcing partner.",
+    image: "images/news/oth-woods/01.webp", imgSize: "cover", imgPos: "50% 50%" },
+
+  { id: "tumo-masis", title: "TUMO CENTER", date: "2024", titleFont: NEWS_FONTS[4], author: "Electric Architects",
+    text: "tumo masis building is designed as a modular model building to be replicated as a tumo branch in every location where is an unoccupied plot around the world. it is a lightweight wood and steel structure for simultaneously educating 1500 students.\n\nthe modular building is evolved around a central courtyard, which can be expanded or tightened according to the needs of the certain location or city where new tumo branch is coming.\n\nthe building is well thought to operate with natural ventilation and light sources suitable for educational reasons.",
+    image: "images/news/tumo-masis/01.webp", imgSize: "cover", imgPos: "50% 50%" },
+
+  { id: "total-drama", title: "TOTAL DRAMA FESTIVAL", date: "2024", titleFont: NEWS_FONTS[5], author: "Electric Architects",
+    text: "Total Drama was a contemporary art festival curated by Electric Architects around a single question: the theatricality of architecture and the architecture of theatre.\n\nAt its centre was a three-day pop-up exhibition at ATS, covering 5,000 m². Sixty-four artists filled the space with installations, exhibitions and performances. Live music ran for all three days, and a food court, club, shops and cafés turned the venue into a temporary city. Around 10,000 people came, making Total Drama the largest contemporary art exhibition ever held in Armenia.\n\nThe festival went well beyond those three days. Throughout the month, a parallel programme of lectures, shows, workshops and discussions extended the conversation between stage and space and invited audiences to see the city itself as a scene.",
+    image: "images/news/total-drama/01.webp", imgSize: "cover", imgPos: "50% 50%" },
+
+  { id: "giotto-museum", title: "GIOTTO MUSEUM INSTALLATION", date: "2023", titleFont: NEWS_FONTS[0], author: "Electric Architects",
+    text: "In June 2023, Electric Architects and the Rambalkoshe Foundation presented a temporary exhibition at the Giotto Museum. The project set out to test how a museum can be occupied in an unconventional way. It also marked the launch of Electric Studios, the studio’s division for collectible objects and furniture design.\n\nThe first Electric Studios collection explores Armenian heritage and its interpretation. Rather than presenting finished objects, the exhibition invited visitors into the process. We offered a set of ideas that have no physical form and placed hundreds of blocks of playdough on a long table. Visitors were asked to give those ideas a shape.\n\nThousands of people took part. The same material was moulded, broken down and remodelled again and again, and the table kept changing over the course of the exhibition. What emerged was a collective, ever-shifting archive of interpretations: unexpected forms that no single designer would have arrived at. The museum stopped being a place of finished artefacts and became a working space where heritage is continually reshaped by the people who inherit it.",
+    image: "images/news/giotto-museum/01.webp", imgSize: "cover", imgPos: "50% 50%" },
+
+  { id: "bar-du-champagne", title: "BAR DU CHAMPAGNE LONDON", date: "2023", titleFont: NEWS_FONTS[1], author: "Electric Architects",
+    text: "Electric Architects completed a rapid redesign for Bar du Champagne in London, turning an existing restaurant into a champagne bar and bistro. The project was delivered in about a week. Instead of a full rebuild, we approached the space in a pop-up manner, redecorating it quickly with vintage furniture and lighting sourced for the project.\n\nThe result is an intimate, boudoir-style interior: layered colours, old-school materials and a vintage feel that makes the room seem to have existed for decades. What began as a quick transformation has become a successful London destination. It shows that a strong atmosphere can come from a clear idea and a careful edit rather than a long construction programme.",
+    image: "images/news/bar-du-champagne/01.webp", imgSize: "cover", imgPos: "50% 50%" },
+
+  { id: "cosmica", title: "COSMICA", date: "2021", titleFont: NEWS_FONTS[2], author: "Electric Architects",
+    text: "Our head industrial designer Maria Melikyan stepped in front of the camera for a collaborative photoshoot at Cosmica, the beauty salon designed in collaboration with Electric Architects. The shoot brought together photographer Vahan Stepanyan and clothing designer Damir Lihanov, turning the interior into both set and subject.\n\nCosmica takes its cue from the space-age design period. The interior is built on sculptural forms, recognisable patterns and deliberately exaggerated details: a large sphere crowning the reception desk, eye-shaped mirrors that seem to look back at you, and moulded plastic furniture that references the optimism and futurism of the era.\n\nIn Vahan Stepanyan’s photographs, Damir Lihanov’s clothing and Maria’s presence play against these forms. Fashion, design and architecture meet in a single frame, showing a space conceived as a scene waiting for its characters.",
+    image: "images/news/cosmica/01.webp", imgSize: "cover", imgPos: "50% 50%" },
 ];
 
 const TEAM = [
@@ -767,7 +797,7 @@ function postHtml() {
         <span style="font-family:'PP Stellar',sans-serif;font-size:16px;line-height:1.5;color:#0D0D0E;">${esc(n.author)}</span>
       </div>
       <div style="padding:60px 0 60px;margin-left:${state.isMobile ? "0px" : "var(--pad-left)"};${align}">
-        <p style="max-width:600px;margin:${margin};font-size:16px;line-height:30px;">${esc(n.text)}</p>
+        <p style="max-width:600px;margin:${margin};font-size:16px;line-height:30px;white-space:pre-line;">${esc(n.text)}</p>
       </div>
       <div class="hero-hover" style="width:100%;height:clamp(420px, 58vw, 880px);margin-bottom:60px;background-size:${n.imgSize};background-position:${n.imgPos};background-repeat:no-repeat;background-color:#e5e5e5;background-image:url(${n.image});"></div>
       ${relatedNewsHtml()}
