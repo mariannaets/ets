@@ -401,6 +401,21 @@ const TOP_CARDS = [
 const YEAR_LABELS = { "ac-design-head-office": "2022–2025" };
 const yl = (id, y) => YEAR_LABELS[id] || y;
 
+// project titles are shown in sentence case; abbreviations and proper names keep their capitals
+const TITLE_ACRONYMS = ["AAB", "AC", "AGBU", "ATS", "BARI", "COAF", "MOV", "OMI", "TUMO", "VIP", "VTB", "WU"];
+const TITLE_NAMES = ["Abu", "Andaco", "Apri", "Arin", "Arleam", "Armavir", "Armenia", "Arpa", "Asteria", "Avobar", "Azat", "Berd", "Blanc", "Cofix", "Crème", "Dhabi", "Dilijan", "Freedom", "Gyumri", "Hayelectro", "Jrvezh", "Kapybara", "Karapetyan", "Kochar", "Komitas", "Koor", "Le", "London", "Mashtots", "Masiv", "Milan", "Moskovyan", "Nork", "Nova", "Opera", "Paris", "Parpetsi", "Poplavok", "Pushkin", "Rustaveli", "Sayat", "Saryan", "Simona", "Vahe", "Vallée", "Venice", "Wakepark", "Woods", "Yadro", "Yerevan", "Zithopia", "Zoie"];
+const TITLE_KEEP = new Map([...TITLE_ACRONYMS, ...TITLE_NAMES].map((w) => [w.toLowerCase(), w]));
+function sentenceCase(t) {
+  let first = true;
+  return String(t).replace(/[\p{L}\p{N}]+/gu, (w) => {
+    const keep = TITLE_KEEP.get(w.toLowerCase());
+    let out = keep || w.toLowerCase();
+    if (first) { first = false; if (!keep) out = out.charAt(0).toUpperCase() + out.slice(1); }
+    return out;
+  });
+}
+[...Object.values(PROJECTS), ...TOP_CARDS, ...PLACEHOLDER_ITEMS].forEach((o) => { if (o && typeof o.title === "string") o.title = sentenceCase(o.title); });
+
 // ============================================================
 // APP — state, navigation, rendering (no content below)
 // ============================================================
@@ -409,7 +424,7 @@ const MOBILE_MQ = window.matchMedia("(max-width: 720px)");
 
 const state = {
   view: "home", filter: null, yearFilter: null, project: "simona",
-  viewMode: (() => { try { return localStorage.getItem("ets-view") === "list" ? "list" : "grid"; } catch (e) { return "grid"; } })(),
+  viewMode: "list", // projects page: list view only
   scrolled: false, menuOpen: null,
   isMobile: MOBILE_MQ.matches,
   mobileMenuOpen: false,
@@ -656,17 +671,14 @@ function projectsListHtml(items) {
   const ttl = "font-family:'PP Telegraf',sans-serif;font-weight:600;font-size:16px;line-height:1.5;color:#0D0D0E;";
   const body = "font-family:'PP Stellar',sans-serif;font-size:16px;line-height:1.5;color:#0D0D0E;";
   const row = (it, i) => {
-    const info = (PROJECTS[it.id] && PROJECTS[it.id].info) || {};
-    const status = info.status && info.status !== "—" ? info.status : "";
     if (m) return `<div data-open-project="${it.id}" class="list-row" style="cursor:pointer;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:20px 0;${i === 0 ? "" : "border-top:1px solid #000;"}">
       <span class="list-title" style="${ttl}">${esc(it.title)}</span>
-      <span style="${body}color:#0D0D0E80;">${esc(catLabel(it.cat))} — ${esc(yl(it.id, it.year))}${status ? ` — ${esc(status)}` : ""}</span>
+      <span style="${body}color:#0D0D0E80;">${esc(catLabel(it.cat))} — ${esc(yl(it.id, it.year))}</span>
     </div>`;
-    return `<div data-open-project="${it.id}" class="list-row" style="cursor:pointer;display:grid;grid-template-columns:${labelCol} minmax(0,3fr) minmax(0,2fr) minmax(0,2fr);align-items:baseline;padding:20px 0;${i === 0 ? "" : "border-top:1px solid #000;"}">
+    return `<div data-open-project="${it.id}" class="list-row" style="cursor:pointer;display:grid;grid-template-columns:${labelCol} minmax(0,3fr) minmax(0,2fr);align-items:baseline;padding:20px 0;${i === 0 ? "" : "border-top:1px solid #000;"}">
       <span style="${gray}">${esc(yl(it.id, it.year))}</span>
       <span class="list-title" style="${ttl}">${esc(it.title)}</span>
       <span style="${body}">${esc(catLabel(it.cat))}</span>
-      <span style="${body}">${esc(status)}</span>
     </div>`;
   };
   return `<div style="margin-left:${m ? "0px" : "var(--pad-left)"};margin-right:0;margin-bottom:100px;"><style>.list-row:hover .list-title{color:#001aff !important;}</style>${items.map(row).join("")}</div>`;
@@ -711,9 +723,6 @@ function projectsHtml() {
         <div style="display:flex;${state.isMobile ? "flex-direction:column;align-items:center;gap:20px;" : "align-items:baseline;justify-content:space-between;gap:24px;"}margin-top:100px;padding-bottom:100px;">
         <div style="display:flex;gap:6px;${state.isMobile ? "flex-wrap:wrap;justify-content:center;" : ""}">
           ${years.map((y, i) => `${i > 0 ? `<span style="font-size:16px;font-family:'PP Stellar',sans-serif;color:#0D0D0E4D;">/</span>` : ""}<span data-year-filter="${y}" class="hoverlink" style="cursor:pointer;font-size:16px;font-family:'PP Stellar',sans-serif;${state.yearFilter === y ? "opacity:0.5;" : ""}">${state.isMobile || i === 0 ? y : y.slice(2)}</span>`).join("")}
-        </div>
-        <div style="display:flex;gap:6px;font-size:16px;font-family:'PP Stellar',sans-serif;">
-          <span data-view-mode="grid" class="hoverlink" style="cursor:pointer;${state.viewMode === "grid" ? "" : "color:#0D0D0E4D;"}">grid view</span><span style="color:#0D0D0E4D;">/</span><span data-view-mode="list" class="hoverlink" style="cursor:pointer;${state.viewMode === "list" ? "" : "color:#0D0D0E4D;"}">list view</span>
         </div>
         </div>
       </div>
@@ -1282,13 +1291,13 @@ document.addEventListener("click", (e) => {
     if (img) return img;
     img = document.createElement("img");
     img.alt = "";
-    img.style.cssText = "position:fixed;left:0;top:0;width:200px;height:auto;pointer-events:none;z-index:60;opacity:0;transition:opacity .15s ease;display:block;";
+    img.style.cssText = "position:fixed;left:0;top:0;width:400px;height:auto;pointer-events:none;z-index:60;opacity:0;transition:opacity .15s ease;display:block;";
     document.body.appendChild(img);
     return img;
   };
   const place = (x, y) => {
     if (!img) return;
-    const w = 200, h = img.offsetHeight || 140;
+    const w = 400, h = img.offsetHeight || 280;
     let l = x + 24, t = y + 24;
     if (l + w > window.innerWidth - 8) l = x - w - 24;
     if (t + h > window.innerHeight - 8) t = y - h - 24;
