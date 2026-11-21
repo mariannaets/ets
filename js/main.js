@@ -187,7 +187,7 @@ const PLACEHOLDER_META = [
   ["woods-residence","WOODS Residence","architecture, urban design","2024"],
   ["wu","WU Restaurant","interior","2023"],
   ["yadro-armenia","Yadro Offices","interior","2022"],
-  ["youth-sport-centre","TUMO CENTER","architecture","2025"],
+  ["youth-sport-centre","Youth Sport Centre","architecture","2025"],
   ["zithopia","Zithopia","interior","2024"],
   ["ac-design-head-office","“AC DESIGN AND ENGINEERING” OFFICES","architecture, interior","2025"],
   ["avobar-abu-dhabi","Avobar Abu Dhabi","interior","2023"],
