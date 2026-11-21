@@ -401,20 +401,24 @@ const TOP_CARDS = [
 const YEAR_LABELS = { "ac-design-head-office": "2022–2025" };
 const yl = (id, y) => YEAR_LABELS[id] || y;
 
-// project titles are shown in sentence case; abbreviations and proper names keep their capitals
+// project titles are shown in Title Case; abbreviations keep their capitals, small joining words stay lowercase
 const TITLE_ACRONYMS = ["AAB", "AC", "AGBU", "ATS", "BARI", "COAF", "MOV", "OMI", "TUMO", "VIP", "VTB", "WU"];
-const TITLE_NAMES = ["Abu", "Andaco", "Apri", "Arin", "Arleam", "Armavir", "Armenia", "Arpa", "Asteria", "Avobar", "Azat", "Berd", "Blanc", "Cofix", "Crème", "Dhabi", "Dilijan", "Freedom", "Gyumri", "Hayelectro", "Jrvezh", "Kapybara", "Karapetyan", "Kochar", "Komitas", "Koor", "Le", "London", "Mashtots", "Masiv", "Milan", "Moskovyan", "Nork", "Nova", "Opera", "Paris", "Parpetsi", "Poplavok", "Pushkin", "Rustaveli", "Sayat", "Saryan", "Simona", "Vahe", "Vallée", "Venice", "Wakepark", "Woods", "Yadro", "Yerevan", "Zithopia", "Zoie"];
-const TITLE_KEEP = new Map([...TITLE_ACRONYMS, ...TITLE_NAMES].map((w) => [w.toLowerCase(), w]));
-function sentenceCase(t) {
+const TITLE_SMALL = ["a", "an", "and", "at", "de", "for", "in", "l", "la", "of", "on", "the", "to"];
+const TITLE_KEEP = new Map(TITLE_ACRONYMS.map((w) => [w.toLowerCase(), w]));
+function titleCase(t) {
   let first = true;
   return String(t).replace(/[\p{L}\p{N}]+/gu, (w) => {
-    const keep = TITLE_KEEP.get(w.toLowerCase());
-    let out = keep || w.toLowerCase();
-    if (first) { first = false; if (!keep) out = out.charAt(0).toUpperCase() + out.slice(1); }
+    const low = w.toLowerCase();
+    const keep = TITLE_KEEP.get(low);
+    let out;
+    if (keep) out = keep;
+    else if (!first && TITLE_SMALL.includes(low)) out = low;
+    else out = low.charAt(0).toUpperCase() + low.slice(1);
+    first = false;
     return out;
   });
 }
-[...Object.values(PROJECTS), ...TOP_CARDS, ...PLACEHOLDER_ITEMS].forEach((o) => { if (o && typeof o.title === "string") o.title = sentenceCase(o.title); });
+[...Object.values(PROJECTS), ...TOP_CARDS, ...PLACEHOLDER_ITEMS].forEach((o) => { if (o && typeof o.title === "string") o.title = titleCase(o.title); });
 
 // ============================================================
 // APP — state, navigation, rendering (no content below)
