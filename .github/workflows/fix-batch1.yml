@@ -1,0 +1,28 @@
+name: fix-batch1
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-batch1.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Move photos
+        run: |
+          set -e
+          S=images/arleam-farm-sanitary-block/project
+          mv $S/images /tmp/imgs
+          rm -rf $S
+          for d in /tmp/imgs/*/; do
+            id=$(basename "$d")
+            mkdir -p images/$id
+            mv "$d/project" images/$id/project
+          done
+          git config user.name github-actions
+          git config user.email actions@github.com
+          git add -A
+          git commit -m "Move batch1 photos to correct folders"
+          git push
